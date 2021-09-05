@@ -1,0 +1,24 @@
+{
+  "name": "fulstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "backend": "cd backend && nodemon index.js",
+    "frontend": "cd frontend && grunt",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/21WDWU02/fulstack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/21WDWU02/fulstack/issues"
+  },
+  "homepage": "https://github.com/21WDWU02/fulstack#readme",
+  "dependencies": {
+    "concurrently": "^6.2.1"
+  }
+}

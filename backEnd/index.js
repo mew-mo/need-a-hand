@@ -31,7 +31,7 @@ app.get('/',(req,res)=> res.send('Hello! I am from the backend'))
   console.log(`DBConnectionError:${err.message}`);
 });
 
-//post method to write or create a document in mongodb
+//BRANCH:creating-post - post method to write or create a document in mongodb
 app.post('/addProduct',(req,res)=>{
   const dbProduct = new Product({
     _id : new mongoose.Types.ObjectId,
@@ -44,15 +44,17 @@ app.post('/addProduct',(req,res)=>{
     res.send(result);
   }).catch(err=>res.send(err));
 })
+// BRANCH:creating-post ENDS
 
-//retrieve objects or documents from the database
+//BRANCH:reading-get - retrieve objects or documents from the database
 app.get('/allProductsFromDB',(req,res)=>{
   Product.find().then(result=>{
     res.send(result);
   })
 })
+//BRANCH:reading-get ENDS
 
-//patch is to update the details of the objects
+//BRANCH:updating-patch - patch is to update the details of the objects
 app.patch('/updateProduct/:id',(req,res)=>{
   const idParam = req.params.id;
   Product.findById(idParam,(err,product)=>{
@@ -71,8 +73,9 @@ app.patch('/updateProduct/:id',(req,res)=>{
     }//else
   })
 })
+//BRANCH:updating-patch ENDS
 
-//delete a product from database
+//BRANCH:updating - delete a product from database
 app.delete('/deleteProduct/:id',(req,res)=>{
   const idParam = req.params.id;
   Product. findOne({_id:idParam}, (err,product)=>{
@@ -85,9 +88,9 @@ app.delete('/deleteProduct/:id',(req,res)=>{
     } //else
   }).catch(err=> res.send(err));
 });//delete
+//BRANCH:updating ENDS
 
-
-//get method to access data from Products.json
+//BRANCH:reading-get - get method to access data from Products.json
 //routing to the endpoint
 app.get('/allProducts', (req,res)=>{
   res.json(product);
@@ -101,8 +104,9 @@ app.get('/products/p=:id',(req,res)=>{
     }
   }
 });
+//BRANCH:reading-get ENDS
 
-// register a new user
+//BRANCH:creating-post - register a new user
 app.post('/registerUser',(req,res)=>{
   //checking if user is found in the db already
   User.findOne({username:req.body.username},(err,userResult)=>{
@@ -124,15 +128,17 @@ app.post('/registerUser',(req,res)=>{
     }
   })
 });
+//BRANCH:creating-post ENDS
 
-//view all users
+//BRANCH:reading-get - view all users
 app.get('/allUser',(req,res)=>{
   User.find().then(result=>{
     res.send(result);
   })
 });
+//BRANCH:creating-post ENDS
 
-//login the user
+//BRANCH:creating-post - login the user
 app.post('/loginUser', (req,res)=>{
   User.findOne({username:req.body.username},(err,userResult)=>{
     if (userResult){
@@ -146,9 +152,9 @@ app.post('/loginUser', (req,res)=>{
     }//outer if
   });//findOne
 });//post
+//BRANCH:creating-post ENDS
 
 
 
 //listening to port
-
 app.listen(port,()=>console.log(`My fullstack application is listening on port ${port}`))

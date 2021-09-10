@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="sass\style.scss">
+
+  <title>Student Profile</title>
+</head>
+<body>
+
+  <form id="addProductForm" class=" py-5">
+    <h1 class="text-primary"> Add Product Form </h1>   <br><br>
+    <label class="mr-5" for="a-productId"> Enter product Id: </label>
+    <input type="text" class="ml-5 rounded-pill" id="a-productId" name="inputId" >
+    <br><br>
+
+    <label class="mr-4" for="a-name"> Enter name of the product </label>
+    <input type="text" id="a-name" name="productName" class="rounded-pill">
+    <br><br>
+
+    <label class="mr-4" for="a-price"> Enter price of the product </label>
+    <input type="number" id="a-price" name="productPrice" class="rounded-pill">
+    <br><br>
+
+     <label class="mr-5" for="a-imageurl"> Enter the image url </label>
+    <input type="text" class="ml-5 rounded-pill" id="a-imageurl" name="a-imageurl" >
+    <br><br>
+
+    <button id="addProduct" name="productButton" type="submit" class="btn btn-primary rounded-pill">Add product</button>
+  </form>
+
+  <button id="logout" class="btn btn-sm" type="button" name="button">Logout</button>
+
+</body>

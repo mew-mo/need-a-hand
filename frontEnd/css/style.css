@@ -1,3 +1,103 @@
+/* nav section */
+nav{
+  border: 2px solid white;
+  width: 70%;
+  margin-left: 150px;
+}
+#login{
+  margin-left: 550px;
+}
+/* nav section ENDS */
 
+/* Home page section */
+#homePage{
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+  text-align: center;
+}
+#exit{
+  position: absolute;
+  display: inline-block;
+  margin-left: 530px;
+}
 
-/*# sourceMappingURL=style.css.map */
+/* login/register forms */
+#loginSection,
+#registerSection{
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+}
+#WelcomeTitle{
+  text-align: center;
+}
+#loginForm,
+#registerForm{
+margin-left: 50px;
+margin-right: 50px;
+}
+#loginSubmit{
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+#reg{
+  position: absolute;
+  display: inline-block;
+}
+#cancel1{
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+#regSubmit{
+  position: absolute;
+  display: inline-block;
+  margin-left: 250px;
+}
+/* login/register forms ENDS */
+
+/* Employer dashboard starts */
+#dashNav{
+  margin-left: 150px;
+  width: 70%;
+}
+
+#createAd,
+#viewStudentProfile,
+#viewEmployerProfile,
+#logout{
+  margin-left: 11px;
+}
+#jobPost{
+  border: 2px solid white;
+  width: 70%;
+  margin-left: 150px;
+}
+#postDetails{
+  position: relative;
+  display: inline-block;
+  width: 600px;
+}
+#editPost{
+  position: absolute;
+  width: 100px;
+}
+#deletePost{
+  width: 100px;
+  margin-left: 600px;
+}
+/* create post begins */
+#createListing{
+  border: 2px solid white;
+  width: 40%;
+  margin-left: 300px;
+}
+#cancel2{
+  position: relative;
+  display: inline-block;
+}
+#updateProduct{
+
+}

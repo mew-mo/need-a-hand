@@ -10,7 +10,7 @@ const product = require('./Products.json');
 const Product = require('./models/products.js');
 const User = require('./models/users.js');
 
-const port = 5000;
+const port = 3000;
 
 //use ends here
 app.use((req,res,next)=>{
@@ -25,7 +25,8 @@ app.use(cors()); //calling cors method
 
 app.get('/',(req,res)=> res.send('Hello! I am from the backend'))
 
- mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@cluster0.${config.MONGO_CLUSTER_NAME}.mongodb.net/Sample?retryWrites=true&w=majority`, {useNewUrlParser: true,useUnifiedTopology: true})
+
+ mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@need-a-hand.${config.MONGO_CLUSTER_NAME}.mongodb.net/need-a-hand?retryWrites=true&w=majority`, {useNewUrlParser: true,useUnifiedTopology: true})
 .then(()=>console.log('DB connected!'))
 .catch(err=>{
   console.log(`DBConnectionError:${err.message}`);

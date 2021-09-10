@@ -1,3 +1,4 @@
+
 // console.log('script'); //testing if script.js is working
 // console.log(sessionStorage);
 //
@@ -31,16 +32,19 @@
 //   $('#loginForm').show();
 //   $('#registerForm').hide();
 // })
+
 // $('#register').click(function(){
 //   $('#registerForm').show();
 //   $('#loginForm').hide();
 // });
 // $('#username').click(function(){
 //   $(this).val('');
+
 // })
 // $('#password').click(function(){
 //   $(this).val('');
 // })
+
 // let url;//declare url as a variable in es6
 // $.ajax({
 //   url: 'config.json',

@@ -24,10 +24,14 @@ app.use(bodyParser.urlencoded({extended:false}));//using default
 
 app.use(cors()); //calling cors method
 
+
+app.get('/',(req,res)=> res.send('Hello! I am from the backend'))
+
+
  mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@need-a-hand.${config.MONGO_CLUSTER_NAME}.mongodb.net/need-a-hand?retryWrites=true&w=majority`, {useNewUrlParser: true,useUnifiedTopology: true})
 .then(() => console.log('DB connected!'))
 .catch(err => {
-  alert(`DBConnectionError:${err.message}`);
+  alert(`DBConnectionError:${err.message}`)
 });
 
 //BRANCH:creating-post - post method to write or create a document in mongodb

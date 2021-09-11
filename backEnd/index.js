@@ -24,10 +24,6 @@ app.use(bodyParser.urlencoded({extended:false}));//using default
 
 app.use(cors()); //calling cors method
 
-
-app.get('/',(req,res)=> res.send('Hello! I am from the backend'))
-
-
  mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@need-a-hand.${config.MONGO_CLUSTER_NAME}.mongodb.net/need-a-hand?retryWrites=true&w=majority`, {useNewUrlParser: true,useUnifiedTopology: true})
 .then(() => console.log('DB connected!'))
 .catch(err => {
@@ -138,8 +134,16 @@ app.post('/loginStudent', (req, res) => {
 // BRANCH:creating-post ENDS ---------------------------------------------------
 
 //BRANCH:reading-get - retrieve objects or documents from the database
-app.get('/allProductsFromDB',(req,res)=>{
-  Product.find().then(result=>{
+// get all students
+app.get('/allStudents', (req, res) => {
+  Student.find().then(result => {
+    res.send(result);
+  })
+})
+
+// get all posts
+app.get('/allPosts', (req, res) => {
+  Post.find().then(result => {
     res.send(result);
   })
 })

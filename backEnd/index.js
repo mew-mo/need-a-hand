@@ -6,25 +6,24 @@ const mongoose = require('mongoose');
 const cors = require('cors');//cross origin restriction to be waived
 const bcrypt = require('bcryptjs');
 const config = require('./config.json');
-const product = require('./Products.json');
+
 const Post = require('./models/posts.js');
 const Student = require('./models/students.js');
 const Employer = require('./models/employers.js');
 
 const port = 3000;
 
-//use ends here
-app.use((req,res,next) => {
+app.use((req, res, next) => {
  console.log(`${req.method} request ${req.url}`);
   next();
 })
 
 app.use(bodyParser.json());//calling body parser method
-app.use(bodyParser.urlencoded({extended:false}));//using default
+app.use(bodyParser.urlencoded({extended: false}));//using default
 
 app.use(cors()); //calling cors method
 
- mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@need-a-hand.${config.MONGO_CLUSTER_NAME}.mongodb.net/need-a-hand?retryWrites=true&w=majority`, {useNewUrlParser: true,useUnifiedTopology: true})
+ mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@need-a-hand.${config.MONGO_CLUSTER_NAME}.mongodb.net/need-a-hand?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => console.log('DB connected!'))
 .catch(err => {
   alert(`DBConnectionError:${err.message}`)
@@ -32,7 +31,7 @@ app.use(cors()); //calling cors method
 
 //BRANCH:creating-post - post method to write or create a document in mongodb
 // POST add new post
-app.post('/addPost',(req, res) => {
+app.post('/addPost', (req, res) => {
   const post = new Post({
     _id : new mongoose.Types.ObjectId,
     jobTitle: req.body.jobTitle,
@@ -147,43 +146,82 @@ app.get('/allPosts', (req, res) => {
     res.send(result);
   })
 })
-//BRANCH:reading-get ENDS
+//BRANCH:reading-get ENDS ------------------------------------------------------
 
 //BRANCH:updating-patch - patch is to update the details of the objects
-app.patch('/updateProduct/:id',(req,res)=>{
+// update post
+app.patch('/updatePost/:id', (req, res) => {
   const idParam = req.params.id;
-  Product.findById(idParam,(err,product)=>{
-    if (product['user_id'] == req.body.userId){
-      const updatedProduct = {
-        name : req.body.name,
-        price : req.body.price,
-        image_url:req.body.image_url
+  Post.findById(idParam, (err, post) => {
+    if (Post['user_id'] == req.body.userId) {
+      const updatedPost = {
+        jobTitle: req.body.jobTitle,
+        posterName: req.body.posterName,
+        username: req.body.username,
+        jobDescription: req.body.jobDescription
       }
-      Product.updateOne({_id:idParam}, updatedProduct).
-      then(result=>{
+      Post.updateOne({_id: idParam}, updatedPost)
+      .then(result => {
         res.send(result);
-      }).catch(err=> res.send(err));
-    } else{
-      res.send('error: product not found')
+      }).catch(err => res.send(err));
+    } else {
+      res.send('Error: Post not found')
     }//else
   })
 })
-//BRANCH:updating-patch ENDS
 
-//BRANCH:updating - delete a product from database
-app.delete('/deleteProduct/:id',(req,res)=>{
+// update employer profile
+app.patch('/updateEmployer/:id', (req, res) => {
   const idParam = req.params.id;
-  Product. findOne({_id:idParam}, (err,product)=>{
-    if(product){
-      Product.deleteOne({_id:idParam},err=>{
-        res.send('deleted');
-    });
+  Employer.findById(idParam, (err, employer) => {
+    if (Employer['user_id'] == req.body.userId) {
+      const hash = bcrypt.hashSync(req.body.password);
+      const updatedEmployer = {
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        password: hash,
+        pfpUrl: req.body.pfpUrl,
+        workField: req.body.workField,
+        companyName: req.body.companyName,
+        extra: req.body.extra
+      }
+      Employer.updateOne({_id: idParam}, updatedEmployer)
+      .then(result => {
+        res.send(result);
+      }).catch(err => res.send(err));
     } else {
-      res.send('not found');
-    } //else
-  }).catch(err=> res.send(err));
-});//delete
-//BRANCH:updating ENDS
+      res.send('Error: Employer profile not found')
+    }//else
+  })
+})
+
+// update student profile
+app.patch('/updateStudent/:id', (req, res) => {
+  const idParam = req.params.id;
+  Student.findById(idParam, (err, student) => {
+    if (Student['user_id'] == req.body.userId) {
+      const hash = bcrypt.hashSync(req.body.password);
+      const updatedStudent = {
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        password: hash,
+        pfpUrl: req.body.pfpUrl,
+        studyField: req.body.studyField,
+        educator: req.body.educator,
+        extra: req.body.extra
+      }
+      Student.updateOne({_id: idParam}, updatedStudent)
+      .then(result => {
+        res.send(result);
+      }).catch(err => res.send(err));
+    } else {
+      res.send('Error: Student profile not found')
+    }//else
+  })
+})
+//BRANCH:updating-patch ENDS ---------------------------------------------------
 
 //BRANCH:reading-get - get method to access data from Products.json
 //routing to the endpoint
@@ -201,13 +239,22 @@ app.get('/products/p=:id',(req,res)=>{
 });
 //BRANCH:reading-get ENDS
 
-//BRANCH:reading-get - view all users
-app.get('/allUser',(req,res)=>{
-  User.find().then(result=>{
-    res.send(result);
-  })
-});
-//BRANCH:reading-get ENDS
+//BRANCH:deleting - to delete an object
+// delete a post
+app.delete('/deletePost/:id', (req, res) => {
+  const idParam = req.params.id;
+  Post.findOne({_id: idParam}, (err, post) => {
+    if(post) {
+      Post.deleteOne({_id:idParam}, err => {
+        res.send('Deleted');
+    });
+    } else {
+      res.send('Post not found');
+    } //else
+  }).catch(err => res.send(err));
+});//delete
+//BRANCH:deleting ENDS
+
 
 //listening to port
 app.listen(port,()=>console.log(`Need-A-Hand is listening on port ${port}`))

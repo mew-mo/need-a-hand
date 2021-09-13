@@ -1,22 +1,24 @@
 /* nav section */
-nav{
+nav {
   border: 2px solid white;
   width: 70%;
   margin-left: 150px;
 }
-#login{
+
+#login {
   margin-left: 550px;
 }
-/* nav section ENDS */
 
+/* nav section ENDS */
 /* Home page section */
-#homePage{
+#homePage {
   border: 2px solid white;
   width: 50%;
   margin-left: 250px;
   text-align: center;
 }
-#exit{
+
+#exit {
   position: absolute;
   display: inline-block;
   margin-left: 530px;
@@ -24,42 +26,48 @@ nav{
 
 /* login/register forms */
 #loginSection,
-#registerSection{
+#registerSection {
   border: 2px solid white;
   width: 50%;
   margin-left: 250px;
 }
-#WelcomeTitle{
+
+#WelcomeTitle {
   text-align: center;
 }
+
 #loginForm,
-#registerForm{
-margin-left: 50px;
-margin-right: 50px;
+#registerForm {
+  margin-left: 50px;
+  margin-right: 50px;
 }
-#loginSubmit{
+
+#loginSubmit {
   position: relative;
   display: inline-block;
   margin-left: 50px;
 }
-#reg{
+
+#reg {
   position: absolute;
   display: inline-block;
 }
-#cancel1{
+
+#cancel1 {
   position: relative;
   display: inline-block;
   margin-left: 50px;
 }
-#regSubmit{
+
+#regSubmit {
   position: absolute;
   display: inline-block;
   margin-left: 250px;
 }
-/* login/register forms ENDS */
 
+/* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav{
+#dashNav {
   margin-left: 150px;
   width: 70%;
 }
@@ -67,37 +75,90 @@ margin-right: 50px;
 #createAd,
 #viewStudentProfile,
 #viewEmployerProfile,
-#logout{
+#logout {
   margin-left: 11px;
 }
-#jobPost{
+
+#jobPost {
   border: 2px solid white;
   width: 70%;
   margin-left: 150px;
 }
-#postDetails{
+
+#postDetails {
   position: relative;
   display: inline-block;
   width: 600px;
 }
-#editPost{
+
+#editPost {
   position: absolute;
   width: 100px;
 }
-#deletePost{
+
+#deletePost {
   width: 100px;
   margin-left: 600px;
 }
+
 /* create post begins */
-#createListing{
+#createListing {
   border: 2px solid white;
   width: 40%;
   margin-left: 300px;
 }
-#cancel2{
+
+#cancel2 {
   position: relative;
   display: inline-block;
 }
-#updateProduct{
 
+.testClass {
+  position: relative;
+  margin-left: 310px;
+  margin-top: 140px;
+  width: 55rem;
+  height: 25rem;
+  background-color: #383838;
+  border: 1px solid transparent;
+  border-image: linear-gradient(to right, #E1B3A3, #A593C8, #7C83DB);
+  border-image-slice: 1;
+  padding: 10px;
 }
+
+#userImage {
+  position: absolute;
+  right: 10px;
+  top: -50px;
+  overflow: hidden;
+  width: 20em;
+  height: 20em;
+  border: solid 3px white;
+  border-radius: 250px;
+}
+
+#fullName,
+#userName,
+p {
+  color: white;
+  width: 50%;
+}
+
+#breakPoint {
+  width: 190px;
+  height: 10px;
+  background-color: #cf82b5;
+  border: solid 1px #cf82b5;
+  border-radius: 100px;
+}
+
+.fa-star {
+  margin-top: 15px;
+  font-size: 80px;
+}
+
+.checked {
+  color: orange;
+}
+
+/*# sourceMappingURL=style.css.map */

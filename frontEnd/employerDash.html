@@ -14,7 +14,8 @@
     <!-- add logo as home button -->
     <a href="index.html"><button id="home" type="button" name="button" class="btn btn-light btn-md ">Add logo img here</button></a>
 
-    <a href=""><button id="createAd" class="btn btn-light btn-md" type="button" name="button">Create new job ad</button></a>
+    <!-- <a href=""><button id="createAd" class="btn btn-light btn-md" type="button" name="button">Create new job ad</button></a> -->
+    <button id="createAd" class="btn btn-light btn-md" type="button" name="button">Create new job ad</button>
 
     <a href=""><button id="viewStudentProfile" class="btn btn-light btn-md " type="button" name="button">View Students Profiles</button></a>
 
@@ -23,18 +24,6 @@
     <a href="index.html"><button id="logout" class="btn btn-light btn-md" type="button" name="button">Logout</button></a>
   </div>
 
-<!-- job post for employer to view/edit/delete-->
-<div id="jobPost" class="text-light mt-4 py-4 px-4">
-  <h2>Job title here</h2>
-  <h4>Business name here</h4>
-  <hr>
-  <p id="postDetails">Job description here. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-
-  <button id="editPost" name="productButton" type="submit" class="btn btn-primary mx-2">Edit</button>
-<!-- change buttons to icons -->
-  <button id="deletePost" name="productButton" type="submit" class="btn btn-primary mx-2">Delete</button>
-
-</div>
 
 <!-- When 'edit job post' button is selected, product form overlay will appear  -->
   <!-- Update job details to show on dashboard -->
@@ -54,13 +43,52 @@
         <label class="text-light mr-4" for="productName"> Enter job description: </label>
         <input class="ml-5 form-control rounded-pill" id="jobDescription" type="text" name="productName" >
         <br>
-
+        <!-- cc added starts-->
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Category
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Design</a></li>
+            <li><a class="dropdown-item" href="#">Web</a></li>
+            <li><a class="dropdown-item" href="#">Dev</a></li>
+          </ul>
+        </div>
+        <!-- cc added ends-->
       </form>
 
       <a href="index.html"><button id="cancel2" name="r-button" type="button" class="btn btn-primary">Cancel</button></a>
 
-      <a href="studentDash.html"><button id="updateProduct" name="productButton" type="submit" class="btn btn-primary">Post Job Advert</button></a>
+      <!-- <a href="studentDash.html"><button id="updateProduct" name="productButton" type="submit" class="btn btn-primary">Post Job Advert</button></a> -->
+      <button id="addPost" name="postButton" type="submit" class="btn btn-primary">Post Job Advert</button>
     </div>
+
+
+    <!-- job post for employer to view/edit/delete-->
+    <div id="jobPost" class="text-light mt-4 py-4 px-4">
+        <div>
+          <h2>Job title here</h2>
+          <h4>Business name here</h4>
+          <hr>
+          <p id="postDetails">Job description here. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        </div>
+          <!-- <button id="editPost" name="productButton" type="submit" class="btn btn-primary mx-2">Edit</button> -->
+        <!-- change buttons to icons -->
+          <!-- <button id="deletePost" name="productButton" type="submit" class="btn btn-primary mx-2">Delete</button> -->
+
+    </div>
+
+    // SCRIPT LINKS ---------------------------------------------
+
+
+    <!-- jquery -->
+    <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="../frontEnd/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom javascript -->
+    <!-- *** CHANGE TO SCRIPT.MIN.JS AFTER YOU HAVE FINISHED WITH THE CONSOLE ** -->
+    <script src="js/script.js"></script>
 
 
 

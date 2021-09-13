@@ -1,65 +1,101 @@
-/* nav section */
-nav{
-  border: 2px solid white;
-  width: 70%;
-  margin-left: 150px;
+#homeBG {
+  background-image: url("../image/homeBG.png");
 }
-#login{
-  margin-left: 550px;
-}
-/* nav section ENDS */
 
+#login {
+  position: relative;
+  border: 1px solid #E8AB9D;
+  background-color: #21262A;
+  width: 120px;
+  float: right;
+  margin-right: 300px;
+}
+
+/* nav section ENDS */
 /* Home page section */
-#homePage{
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
+#homePage {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  width: 30%;
+  margin-left: 350px;
+  margin-top: 140px;
   text-align: center;
 }
-#exit{
+
+#studentReg,
+#employerReg {
+  background-color: #5667A9;
+}
+
+#tagline {
+  position: absolute;
+  margin-top: 800px;
+  margin-left: 340px;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  border: 2px solid white;
+  margin-top: 1000px;
+}
+
+/* login/register forms */
+#exit {
   position: absolute;
   display: inline-block;
   margin-left: 530px;
 }
 
-/* login/register forms */
 #loginSection,
-#registerSection{
+#registerSection {
   border: 2px solid white;
   width: 50%;
   margin-left: 250px;
 }
-#WelcomeTitle{
+
+#WelcomeTitle {
   text-align: center;
 }
+
 #loginForm,
-#registerForm{
-margin-left: 50px;
-margin-right: 50px;
+#registerForm {
+  margin-left: 50px;
+  margin-right: 50px;
 }
-#loginSubmit{
+
+#loginSubmit {
   position: relative;
   display: inline-block;
   margin-left: 50px;
 }
-#reg{
+
+#reg {
   position: absolute;
   display: inline-block;
 }
-#cancel1{
+
+#cancel1 {
   position: relative;
   display: inline-block;
   margin-left: 50px;
 }
-#regSubmit{
+
+#regSubmit {
   position: absolute;
   display: inline-block;
   margin-left: 250px;
 }
-/* login/register forms ENDS */
 
+/* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav{
+#dashNav {
   margin-left: 150px;
   width: 70%;
 }
@@ -67,37 +103,42 @@ margin-right: 50px;
 #createAd,
 #viewStudentProfile,
 #viewEmployerProfile,
-#logout{
+#logout {
   margin-left: 11px;
 }
-#jobPost{
+
+#jobPost {
   border: 2px solid white;
   width: 70%;
   margin-left: 150px;
 }
-#postDetails{
+
+#postDetails {
   position: relative;
   display: inline-block;
   width: 600px;
 }
-#editPost{
+
+#editPost {
   position: absolute;
   width: 100px;
 }
-#deletePost{
+
+#deletePost {
   width: 100px;
   margin-left: 600px;
 }
+
 /* create post begins */
-#createListing{
+#createListing {
   border: 2px solid white;
   width: 40%;
   margin-left: 300px;
 }
-#cancel2{
+
+#cancel2 {
   position: relative;
   display: inline-block;
 }
-#updateProduct{
 
-}
+/*# sourceMappingURL=style.css.map */

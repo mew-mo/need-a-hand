@@ -1,22 +1,45 @@
+h1 {
+  font-weight: 300;
+  color: white;
+  font-family: "KoHo", sans-serif;
+}
+
+p,
+a {
+  font-weight: 300;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+}
+
 /* nav section */
-nav{
+nav {
   border: 2px solid white;
   width: 70%;
   margin-left: 150px;
 }
-#login{
+
+#login {
   margin-left: 550px;
 }
-/* nav section ENDS */
 
+/* nav section ENDS */
 /* Home page section */
-#homePage{
+#homePage {
   border: 2px solid white;
   width: 50%;
   margin-left: 250px;
   text-align: center;
 }
-#exit{
+
+#exit {
   position: absolute;
   display: inline-block;
   margin-left: 530px;
@@ -24,42 +47,48 @@ nav{
 
 /* login/register forms */
 #loginSection,
-#registerSection{
+#registerSection {
   border: 2px solid white;
   width: 50%;
   margin-left: 250px;
 }
-#WelcomeTitle{
+
+#WelcomeTitle {
   text-align: center;
 }
+
 #loginForm,
-#registerForm{
-margin-left: 50px;
-margin-right: 50px;
+#registerForm {
+  margin-left: 50px;
+  margin-right: 50px;
 }
-#loginSubmit{
+
+#loginSubmit {
   position: relative;
   display: inline-block;
   margin-left: 50px;
 }
-#reg{
+
+#reg {
   position: absolute;
   display: inline-block;
 }
-#cancel1{
+
+#cancel1 {
   position: relative;
   display: inline-block;
   margin-left: 50px;
 }
-#regSubmit{
+
+#regSubmit {
   position: absolute;
   display: inline-block;
   margin-left: 250px;
 }
-/* login/register forms ENDS */
 
+/* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav{
+#dashNav {
   margin-left: 150px;
   width: 70%;
 }
@@ -67,37 +96,101 @@ margin-right: 50px;
 #createAd,
 #viewStudentProfile,
 #viewEmployerProfile,
-#logout{
+#logout {
   margin-left: 11px;
 }
-#jobPost{
+
+#jobPost {
   border: 2px solid white;
   width: 70%;
   margin-left: 150px;
 }
-#postDetails{
+
+#postDetails {
   position: relative;
   display: inline-block;
   width: 600px;
 }
-#editPost{
+
+#editPost {
   position: absolute;
   width: 100px;
 }
-#deletePost{
+
+#deletePost {
   width: 100px;
   margin-left: 600px;
 }
+
 /* create post begins */
-#createListing{
+#createListing {
   border: 2px solid white;
   width: 40%;
   margin-left: 300px;
 }
-#cancel2{
+
+#cancel2 {
   position: relative;
   display: inline-block;
 }
-#updateProduct{
 
+body {
+  background-color: #212529;
 }
+
+#active {
+  color: #e8ab9d;
+}
+
+#upperTitle {
+  margin-left: 30px;
+}
+
+#lowerTitle {
+  position: absolute;
+  top: 85px;
+  left: 250px;
+  font-size: 3.2rem;
+}
+
+.nav__student-profiles {
+  border: none;
+  width: 100vw;
+  margin-left: 0;
+}
+
+.nav__links {
+  margin-left: 20%;
+}
+
+.nav__link,
+#icon {
+  margin-left: 50px;
+}
+
+#logo {
+  width: 150px;
+}
+
+#studentProfiles {
+  margin-top: 250px;
+}
+
+.img__divider {
+  position: absolute;
+  top: 155px;
+  left: 480px;
+  height: 10px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  color: #e8ab9d;
+  z-index: 99;
+}
+
+.card-group {
+  width: 80%;
+}
+
+/*# sourceMappingURL=style.css.map */

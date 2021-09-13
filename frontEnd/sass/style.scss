@@ -1,3 +1,199 @@
-.container{
-  background-color: yellow;
+@import 'vars';
+//importing our colour scheme variables
+
+// font extends begins
+//for titles
+%koho-font-default {
+  font-weight: 300;
+  color: white;
+  font-family: 'KoHo', sans-serif;
 }
+
+//for body text
+%inter-font-default {
+  font-weight: 300;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+// font extends ENDS
+
+// header set
+h1 {
+  text-transform: uppercase;
+  @extend %koho-font-default;
+}
+
+p,
+a {
+  @extend %inter-font-default;
+}
+
+a {
+  text-decoration: none;
+}
+// header set ENDS
+
+/* nav section */
+nav{
+  border: 2px solid white;
+  width: 70%;
+  margin-left: 150px;
+}
+#login{
+  margin-left: 550px;
+}
+/* nav section ENDS */
+
+/* Home page section */
+#homePage{
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+  text-align: center;
+}
+#exit{
+  position: absolute;
+  display: inline-block;
+  margin-left: 530px;
+}
+
+/* login/register forms */
+#loginSection,
+#registerSection{
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+}
+#WelcomeTitle{
+  text-align: center;
+}
+#loginForm,
+#registerForm{
+margin-left: 50px;
+margin-right: 50px;
+}
+#loginSubmit{
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+#reg{
+  position: absolute;
+  display: inline-block;
+}
+#cancel1{
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+#regSubmit{
+  position: absolute;
+  display: inline-block;
+  margin-left: 250px;
+}
+/* login/register forms ENDS */
+
+/* Employer dashboard starts */
+#dashNav{
+  margin-left: 150px;
+  width: 70%;
+}
+
+#createAd,
+#viewStudentProfile,
+#viewEmployerProfile,
+#logout{
+  margin-left: 11px;
+}
+#jobPost{
+  border: 2px solid white;
+  width: 70%;
+  margin-left: 150px;
+}
+#postDetails{
+  position: relative;
+  display: inline-block;
+  width: 600px;
+}
+#editPost{
+  position: absolute;
+  width: 100px;
+}
+#deletePost{
+  width: 100px;
+  margin-left: 600px;
+}
+/* create post begins */
+#createListing{
+  border: 2px solid white;
+  width: 40%;
+  margin-left: 300px;
+}
+#cancel2{
+  position: relative;
+  display: inline-block;
+}
+#updateProduct{
+}
+
+// student profiles begins
+
+body {
+  background-color: #212529;
+}
+
+#active {
+  color: $peach;
+}
+
+#upperTitle {
+  margin-left: 30px;
+}
+
+#lowerTitle {
+  position: absolute;
+  top: 85px;
+  left: 250px;
+  font-size: 3.2rem;
+}
+
+.nav__student-profiles {
+  border: none;
+  width: 100vw;
+  margin-left: 0;
+}
+
+.nav__links {
+  margin-left: 20%;
+}
+
+.nav__link,
+#icon {
+  margin-left: 50px;
+}
+
+#logo {
+  width: 150px;
+}
+
+#studentProfiles {
+  margin-top: 250px;
+}
+
+.img__divider {
+  position: absolute;
+  top: 155px;
+  left: 480px;
+  height: 10px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  color: $peach;
+  z-index: 99;
+}
+
+.card-group {
+  width: 80%;
+}
+// student profiles ENDS

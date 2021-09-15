@@ -33,7 +33,7 @@ $(document).ready(function(){
   });
 
 
-  //employer dash - add a job post and display it ==============================
+  // POST and GET - employer dash - add a job post and display it =====================
   // ** cc to add category **
 $('#addPost').click(function(){
   $('#jobPost').show();
@@ -102,10 +102,63 @@ $('#addPost').click(function(){
   }//else
 });//addProduct
 
-  // student to view job posts =================================================
+
+// PATCH - employer dash - update job post  ============================================
+
+$('#updateJOBPOSTXXXX').click(function(){
+  event.preventDefault();
+
+  // ** not sure about username **
+  let userid = sessionStorage.getItem('userID');
+
+  // let productId = $('#productId').val();
+  let jobTitle = $('#inputidUpdate').val();
+  let posterName = $('#inputidUpdate').val();
+  let jobDescription = $('#inputidUpdate').val();
+
+  console.log(jobTitle, posterName, jobDescription, username, userid);
+  if ( jobTitle == '' || posterName == '' || jobDescription == ''){
+    alert('Please enter post update information');
+  } else {
+    $.ajax({
+      url: `${url}/updatePost/:id`,
+      type: 'PATCH',
+      data:{
+        jobTitle: jobTitle,
+        posterName: posterName,
+        jobDescription: jobDescription,
+        // ** does this need to be added to models/employer
+        username_id: userid
+      },
+      success: function(data){
+        console.log(data);
+        if(data == '401 error: user has no permission to update'){
+          alert('401 error: user has no permission to update');
+
+        } else {
+          alert('updated');
+        }//else
+        // ** NEED TO UPDATE THE IDS **
+        $('#inputidUpdate').val('');
+        $('#inputidUpdate').val('');
+        $('#inputidUpdate').val('');
+
+
+      }, //success
+      error: function(){
+        console.log('error:cannot call api');
+      }//error
+    })//ajax
+  }//if
+})//updateJOBPOSTXXXX
+
+
+
+  // GET - student to view job posts =================================================
 
   // ** click function id needs to be linked to when student registers / logs in / clicks 'dashboard button' **
-  $('#XXXXXX').click(function(){
+  studentDash = () => {
+
     console.log(url);
     // $('#homePage').hide();
     // $('#adminPage').hide();
@@ -119,19 +172,16 @@ $('#addPost').click(function(){
         console.log(postFromMDB);
         var i;
         // ** add id for div where you want data to display **
-        document.getElementById('XXXX').innerHTML ="";
+        document.getElementById('sdJobPost').innerHTML ="";
         for (i = 0; i < postFromMDB.length; i++) {
               console.log(postFromMDB[i]);
-              document.getElementById('XXXX').innerHTML +=
+              document.getElementById('sdJobPost').innerHTML +=
               `
-              <div>
-                <h2>${postFromMDB[i].jobTitle}</h2>
-                <h4>${postFromMDB[i].posterName}</h4>
-                <hr>
-                <p id="postDetails">${postFromMDB[i].jobDescription}</p>
-                <button id="save" name="productButton" type="submit" class="btn btn-primary mx-2">Save Post</button>
-                <button id="comment" name="productButton" type="submit" class="btn btn-primary mx-2">Comment Post</button>
-              </div>
+              <h2>${postFromMDB[i].jobTitle}</h2>
+              <h4>${postFromMDB[i].posterName}</h4>
+              <hr>
+              <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+              <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
               `
             } // for loop one ends
       },
@@ -139,13 +189,221 @@ $('#addPost').click(function(){
 
       }
     })//ajax
-  })//view button click
+
+}; //end of studentDash function
+
+
+  // student profile page  =====================================================
+
+  // there should be a way to do it by running an if statement comparing the session storage property "userID" with the product ID (productsFromMongo.user_id) and then only showing the products which match, if that makes sense
 
 
 
+  //   let name = $('#a-name').val();
+  //   let price = $('#a-price').val();
+  //   let image_url = $('#a-imageurl').val();
+  //   let userid =  sessionStorage.getItem('userID');
+
+  //   console.log(userid);
+  //   console.log(name,price, image_url);
+  //   if (userid == ){
+  //     alert('Please enter all details');
+  // username: userid
+
+  studentProf = () => {
+
+    console.log(url);
+    $.ajax({
+      url:`${url}/allPosts`,
+      type: 'GET',
+      dataType : 'json',
+      // ** postFromMDB may need a different name as it may conflict with the above **
+      success : function(postFromMDB){
+        console.log(postFromMDB);
+        var i;
+        // ** add id for div where you want data to display **
+        document.getElementById('sdJobPost').innerHTML ="";
+        for (i = 0; i < postFromMDB.length; i++) {
+              console.log(postFromMDB[i]);
+              document.getElementById('sdJobPost').innerHTML +=
+              `
+              <h2>${postFromMDB[i].jobTitle}</h2>
+              <h4>${postFromMDB[i].posterName}</h4>
+              <hr>
+              <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+              <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
+              `
+            } // for loop one ends
+      },
+      error:function(){
+
+      }
+    })//ajax
+
+}; //end of studentDash function
 
 
 
+  // POST - student registration  =====================================================
+
+  $('#XXXCREATE-ACC-BTN-STUDENT').click(function(){
+    event.preventDefault()//this prevents code breaking when no data is found
+    let sName = $('#username-INPUT').val();
+    let sUsername = $('#username-INPUT').val();
+    let sEmail = $('#email-INPUT').val();
+    let sPassword = $('#password-INPUT').val();
+    let sPfpUrl = $('#profile-INPUT').val();
+    let sStudy = $('#study-INPUT').val();
+    let sEducator = $('#educator-INPUT').val();
+    let sExtra = $('#extra-INPUT').val();
+
+    console.log(sName, sUsername, sEmail, sPassword, sPfpUrl, sStudy, sEducator, sExtra);
+
+    if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sStudy == '' || sEducator == ''){
+      alert('Please enter all student details');
+
+    }else {
+      $.ajax({
+        url: `${url}/registerStudent`,
+        type : 'POST',
+        data : {
+          name: sName,
+          username: sUsername,
+          email: sEmail,
+          password: sPassword,
+          pfpUrl: sPfpUrl,
+          studyField: sStudy,
+          educator: sEducator,
+          extra: sExtra
+        },
+        success:function(user){
+          console.log(user); //remove when development is finished
+          if (user !== 'username taken already. Please try another name'){
+            alert('Please login to manipulate the products data');
+
+          } else {
+            alert('username taken already. Please try another name');
+            // ********** change ids *******
+            $('#username').val('');
+            $('#email').val('');
+            $('#password').val('');
+          } //else
+
+        }, //success
+        error:function(){
+          console.log('error: cannot call api');
+        }//error
+      })//ajax post
+    }//if
+
+  })//#XXXCREATE-ACC-BTN-STUDENT
+
+
+  // POST - employer registration  =====================================================
+
+  $('#').click(function(){
+    event.preventDefault()//this prevents code breaking when no data is found
+    let eName = $('#name').val();
+    let eUsername = $('#username').val();
+    let eEmail = $('#user-email').val();
+    let ePassword = $('#password').val();
+    let ePfpUrl = $('#profile-INPUT').val();
+    let eWorkField = $('#r-name').val();
+    let eCompanyName = $('#company-name').val();
+    let eExtra = $('#r-extra').val();
+
+    console.log(eName, eUsername, eEmail, ePassword, ePfpUrl, eWorkField, eCompanyName, eExtra);
+
+    if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eWorkField == '' || eCompanyName == ''){
+      alert('Please enter all emplyoyer details');
+
+    }else {
+      $.ajax({
+        url: `${url}/registerEmployer`,
+        type : 'POST',
+        data : {
+          name: eName,
+          username: eUsername,
+          email: eEmail,
+          password: ePassword,
+          pfpUrl: ePfpUrl,
+          workField: eWorkField,
+          companyName: eWorkField,
+          extra: eExtra
+        },
+        success:function(user){
+          console.log(user); //remove when development is finished
+          if (user !== 'username taken already. Please try another name'){
+            alert('Please login to manipulate the products data');
+
+          } else {
+            alert('username taken already. Please try another name');
+            // ********** change ids *******
+            $('#username').val('');
+            $('#user-email').val('');
+            $('#password').val('');
+          } //else
+
+        }, //success
+        error:function(){
+          console.log('error: cannot call api');
+        }//error
+      })//ajax post
+    }//if
+
+  })//#XXXCREATE-ACC-BTN-EMPLOIYER
+
+
+  // PATCH - student profile - update student profile details ===========================
+  $('#updateSTUDENTPROFILE').click(function(){
+    event.preventDefault();
+
+    // ** not sure about username **
+    let userid = sessionStorage.getItem('userID');
+
+    // let productId = $('#productId').val();
+    let name = $('#inputidUpdate').val();
+    let studyField = $('#inputidUpdate').val();
+    let educator = $('#inputidUpdate').val();
+    let extra = $('#inputidUpdate').val();
+
+    console.log(name, studyField, educator, extra, userid);
+    if ( name == '' || studyField == '' || educator == '' || extra == ''){
+      alert('Please enter profile update information');
+    } else {
+      $.ajax({
+        url: `${url}/updateStudent/:id`,
+        type: 'PATCH',
+        data:{
+          name: name,
+          studyField: studyField,
+          educator: educator,
+          extra: extra,
+          // ** does this need to be added to models/employer
+          username_id: userid
+        },
+        success: function(data){
+          console.log(data);
+          if(data == '401 error: user has no permission to update'){
+            alert('401 error: user has no permission to update');
+
+          } else {
+            alert('updated');
+          }//else
+          // ** NEED TO UPDATE THE IDS **
+          $('#inputidUpdate').val('');
+          $('#inputidUpdate').val('');
+          $('#inputidUpdate').val('');
+          $('#inputidUpdate').val('');
+
+
+        }, //success
+        error: function(){
+          console.log('error:cannot call api');
+        }//error
+      })//ajax
+    }//if
+  })//updateJOBPOSTXXXX
 
 
 
@@ -335,7 +593,7 @@ $('#addPost').click(function(){
 //
 // })//deleteProduct
 //
-// // User Registration
+// User Registration
 // $('#r-submit').click(function(){
 //   //event.preventDefault()//this prevents code breaking when no data is found
 //

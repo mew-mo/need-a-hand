@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['js/script.js','sass/style.scss','index.html','Gruntfile.js'],
+        files: ['js/script.js','sass/style.scss','*.html','Gruntfile.js'],
         tasks: ['uglify','sass','jshint'],
         options: {
           spawn: false,

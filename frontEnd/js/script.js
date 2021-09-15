@@ -17,11 +17,6 @@
   });
 
   // student profiles JS------------------------------
-  // $(function () {
-  //   $('#studentCarousel').carousel({
-  //     interval: false
-  //   });
-  // });
 
   // declaring vars
   var navDisplay = false;
@@ -47,7 +42,22 @@
     }
   }, false);
 
-  // carousel chaos :)
+  $('.student-carousel').slick({
+    arrows: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    prevArrow: '<div class="slick-prev"></div>',
+    nextArrow: '<div class="slick-next"></div>',
+
+    onBeforeChange: function () {
+      $('.slick-slide').removeClass('card__card-body--active');
+    },
+
+    onAfterChange: function () {
+      $('.slick-active').next().addClass('card__card-body--active');
+    }
+  });
 
   if ($('body').data('title') === 'student-profiles-page') {
     window.addEventListener('load', () => {
@@ -56,129 +66,29 @@
         type: 'GET',
         dataType: 'json',
         success: function(itemsFromDB) {
-          console.log('getting the students');
-
-          // messing it up :)
-
-          let cardCount = 0;
-
           for (var i = 0; i < itemsFromDB.length; i++) {
-            if (cardCount % 2 == 0) {
-              document.querySelector('.caro-row').innerHTML += `
-               <div class="carousel-item" style="display:block;margin-left:33%;">
-                  <div class="col-md-4">
-                   <div class="card">
-                     <div class="card-body">
-                       <h5 class="card-title">${itemsFromDB[i].name}</h5>
-                       <h6>${itemsFromDB[i].username} • ${itemsFromDB[i].educator}</h6>
-                       <div class="img-container__crop">
-                           <img src="${itemsFromDB[i].pfpUrl}" alt="${itemsFromDB[i].name}'s profile picture'">
-                       </div>
-                       <h5>${itemsFromDB[i].studyField}</h5>
-                       <p class="card-text">${itemsFromDB[i].extra}</p>
-                    </div>
-                   </div>
-                   </div> <--!col-->
-                </div>`;
-            } else if (cardCount % 3 == 0) {
-              document.querySelector('.caro-row').innerHTML += `
-               <div class="carousel-item" style="dsiplay:block;margin-left:66%;">
-                  <div class="col-md-4">
-                   <div class="card">
-                     <div class="card-body">
-                       <h5 class="card-title">${itemsFromDB[i].name}</h5>
-                       <h6>${itemsFromDB[i].username} • ${itemsFromDB[i].educator}</h6>
-                       <div class="img-container__crop">
-                           <img src="${itemsFromDB[i].pfpUrl}" alt="${itemsFromDB[i].name}'s profile picture'">
-                       </div>
-                       <h5>${itemsFromDB[i].studyField}</h5>
-                       <p class="card-text">${itemsFromDB[i].extra}</p>
-                    </div>
-                   </div>
-                   </div> <--!col-->
-                </div>`;
-            } else {
-              document.querySelector('.caro-row').innerHTML += `
-               <div class="carousel-item">
-                  <div class="col-md-4">
-                   <div class="card">
-                     <div class="card-body">
-                       <h5 class="card-title">${itemsFromDB[i].name}</h5>
-                       <h6>${itemsFromDB[i].username} • ${itemsFromDB[i].educator}</h6>
-                       <div class="img-container__crop">
-                           <img src="${itemsFromDB[i].pfpUrl}" alt="${itemsFromDB[i].name}'s profile picture'">
-                       </div>
-                       <h5>${itemsFromDB[i].studyField}</h5>
-                       <p class="card-text">${itemsFromDB[i].extra}</p>
-                    </div>
-                   </div>
-                   </div> <--!col-->
-                </div>`;
-            }
-              cardCount += 1;
-            }
-
-          // let cardCount = 3;
-          // // keeping track of how many card groups need to be made, will be detected in multiples of 3
-          // let cardIndex = 0;
-          // // creaing the index to track the cards inside each card group
-          //
-          // for (var i = 0; i < itemsFromDB.length; i++) {
-          //   if (cardCount % 3 == 0) {
-          //     console.log(`cardcount is at ${cardCount}`);
-          //     // checking if cardcount is a multiple of 3
-          //     document.querySelector('.carousel-inner').innerHTML += `
-          //     <div class="carousel-item">
-          //       <div class="card-group mx-auto student-cards">
-          //         <div class="card">
-          //           <div class="card-body">
-          //             <h5 class="card-title">${itemsFromDB[cardIndex].name}</h5>
-          //             <h6>${itemsFromDB[cardIndex].username} • ${itemsFromDB[cardIndex].educator}</h6>
-          //             <div class="img-container__crop">
-          //                 <img src="${itemsFromDB[cardIndex].pfpUrl}" alt="${itemsFromDB[cardIndex].name}'s profile picture'">
-          //             </div>
-          //             <h5>${itemsFromDB[cardIndex].studyField}</h5>
-          //             <p class="card-text">${itemsFromDB[cardIndex].extra}</p>
-          //           </div>
-          //         </div>
-          //         <div class="card">
-          //           <div class="card-body">
-          //           <h5 class="card-title">${itemsFromDB[cardIndex+1].name}</h5>
-          //           <h6>${itemsFromDB[cardIndex+1].username} • ${itemsFromDB[cardIndex+1].educator}</h6>
-          //           <div class="img-container__crop">
-          //               <img src="${itemsFromDB[cardIndex+1].pfpUrl}" alt="${itemsFromDB[cardIndex+1].name}'s profile picture'">
-          //           </div>                    <h5>${itemsFromDB[cardIndex+1].studyField}</h5>
-          //           <p class="card-text">${itemsFromDB[cardIndex+1].extra}</p>
-          //         </div>
-          //           </div>
-          //         </div>
-          //         <div class="card">
-          //           <div class="card-body">
-          //           <div class="card-body">
-          //           <h5 class="card-title">${itemsFromDB[cardIndex+2].name}</h5>
-          //           <h6>${itemsFromDB[cardIndex+2].username} • ${itemsFromDB[cardIndex+2].educator}</h6>
-          //           <div class="img-container__crop">
-          //               <img src="${itemsFromDB[cardIndex+2].pfpUrl}" alt="${itemsFromDB[cardIndex+2].name}'s profile picture'">
-          //           </div>                    <h5>${itemsFromDB[cardIndex+2].studyField}</h5>
-          //           <p class="card-text">${itemsFromDB[cardIndex+2].extra}</p>
-          //           </div>
-          //         </div>
-          //       </div>
-          //     </div>
-          //     `;
-          //   }
-          //   cardCount += 1;
-          //   cardIndex += 3;
-          // }
-          // appends all items to the carousel (HOPEFULLY)
+            $('.student-carousel').slick('slickAdd', `
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${itemsFromDB[i].name}</h5>
+                <h6>@${itemsFromDB[i].username} • ${itemsFromDB[i].educator}</h6>
+                <div class="img-container__crop-students mx-auto">
+                    <img src="${itemsFromDB[i].pfpUrl}" alt="${itemsFromDB[i].name}'s profile picture'">
+                </div>
+                <h5>${itemsFromDB[i].studyField}</h5>
+                <p class="card-text">${itemsFromDB[i].extra}</p>
+             </div>
+            </div>
+            `); //slick
+          }
+          // appends all items to the carousel
         }, //success ends
         error: function() {
           alert('Error: Cannot GET');
         } //error ends
       }); //ajax ends
     }); //window eventlistener ENDS
-  }
-
+  } //if bodydata ends
   // student profiles JS ENDS------------------------------
 
   // student registration instant login tests ------------------------------
@@ -232,7 +142,5 @@
     //   }//if
     // })//#XXXCREATE-ACC-BTN-STUDENT
   // student registration instant login ENDS ------------------------------
-
-
 
  }()); //iife ENDS

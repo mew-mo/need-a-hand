@@ -185,6 +185,7 @@ body {
 
 #logo {
   width: 150px;
+  margin-left: 20px;
 }
 
 .img-container__crop-main-icon {
@@ -228,7 +229,7 @@ body {
 }
 
 #studentProfiles {
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .img__divider {
@@ -238,21 +239,12 @@ body {
   height: 10px;
 }
 
-.carousel-control-prev-icon {
- background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8ab9d'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e")
-}
-
-.carousel-control-next-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8ab9d'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-}
-
-.card-group {
+.student-carousel {
   width: 80%;
 }
 
 .card {
   margin: 50px;
-  height: 400px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0);
   border: none;
@@ -276,9 +268,43 @@ body {
 }
 
 .card-body {
+  height: 500px;
   background-color: $dark;
   border: 2px solid $peach;
   border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px $peach;
+   -moz-box-shadow: 0px 0px 14px $peach;
+        box-shadow: 0px 0px 14px $peach;
+}
+
+.slick-active {
+  .card-body {
+    border: 2px solid $peach;
+    border-radius: 52px;
+    -webkit-box-shadow: 0px 0px 14px $peach;
+     -moz-box-shadow: 0px 0px 14px $peach;
+          box-shadow: 0px 0px 14px $peach;
+  }
+}
+
+.slick-active + .slick-active {
+  .card-body {
+    border: 2px solid $purple;
+    border-radius: 52px;
+    -webkit-box-shadow: 0px 0px 14px $purple;
+     -moz-box-shadow: 0px 0px 14px $purple;
+          box-shadow: 0px 0px 14px $purple;
+    }
+}
+
+.slick-active + .slick-active + .slick-active {
+  .card-body {
+    border: 2px solid $peach;
+    border-radius: 52px;
+    -webkit-box-shadow: 0px 0px 14px $peach;
+     -moz-box-shadow: 0px 0px 14px $peach;
+          box-shadow: 0px 0px 14px $peach;
+  }
 }
 
 .card-title {
@@ -292,8 +318,30 @@ body {
   @extend %inter-font-default;
 }
 
-// card hell
+.slick-prev,
+.slick-prev:before,
+.slick-prev:after,
+.slick-next:hover {
+ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8ab9d'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e")
+}
 
+.slick-next,
+.slick-next:before,
+.slick-next:after,
+.slick-next:hover {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8ab9d'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
 
+.slick-prev:before,
+.slick-next:before {
+    font-size: 0;
+}
 
-// student profiles ENDS
+.img-container__crop-students {
+  margin: 25px 5px 20px 0;
+  width: 150px;
+  height: 150px;
+  @extend .img-container__crop;
+}
+
+// student profiles ENDS ------------------------------

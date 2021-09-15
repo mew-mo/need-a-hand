@@ -23,9 +23,20 @@ h1 {
   @extend %koho-font-default;
 }
 
+h5,
+h6 {
+  @extend %koho-font-default;
+}
+
 p,
 a {
   @extend %inter-font-default;
+}
+
+a:hover,
+a:active,
+a[tabindex]:focus {
+  color: $peach;
 }
 
 a {
@@ -137,7 +148,6 @@ margin-right: 50px;
 }
 
 // student profiles begins
-
 body {
   background-color: #212529;
 }
@@ -170,14 +180,55 @@ body {
 .nav__link,
 #icon {
   margin-left: 50px;
+  cursor: pointer;
 }
 
 #logo {
   width: 150px;
 }
 
+.img-container__crop-main-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  top: -110px;
+  left: 83%;
+  overflow: hidden;
+  border: 2px solid $peach;
+  border-radius: 50%;
+
+  img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+  }
+}
+
+.nav__popover {
+  position: absolute;
+  display: none;
+  top: 115px;
+  left: 83%;
+  height: 100px;
+  width: 130px;
+  background-color: $dark;
+  border: 1px solid $grey;
+  border-radius: 23px;
+
+  .a__popover-links {
+    padding-top: 5px;
+  }
+
+  a {
+    margin: 15px 0 0 20px;
+    display: block;
+    text-decoration: underline;
+  }
+}
+
 #studentProfiles {
-  margin-top: 150px;
+  margin-top: 10px;
 }
 
 .img__divider {
@@ -202,10 +253,47 @@ body {
 .card {
   margin: 50px;
   height: 400px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+.img-container__crop {
+  margin: 20px 25% 15px 35%;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid $peach;
+  border-radius: 50%;
+
+  img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+  }
+}
+
+.card-body {
+  background-color: $dark;
+  border: 2px solid $peach;
+  border-radius: 52px;
+}
+
+.card-title {
+  margin: 15px 0 15px 0;
 }
 
 .card-text {
-  color: $dark;
+  color: white;
+  font-size: 0.9rem;
+  margin: 15px 0 0 0;
+  @extend %inter-font-default;
 }
+
+// card hell
+
+
 
 // student profiles ENDS

@@ -1,29 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 #homeBG {
   background-image: url("../image/homeBG.png");
+  max-width: 100%;
 }
 
 #login {
-  position: relative;
   border: 1px solid #E8AB9D;
   background-color: #21262A;
   width: 120px;
-  float: right;
-  margin-right: 300px;
+  margin-left: 65%;
 }
 
 /* nav section ENDS */
 /* Home page section */
 #homePage {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(1px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.11);
-  width: 30%;
-  margin-left: 350px;
-  margin-top: 140px;
+  margin-left: 600px;
+  margin-top: 70px;
+  width: 40%;
   text-align: center;
 }
 
@@ -33,17 +32,120 @@
 }
 
 #tagline {
-  position: absolute;
-  margin-top: 800px;
-  margin-left: 340px;
+  margin-top: 120px;
+  margin-left: 670px;
 }
 
+.container {
+  max-width: 980px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 150px;
+  margin-bottom: 100px;
+  height: 100%;
+  transform: perspective(60px);
+  transform-style: preserve-3d;
+}
+
+.product-card {
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  width: 300px;
+  height: 400px;
+}
+.product-card:nth-child(1) {
+  transform: translate3d(0, 0, -15px);
+  animation-name: rotate-left;
+  animation-duration: 14s;
+  animation-iteration-count: infinite;
+  animation-delay: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+.product-card:nth-child(2) {
+  transform: translate3d(0, 0, 5px);
+  animation-name: rotate-center;
+  animation-duration: 14s;
+  animation-iteration-count: infinite;
+  animation-delay: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+.product-card:nth-child(3) {
+  transform: translate3d(0, 0, -15px);
+  animation-name: rotate-right;
+  animation-duration: 14s;
+  animation-iteration-count: infinite;
+  animation-delay: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes rotate-left {
+  0%, 100% {
+    transform: translate3d(0, 0, -15px);
+    filter: blur(0.8px) drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.2));
+  }
+  33.33% {
+    transform: translate3d(100%, 0, 5px);
+    filter: blur(0) drop-shadow(4px 10px 10px rgba(0, 0, 0, 0.6));
+  }
+  66.66% {
+    transform: translate3d(200%, 0, -15px);
+    filter: blur(0.8px) drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.2));
+  }
+}
+@keyframes rotate-center {
+  0%, 100% {
+    transform: translate3d(0, 0, 5px);
+    filter: blur(0) drop-shadow(4px 10px 10px rgba(0, 0, 0, 0.6));
+  }
+  33.33% {
+    transform: translate3d(100%, 0, -15px);
+    filter: blur(0.8px) drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.2));
+  }
+  66.66% {
+    transform: translate3d(-100%, 0, -15px);
+    filter: blur(0.8px) drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.2));
+  }
+}
+@keyframes rotate-right {
+  0%, 100% {
+    transform: translate3d(0, 0, -15px);
+    filter: blur(0.8px) drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.2));
+  }
+  33.33% {
+    transform: translate3d(-200%, 0, -15px);
+    filter: blur(0.8px) drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.2));
+  }
+  66.66% {
+    transform: translate3d(-100%, 0, 5px);
+    filter: blur(0) drop-shadow(4px 10px 10px rgba(0, 0, 0, 0.6));
+  }
+}
 footer {
-  position: absolute;
-  width: 100%;
   height: 100px;
-  border: 2px solid white;
-  margin-top: 1000px;
+  width: 100%;
+  background-color: black;
+}
+
+#left {
+  position: relative;
+  display: inline-block;
+  width: 20%;
+  margin-left: 20%;
+}
+
+#right {
+  position: absolute;
+  display: inline-block;
+  float: right;
+  margin-left: 600px;
 }
 
 /* login/register forms */

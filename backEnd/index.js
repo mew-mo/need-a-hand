@@ -243,10 +243,10 @@ app.get('/products/p=:id',(req,res)=>{
 // delete a post
 app.delete('/deletePost/:id', (req, res) => {
   const idParam = req.params.id;
-  Post.findOne({_id: idParam}, (err, post) => {
-    if(post) {
+  Post.findOne({ _id: idParam }, (err, post) => {
+    if(post && post['user_id'] == req.body.userId) {
       Post.deleteOne({_id:idParam}, err => {
-        res.send('Deleted');
+        res.send('Post Deleted');
     });
     } else {
       res.send('Post not found');

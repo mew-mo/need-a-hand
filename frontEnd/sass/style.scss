@@ -1,3 +1,10 @@
+/* nav section */
+nav{
+  border: 2px solid white;
+  width: 70%;
+  margin-left: 150px;
+}
+
 $dark: #21262A; //background
 $blue: #5667A9; //circle gradients and home buttons
 $peach: #E8AB9D; //circle gradients
@@ -28,6 +35,26 @@ $drop-back: 4px 4px 4px rgba(0,0,0, .2);
 /* nav section ENDS */
 
 /* Home page section */
+#homePage{
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+  text-align: center;
+}
+#exit{
+  position: absolute;
+  display: inline-block;
+  margin-left: 530px;
+}
+
+/* login/register forms */
+#loginSection,
+#registerSection{
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+}
+
 #homePage {
   background: $bglight;
   box-shadow: 0 8px 32px 0 $shadow;
@@ -290,11 +317,13 @@ footer{
   margin-left: 50px;
 }
 
+
 #regSubmit {
   position: absolute;
   display: inline-block;
   margin-left: 250px;
 }
+
 
 /* login/register forms ENDS */
 /* Employer dashboard starts */
@@ -338,8 +367,67 @@ footer{
   width: 40%;
   margin-left: 300px;
 }
-
-#cancel2 {
+#cancel2{
   position: relative;
   display: inline-block;
+}
+
+#updateProduct{
+
+}
+
+// USER PROFILE CSS
+
+
+// #userProfile {
+//
+// }
+
+
+.testClass {
+  position: relative;
+  margin-left: 310px;
+  margin-top: 140px;
+  width: 55rem;
+  height: 25rem;
+  background-color: #383838;
+  border: 1px solid transparent;
+  border-image: linear-gradient(to right, #E1B3A3, #A593C8, #7C83DB);
+  border-image-slice: 1;
+  padding: 10px;
+}
+
+#userImage {
+  position: absolute;
+  right: 10px;
+  top: -50px;
+  overflow: hidden;
+  width: 20em;
+  height: 20em;
+  border: solid 3px white;
+  border-radius: 250px;
+}
+
+#fullName,
+#userName,
+p {
+  color: white;
+  width: 50%;
+}
+
+#breakPoint {
+  width: 190px;
+  height: 10px;
+  background-color: #cf82b5;
+  border: solid 1px #cf82b5;
+  border-radius: 100px;
+}
+
+.fa-star {
+  margin-top: 15px;
+  font-size: 80px;
+}
+
+.checked {
+  color: orange;
 }

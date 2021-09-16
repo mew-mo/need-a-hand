@@ -480,11 +480,11 @@ p {
 //
 // }
 
-.classBroke {
+.class-broke {
   float: left;
   padding: 20px;
   width: 25%;
-  height: 940px;
+  height: 100vh;
   background-image: linear-gradient(to right, #DFB1A2, #B59EBC, #7E82DA);
 }
 
@@ -504,6 +504,29 @@ p {
   -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
   background-color: #383838;
   padding: 40px;
+}
+
+// EMPLOYER css
+
+#employerPosts {
+  padding: 10px;
+  height: 100vh;
+  width: 100vw;
+}
+
+#edjobPost{
+  width: 100%;
+  margin-left: 50px;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  background-color: #383838;
+  padding: 40px;
+}
+
+.bi-trash-fill {
+  color: white;
 }
 
 /* nav section */

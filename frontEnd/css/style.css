@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap");
 h5,
@@ -30,7 +29,6 @@ a {
 }
 
 /* nav section */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 nav {
   border: 2px solid white;
   width: 70%;
@@ -357,11 +355,11 @@ p {
   border: 1px solid #BA9FB8;
 }
 
-.classBroke {
+.class-broke {
   float: left;
   padding: 20px;
   width: 25%;
-  height: 940px;
+  height: 100vh;
   background-image: linear-gradient(to right, #DFB1A2, #B59EBC, #7E82DA);
 }
 
@@ -381,6 +379,27 @@ p {
   -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   background-color: #383838;
   padding: 40px;
+}
+
+#employerPosts {
+  padding: 10px;
+  height: 100vh;
+  width: 100vw;
+}
+
+#edjobPost {
+  width: 100%;
+  margin-left: 50px;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  background-color: #383838;
+  padding: 40px;
+}
+
+.bi-trash-fill {
+  color: white;
 }
 
 /* nav section */

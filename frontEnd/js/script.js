@@ -488,7 +488,7 @@ $('#editPost').click(function(){
   // }); //end of createListing click function.
 
 
-});//document.ready
+// });//document.ready
 
 
 // cc above ====================================================================

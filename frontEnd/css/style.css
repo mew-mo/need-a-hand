@@ -1,8 +1,35 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
-#homeNav {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 400px;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap");
+h5,
+h6, h1 {
+  font-weight: 300;
+  color: white;
+  font-family: "KoHo", sans-serif;
+}
+
+.card-text, p,
+a {
+  font-weight: 300;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+a:hover,
+a:active,
+a[tabindex]:focus {
+  color: #e8ab9d;
+}
+
+a {
+  text-decoration: none;
+}
+
 }
 
 #homeBG {
@@ -10,13 +37,18 @@
   max-width: 100%;
 }
 
+#homeNav {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 400px;
+
 #login {
   border: 1px solid #E8AB9D;
   background-color: #21262A;
   width: 120px;
 }
-
 /* nav section ENDS */
+  
 /* Home page section */
 #homePage {
   border: 2px solid #FFFFFF;
@@ -25,10 +57,17 @@
   text-align: center;
 }
 
+
+#exit {
+  position: absolute;
+  display: inline-block;
+  margin-left: 530px;
+}
+
 /* login/register forms */
 #loginSection,
 #registerSection {
-  border: 2px solid #FFFFFF;
+  border: 2px solid white;
   width: 50%;
   margin-left: 250px;
 }
@@ -311,22 +350,23 @@ footer {
   margin-top: 140px;
   width: 55rem;
   height: 25rem;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   background-color: #383838;
-  border: 1px solid transparent;
-  border-image: linear-gradient(to right, #E1B3A3, #A593C8, #7C83DB);
-  border-image-slice: 1;
-  padding: 10px;
+  padding: 40px;
 }
 
 #userImage {
   position: absolute;
-  right: 10px;
+  right: 30px;
   top: -50px;
   overflow: hidden;
   width: 20em;
   height: 20em;
-  border: solid 3px white;
   border-radius: 250px;
+  border: solid 3px white;
 }
 
 #fullName,
@@ -337,7 +377,7 @@ p {
 }
 
 #breakPoint {
-  width: 190px;
+  width: 250px;
   height: 10px;
   background-color: #cf82b5;
   border: solid 1px #cf82b5;
@@ -346,11 +386,343 @@ p {
 
 .fa-star {
   margin-top: 15px;
-  font-size: 80px;
 }
 
 .checked {
-  color: orange;
+  color: #7B82DE;
+}
+
+#logOut,
+#editProfile {
+  margin-top: 100px;
+  background-color: #BA9FB8;
+  border: 1px solid #BA9FB8;
+}
+
+.classBroke {
+  float: left;
+  padding: 20px;
+  width: 25%;
+  height: 940px;
+  background-image: linear-gradient(to right, #DFB1A2, #B59EBC, #7E82DA);
+}
+
+#posts {
+  padding: 10px;
+  height: 100%;
+  width: 70%;
+  float: left;
+}
+
+#sdjobPost {
+  width: 70%;
+  margin-left: 180px;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  background-color: #383838;
+  padding: 40px;
+}
+
+/* nav section */
+nav {
+  border: 2px solid white;
+  width: 70%;
+  margin-left: 150px;
+}
+
+#login {
+  margin-left: 550px;
+}
+
+/* nav section ENDS */
+/* Home page section */
+#homePage {
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+  text-align: center;
+}
+
+#exit {
+  position: absolute;
+  display: inline-block;
+  margin-left: 530px;
+}
+
+/* login/register forms */
+#loginSection,
+#registerSection {
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+}
+
+#WelcomeTitle {
+  text-align: center;
+}
+
+#loginForm,
+#registerForm {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#loginSubmit {
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+#reg {
+  position: absolute;
+  display: inline-block;
+}
+
+#cancel1 {
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+#regSubmit {
+  position: absolute;
+  display: inline-block;
+  margin-left: 250px;
+}
+
+/* login/register forms ENDS */
+/* Employer dashboard starts */
+#dashNav {
+  margin-left: 150px;
+  width: 70%;
+}
+
+#createAd,
+#viewStudentProfile,
+#viewEmployerProfile,
+#logout {
+  margin-left: 11px;
+}
+
+#jobPost {
+  border: 2px solid white;
+  width: 70%;
+  margin-left: 150px;
+}
+
+#postDetails {
+  position: relative;
+  display: inline-block;
+  width: 600px;
+}
+
+#editPost {
+  position: absolute;
+  width: 100px;
+}
+
+#deletePost {
+  width: 100px;
+  margin-left: 600px;
+}
+
+/* create post begins */
+#createListing {
+  border: 2px solid white;
+  width: 40%;
+  margin-left: 300px;
+}
+
+#cancel2 {
+  position: relative;
+  display: inline-block;
+}
+
+body {
+  background-color: #212529;
+}
+
+#active {
+  color: #e8ab9d;
+}
+
+#upperTitle {
+  margin-left: 30px;
+}
+
+#lowerTitle {
+  position: absolute;
+  top: 85px;
+  left: 250px;
+  font-size: 3.2rem;
+}
+
+.nav__student-profiles {
+  border: none;
+  width: 100vw;
+  margin-left: 0;
+}
+
+.nav__links {
+  margin-left: 20%;
+}
+
+.nav__link,
+#icon {
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+#logo {
+  width: 150px;
+  margin-left: 20px;
+}
+
+.img-container__crop-main-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  top: -110px;
+  left: 83%;
+  overflow: hidden;
+  border: 2px solid #e8ab9d;
+  border-radius: 50%;
+}
+.img-container__crop-main-icon img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+
+.nav__popover {
+  position: absolute;
+  display: none;
+  top: 115px;
+  left: 83%;
+  height: 100px;
+  width: 130px;
+  background-color: #21262A;
+  border: 1px solid rgba(196, 196, 196, 0.72);
+  border-radius: 23px;
+}
+.nav__popover .a__popover-links {
+  padding-top: 5px;
+}
+.nav__popover a {
+  margin: 15px 0 0 20px;
+  display: block;
+  text-decoration: underline;
+}
+
+#studentProfiles {
+  margin-top: 30px;
+}
+
+.img__divider {
+  position: absolute;
+  top: 155px;
+  left: 480px;
+  height: 10px;
+}
+
+.student-carousel {
+  width: 80%;
+}
+
+.card {
+  margin: 50px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+.img-container__crop, .img-container__crop-students {
+  margin: 20px 25% 15px 35%;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #e8ab9d;
+  border-radius: 50%;
+}
+.img-container__crop img, .img-container__crop-students img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+
+.card-body {
+  height: 500px;
+  background-color: #21262A;
+  border: 2px solid #e8ab9d;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px #e8ab9d;
+  -moz-box-shadow: 0px 0px 14px #e8ab9d;
+  box-shadow: 0px 0px 14px #e8ab9d;
+}
+
+.slick-active .card-body {
+  border: 2px solid #e8ab9d;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px #e8ab9d;
+  -moz-box-shadow: 0px 0px 14px #e8ab9d;
+  box-shadow: 0px 0px 14px #e8ab9d;
+}
+
+.slick-active + .slick-active .card-body {
+  border: 2px solid #5A6CB0;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px #5A6CB0;
+  -moz-box-shadow: 0px 0px 14px #5A6CB0;
+  box-shadow: 0px 0px 14px #5A6CB0;
+}
+
+.slick-active + .slick-active + .slick-active .card-body {
+  border: 2px solid #e8ab9d;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px #e8ab9d;
+  -moz-box-shadow: 0px 0px 14px #e8ab9d;
+  box-shadow: 0px 0px 14px #e8ab9d;
+}
+
+.card-title {
+  margin: 15px 0 15px 0;
+}
+
+.card-text {
+  color: white;
+  font-size: 0.9rem;
+  margin: 15px 0 0 0;
+  width: 100%;
+}
+
+.slick-prev,
+.slick-prev:before,
+.slick-prev:after,
+.slick-next:hover {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8ab9d'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+}
+
+.slick-next,
+.slick-next:before,
+.slick-next:after,
+.slick-next:hover {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8ab9d'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 0;
+}
+
+.img-container__crop-students {
+  margin: 25px 5px 20px 0;
+  width: 150px;
+  height: 150px;
 }
 
 /*# sourceMappingURL=style.css.map */

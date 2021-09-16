@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css\style.css">
 
-  <title>User Register</title>
+  <title>Student Register</title>
 </head>
 <body class="container bg-dark">
 
@@ -18,7 +18,7 @@
   <a href="index.html"><button id="exit" type="submit" name="button" type="submit" class="btn btn-light btn-md rounded-pill">Exit icon</button></a>
 </nav>
   <div id="registerSection" class="mt-5 pt-3 pb-3" >
-    <h1 id="WelcomeTitle" class="text-light">Employer Sign up!</h1>
+    <h1 id="WelcomeTitle" class="text-light">Student Sign up!</h1>
     <!-- login form -->
     <form id="registerForm" class="my-4 rounded-pill">
 
@@ -37,21 +37,23 @@
       <label for="r-password" class="text-light">Confirm Password</label>
       <input id="r-password" type="password" name="r-password" class="form-control" value="">
       <br>
-      <label for="r-name" class="text-light">Employment title</label>
-      <input id="r-name" type="text" name="r-name" class="form-control" value="">
+      <label for="studyField" class="text-light">Study Field</label>
+      <input id="StudyName" type="text" name="r-name" class="form-control" value="">
       <br>
-      <label for="r-name" class="text-light">Company Name</label>
-      <input id="company-name" type="text" name="r-name" class="form-control" value="">
+      <label for="educatorName" class="text-light">Educator Name</label>
+      <input id="educatorName" type="text" name="r-name" class="form-control" value="">
       <br>
-      <label for="r-extra" class="text-light">extra</label>
-      <input id="r-extra" type="text" name="r-extra" class="form-control" value="">
+      <label for="Studentextra" class="text-light">extra</label>
+      <input id="studentExtra" type="text" name="r-extra" class="form-control" value="">
+
 
     </form>
     <div id="regFormButtons"></div>
       <a href="index.html"><button id="cancel1" name="r-button" type="button" class="btn btn-primary">Cancel</button></a>
 
-      <a href="employerDash.html"><button id="regSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
-            <!-- <button id="regSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button> -->
+      <a href="studentDash.html"><button id="sRegSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
+            <!-- <button id="sRegSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button> -->
+
     </div>
   </div>
       <!-- <div class="form-group form-check">
@@ -59,7 +61,7 @@
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
       </div> -->
 
-      <!-- // SCRIPT LINKS - -->
+      // SCRIPT LINKS ---------------------------------------------
 
 
       <!-- jquery -->

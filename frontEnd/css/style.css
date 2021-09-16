@@ -308,22 +308,23 @@ footer {
   margin-top: 140px;
   width: 55rem;
   height: 25rem;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   background-color: #383838;
-  border: 1px solid transparent;
-  border-image: linear-gradient(to right, #E1B3A3, #A593C8, #7C83DB);
-  border-image-slice: 1;
-  padding: 10px;
+  padding: 40px;
 }
 
 #userImage {
   position: absolute;
-  right: 10px;
+  right: 30px;
   top: -50px;
   overflow: hidden;
   width: 20em;
   height: 20em;
-  border: solid 3px white;
   border-radius: 250px;
+  border: solid 3px white;
 }
 
 #fullName,
@@ -334,7 +335,7 @@ p {
 }
 
 #breakPoint {
-  width: 190px;
+  width: 250px;
   height: 10px;
   background-color: #cf82b5;
   border: solid 1px #cf82b5;
@@ -343,11 +344,43 @@ p {
 
 .fa-star {
   margin-top: 15px;
-  font-size: 80px;
 }
 
 .checked {
-  color: orange;
+  color: #7B82DE;
+}
+
+#logOut,
+#editProfile {
+  margin-top: 100px;
+  background-color: #BA9FB8;
+  border: 1px solid #BA9FB8;
+}
+
+.classBroke {
+  float: left;
+  padding: 20px;
+  width: 25%;
+  height: 940px;
+  background-image: linear-gradient(to right, #DFB1A2, #B59EBC, #7E82DA);
+}
+
+#posts {
+  padding: 10px;
+  height: 100%;
+  width: 70%;
+  float: left;
+}
+
+#sdjobPost {
+  width: 70%;
+  margin-left: 180px;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  background-color: #383838;
+  padding: 40px;
 }
 
 /* nav section */

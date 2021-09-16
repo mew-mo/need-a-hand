@@ -19,19 +19,14 @@ module.exports = function(grunt) {
         },
         files: {                         // Dictionary of files
           'css/style.css': 'sass/style.scss',       // 'destination': 'source'
-
         }
       }
     },//sass
 
-  // htmllint: {
-  //   all: {
-  //     src:'index.html'
-  //   }
-  // },
   jshint: {
     all: ['Gruntfile.js', 'js/script.js'],
     options: {
+
       esversion: 6
     }
   },
@@ -43,10 +38,7 @@ module.exports = function(grunt) {
         options: {
           spawn: false,
     },
-
-
   },
-
 },
   }); //initConfig
 
@@ -59,6 +51,6 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['sass','jshint','watch']);
-    grunt.registerTask('prod', ['uglify']);
+  grunt.registerTask('prod', ['uglify']);
 
 };

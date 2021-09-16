@@ -1,3 +1,19 @@
+(function() {
+
+  // declaring url
+  let url;//declare url as a variable in es6
+  $.ajax({
+    url: 'config.json',
+    type: 'GET',
+    dataType: 'json',
+    success:function(configData){
+      url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+    },
+    error:function(error){
+      console.log(error);
+    }
+  });
+
 console.log('script is linked'); //testing if script.js is working
 console.log(sessionStorage);
 
@@ -13,22 +29,6 @@ $(document).ready(function(){
 
   $('#createAd').click(function(){
     $('#createListing').show();
-  });
-
-
-  let url;//declare url as a variable in es6
-  $.ajax({
-    url: 'config.json',
-    type: 'GET',
-    dataType: 'json',
-    success:function(configData){
-      console.log(configData.SERVER_URL,configData.SERVER_PORT );
-      url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
-      console.log(url);
-    },
-    error:function(error){
-      console.log(error);
-    }
   });
 
 
@@ -94,17 +94,16 @@ $('#addPost').click(function(){
               <br>
               <br>
               <button id="deletePost" name="productButton" type="submit" class="btn btn-primary mx-2">Delete</button>
-            </div>`;
+            </div>
+            `;
+
           } // for loop one ends
 
-    }, //end of success
-    error:function(){
-    }
-  });//ajax get
-}//else
-
-
-
+     }, //end of success
+     error:function(){
+      }
+    });//ajax get
+  }//else
 });//add post
 
 
@@ -156,6 +155,41 @@ $('#editPost').click(function(){
   //   })//ajax
   // }//if
 
+  console.log(jobTitle, posterName, jobDescription, username, userid);
+  if ( jobTitle == '' || posterName == '' || jobDescription == ''){
+    alert('Please enter post update information');
+  } else {
+    $.ajax({
+      url: `${url}/updatePost/:id`,
+      type: 'PATCH',
+      data:{
+        jobTitle: jobTitle,
+        posterName: posterName,
+        jobDescription: jobDescription,
+        // ** does this need to be added to models/employer
+        username_id: userid
+      },
+      success: function(data){
+        console.log(data);
+        if(data == '401 error: user has no permission to update'){
+          alert('401 error: user has no permission to update');
+
+        } else {
+          alert('updated');
+        }//else
+        // ** NEED TO UPDATE THE IDS **
+        $('#inputidUpdate').val('');
+        $('#inputidUpdate').val('');
+        $('#inputidUpdate').val('');
+
+
+      }, //success
+      error: function(){
+        console.log('error:cannot call api');
+      }//error
+    });//ajax
+  }//if
+});//updateJOBPOSTXXXX
 
 
 
@@ -247,27 +281,29 @@ $('#editPost').click(function(){
 
 }; //end of studentDash function
 
-
-
   // POST - student registration  =====================================================
 
-  $('#sRegSubmit').click(function(){
+  $('#XXXCREATE-ACC-BTN-STUDENT').click(function() {
     event.preventDefault();//this prevents code breaking when no data is found
-    let sName = $('#name').val();
-    let sUsername = $('#username').val();
-    let sEmail = $('#user-email').val();
-    let sPassword = $('#password').val();
-    // let ePfpUrl = $('#profile-INPUT').val();
-    let sStudyField = $('#StudyName').val();
-    let sEducator = $('#educatorName').val();
-    let sExtra = $('#studentExtra').val();
+    let sName = $('#name-INPUT').val();
+    let sUsername = $('#username-INPUT').val();
+    let sEmail = $('#email-INPUT').val();
+    let sPassword = $('#password-INPUT').val();
+    let sCheckPass = $('#check-password-INPUT').val();
+    let sPfpUrl = $('#pfp-INPUT').val();
+    let sStudy = $('#study-INPUT').val();
+    let sEducator = $('#educator-INPUT').val();
+    let sExtra = $('#extra-INPUT').val();
 
     console.log(sName, sUsername, sEmail, sPassword, sStudyField, sEducator, sExtra);
 
-    if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sStudyField == '' || sEducator == ''){
-      alert('Please enter all student details');
+    if (sPassword != sCheckPass) {
+      $('#check-password-INPUT').val('');
+      alert('Passwords do not match. Please try again');
+    } else if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sCheckPass == '' || sStudy == '' || sEducator == '') {
 
-    }else {
+      alert('Please enter all student details');
+    } else {
       $.ajax({
         url: `${url}/registerStudent`,
         type : 'POST',
@@ -281,50 +317,56 @@ $('#editPost').click(function(){
           educator: sEducator,
           extra: sExtra
         },
-        success:function(user){
+        success:function(user) {
+          sessionStorage.setItem('userID', user._id);
+          sessionStorage.setItem('userFullName', user.name);
+          sessionStorage.setItem('username', user.username);
+          sessionStorage.setItem('userEmail', user.email);
+          sessionStorage.setItem('userPass', user.password);
+          console.log(sessionStorage);
           console.log(user); //remove when development is finished
-          if (user !== 'username taken already. Please try another name'){
-            alert('Please login to manipulate the products data');
-
+          if (user !== 'username taken already. Please try another name') {
+            alert('You have been registered!');
           } else {
-            alert('username taken already. Please try another name');
+            alert('Username taken already. Please try another name');
             // ********** change ids *******
             $('#username').val('');
             $('#user-email').val('');
             $('#password').val('');
 
           } //else
-
         }, //success
-        error:function(){
+        error:function() {
           console.log('error: cannot call api');
         }//error
       });//ajax post
     }//if
+  });//#XXXCREATE-ACC-BTN-STUDENT
 
-  });//# student regSubmit click function ends
-
-
+  // student registration ENDS
 
   // POST - employer registration  =====================================================
 
-  $('#regSubmit').click(function(){
+  $('#').click(function() {
     event.preventDefault();//this prevents code breaking when no data is found
     let eName = $('#name').val();
     let eUsername = $('#username').val();
     let eEmail = $('#user-email').val();
     let ePassword = $('#password').val();
-    // let ePfpUrl = $('#profile-INPUT').val();
+    let eCheckPass = $('#check-password-INPUT').val();
+    let ePfpUrl = $('#profile-INPUT').val();
     let eWorkField = $('#r-name').val();
     let eCompanyName = $('#company-name').val();
     let eExtra = $('#r-extra').val();
 
     console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
 
-    if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eWorkField == '' || eCompanyName == ''){
-      alert('Please enter all emplyoyer details');
-
-    }else {
+    if (ePassword != eCheckPass) {
+      $('#check-password-INPUT').val('');
+      alert('Passwords do not match. Please try again');
+    } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
+      alert('Please enter all employer details');
+    } else {
       $.ajax({
         url: `${url}/registerEmployer`,
         type : 'POST',
@@ -339,10 +381,15 @@ $('#editPost').click(function(){
           extra: eExtra
         },
         success:function(user){
+          sessionStorage.setItem('userID', user._id);
+          sessionStorage.setItem('userFullName', user.name);
+          sessionStorage.setItem('username', user.username);
+          sessionStorage.setItem('userEmail', user.email);
+          sessionStorage.setItem('userPass', user.password);
+          console.log(sessionStorage);
           console.log(user); //remove when development is finished
           if (user !== 'username taken already. Please try another name'){
-            console.log('Please login to manipulate the products data');
-
+            alert('You have been registered!');
           } else {
             console.log('username taken already. Please try another name');
             // ********** change ids *******
@@ -358,11 +405,13 @@ $('#editPost').click(function(){
       });//ajax post
     }//if
 
-  });//r employer regSubmit click function ends
-
+  });//#XXXCREATE-ACC-BTN-EMPLOIYER
+  // employer registration ENDS
 
   // PATCH - student profile - update student profile details ===========================
-  $('#').click(function(){
+
+  $('#updateSTUDENTPROFILE').click(function(){
+
     event.preventDefault();
 
     // ** not sure about username **
@@ -524,11 +573,78 @@ $('#editPost').click(function(){
   //   });
   // })(jQuery);
 
-// })
-// $('#password').click(function(){
-//   $(this).val('');
-// })
+  // student profiles JS------------------------------
 
+  // ICON NAV STARTS ------------------------------
+  // declaring vars
+  // var navDisplay = false;
+  // var icon = document.querySelector('#icon img');
+  // var popoutNav = document.querySelector('.nav__popover');
+  //
+  // // icon nav
+  // icon.addEventListener('click', () => {
+  //   if (!navDisplay) {
+  //     popoutNav.style.display = 'block';
+  //     navDisplay = true;
+  //   } else if (navDisplay) {
+  //     popoutNav.style.display = 'none';
+  //     navDisplay = false;
+  //   }
+  // }, false);
+  //
+  // // conditional for closing icon nav by  clicking outside of it
+  // window.addEventListener('click', (e) => {
+  //   if (e.target != icon) {
+  //     popoutNav.style.display = 'none';
+  //     navDisplay = false;
+  //   }
+  // }, false);
+  // ICON NAV ENDS ------------------------------
+
+  if ($('body').data('title') === 'student-profiles-page') {
+
+    $('.student-carousel').slick({
+      arrows: true,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      prevArrow: '<div class="slick-prev"></div>',
+      nextArrow: '<div class="slick-next"></div>',
+    });
+
+    window.addEventListener('load', () => {
+      $.ajax({
+        url: `${url}/allStudents`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(itemsFromDB) {
+          for (var i = 0; i < itemsFromDB.length; i++) {
+            $('.student-carousel').slick('slickAdd', `
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${itemsFromDB[i].name}</h5>
+                <h6>@${itemsFromDB[i].username} • ${itemsFromDB[i].educator}</h6>
+                <div class="img-container__crop-students mx-auto">
+                    <img src="${itemsFromDB[i].pfpUrl}" alt="${itemsFromDB[i].name}'s profile picture'">
+                </div>
+                <h5>${itemsFromDB[i].studyField}</h5>
+                <p class="card-text">${itemsFromDB[i].extra}</p>
+             </div>
+            </div>
+            `); //slick
+          }
+          // appends all items to the carousel
+        }, //success ends
+        error: function() {
+          alert('Error: Cannot GET');
+        } //error ends
+      }); //ajax ends
+    }); //window eventlistener ENDS
+  } //if bodydata ends
+  // student profiles JS ENDS------------------------------
+
+
+ }()); //iife ENDS
 
 // //view the products from database
 // $('#view').click(function(){

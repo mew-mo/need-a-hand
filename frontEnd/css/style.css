@@ -1,12 +1,11 @@
-
 /* nav section */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 nav {
   border: 2px solid white;
   width: 70%;
   margin-left: 150px;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 #homeBG {
   background-image: url("../image/homeBG.png");
   max-width: 100%;
@@ -29,6 +28,20 @@ nav {
 }
 
 #exit {
+  position: absolute;
+  display: inline-block;
+  margin-left: 530px;
+}
+
+/* login/register forms */
+#loginSection,
+#registerSection {
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+}
+
+#homePage {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
@@ -305,6 +318,5 @@ p {
 .checked {
   color: orange;
 }
-
 
 /*# sourceMappingURL=style.css.map */

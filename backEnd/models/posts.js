@@ -6,6 +6,7 @@ const postSchema = new mongoose.Schema({
   posterName: String,
   username: String,
   jobDescription: String,
+  category: String,
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employer'

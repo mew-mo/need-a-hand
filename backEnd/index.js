@@ -1,4 +1,4 @@
-const express =require('express');//includes express
+const express = require('express');//includes express
 const app = express(); //calls the express method
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -37,7 +37,8 @@ app.post('/addPost', (req, res) => {
     jobTitle: req.body.jobTitle,
     posterName: req.body.posterName,
     username: req.body.username,
-    jobDescription: req.body.jobDescription
+    jobDescription: req.body.jobDescription,
+    category: req.body.category
   });
   //save to the database and notify the user
   post.save().then(result => {
@@ -158,7 +159,8 @@ app.patch('/updatePost/:id', (req, res) => {
         jobTitle: req.body.jobTitle,
         posterName: req.body.posterName,
         username: req.body.username,
-        jobDescription: req.body.jobDescription
+        jobDescription: req.body.jobDescription,
+        category: req.body.category
       }
       Post.updateOne({_id: idParam}, updatedPost)
       .then(result => {
@@ -243,10 +245,10 @@ app.get('/products/p=:id',(req,res)=>{
 // delete a post
 app.delete('/deletePost/:id', (req, res) => {
   const idParam = req.params.id;
-  Post.findOne({_id: idParam}, (err, post) => {
-    if(post) {
+  Post.findOne({ _id: idParam }, (err, post) => {
+    if(post && post['user_id'] == req.body.userId) {
       Post.deleteOne({_id:idParam}, err => {
-        res.send('Deleted');
+        res.send('Post Deleted');
     });
     } else {
       res.send('Post not found');

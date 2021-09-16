@@ -67,7 +67,7 @@ $('#addPost').click(function(){
       error : function(){
         console.log('error: cannot call api');
       }//error
-    })//ajax post
+    });//ajax post
 
     // GET METHOD - display all posts to the employer dash
     $.ajax({
@@ -92,12 +92,12 @@ $('#addPost').click(function(){
               <button id="deletePost" name="productButton" type="submit" class="btn btn-primary mx-2">Delete</button>
 
             </div>
-            `
+            `;
           } // for loop one ends
     },
     error:function(){
     }
-  })//ajax get
+  });//ajax get
   }//else
 });//addProduct
 
@@ -147,9 +147,9 @@ $('#updateJOBPOSTXXXX').click(function(){
       error: function(){
         console.log('error:cannot call api');
       }//error
-    })//ajax
+    });//ajax
   }//if
-})//updateJOBPOSTXXXX
+});//updateJOBPOSTXXXX
 
 
 
@@ -181,13 +181,13 @@ $('#updateJOBPOSTXXXX').click(function(){
               <hr>
               <p id="postDetails">${postFromMDB[i].jobDescription}</p>
               <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
-              `
+              `;
             } // for loop one ends
       },
       error:function(){
 
       }
-    })//ajax
+    });//ajax
 
 }; //end of studentDash function
 
@@ -231,37 +231,38 @@ $('#updateJOBPOSTXXXX').click(function(){
               <hr>
               <p id="postDetails">${postFromMDB[i].jobDescription}</p>
               <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
-              `
+              `;
             } // for loop one ends
       },
       error:function(){
 
       }
-    })//ajax
+    });//ajax
 
 }; //end of studentDash function
 
-
-
   // POST - student registration  =====================================================
-
-  $('#XXXCREATE-ACC-BTN-STUDENT').click(function(){
-    event.preventDefault()//this prevents code breaking when no data is found
-    let sName = $('#username-INPUT').val();
+  //
+  $('#XXXCREATE-ACC-BTN-STUDENT').click(function() {
+    event.preventDefault();//this prevents code breaking when no data is found
+    let sName = $('#name-INPUT').val();
     let sUsername = $('#username-INPUT').val();
     let sEmail = $('#email-INPUT').val();
     let sPassword = $('#password-INPUT').val();
-    let sPfpUrl = $('#profile-INPUT').val();
+    let sCheckPass = $('#check-password-INPUT').val();
+    let sPfpUrl = $('#pfp-INPUT').val();
     let sStudy = $('#study-INPUT').val();
     let sEducator = $('#educator-INPUT').val();
     let sExtra = $('#extra-INPUT').val();
 
     console.log(sName, sUsername, sEmail, sPassword, sPfpUrl, sStudy, sEducator, sExtra);
 
-    if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sStudy == '' || sEducator == ''){
+    if (sPassword != sCheckPass) {
+      $('#check-password-INPUT').val('');
+      alert('Passwords do not match. Please try again');
+    } else if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sCheckPass == '' || sStudy == '' || sEducator == '') {
       alert('Please enter all student details');
-
-    }else {
+    } else {
       $.ajax({
         url: `${url}/registerStudent`,
         type : 'POST',
@@ -275,37 +276,42 @@ $('#updateJOBPOSTXXXX').click(function(){
           educator: sEducator,
           extra: sExtra
         },
-        success:function(user){
+        success:function(user) {
+          sessionStorage.setItem('userID', user._id);
+          sessionStorage.setItem('userFullName', user.name);
+          sessionStorage.setItem('username', user.username);
+          sessionStorage.setItem('userEmail', user.email);
+          sessionStorage.setItem('userPass', user.password);
+          console.log(sessionStorage);
           console.log(user); //remove when development is finished
-          if (user !== 'username taken already. Please try another name'){
-            alert('Please login to manipulate the products data');
-
+          if (user !== 'username taken already. Please try another name') {
+            alert('You have been registered!');
           } else {
-            alert('username taken already. Please try another name');
+            alert('Username taken already. Please try another name');
             // ********** change ids *******
             $('#username').val('');
             $('#email').val('');
             $('#password').val('');
           } //else
-
         }, //success
-        error:function(){
+        error:function() {
           console.log('error: cannot call api');
         }//error
-      })//ajax post
+      });//ajax post
     }//if
+  });//#XXXCREATE-ACC-BTN-STUDENT
 
-  })//#XXXCREATE-ACC-BTN-STUDENT
-
+  // student registration ENDS
 
   // POST - employer registration  =====================================================
 
-  $('#').click(function(){
-    event.preventDefault()//this prevents code breaking when no data is found
+  $('#').click(function() {
+    event.preventDefault();//this prevents code breaking when no data is found
     let eName = $('#name').val();
     let eUsername = $('#username').val();
     let eEmail = $('#user-email').val();
     let ePassword = $('#password').val();
+    let eCheckPass = $('#check-password-INPUT').val();
     let ePfpUrl = $('#profile-INPUT').val();
     let eWorkField = $('#r-name').val();
     let eCompanyName = $('#company-name').val();
@@ -313,10 +319,12 @@ $('#updateJOBPOSTXXXX').click(function(){
 
     console.log(eName, eUsername, eEmail, ePassword, ePfpUrl, eWorkField, eCompanyName, eExtra);
 
-    if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eWorkField == '' || eCompanyName == ''){
-      alert('Please enter all emplyoyer details');
-
-    }else {
+    if (ePassword != eCheckPass) {
+      $('#check-password-INPUT').val('');
+      alert('Passwords do not match. Please try again');
+    } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
+      alert('Please enter all employer details');
+    } else {
       $.ajax({
         url: `${url}/registerEmployer`,
         type : 'POST',
@@ -331,10 +339,15 @@ $('#updateJOBPOSTXXXX').click(function(){
           extra: eExtra
         },
         success:function(user){
+          sessionStorage.setItem('userID', user._id);
+          sessionStorage.setItem('userFullName', user.name);
+          sessionStorage.setItem('username', user.username);
+          sessionStorage.setItem('userEmail', user.email);
+          sessionStorage.setItem('userPass', user.password);
+          console.log(sessionStorage);
           console.log(user); //remove when development is finished
           if (user !== 'username taken already. Please try another name'){
-            alert('Please login to manipulate the products data');
-
+            alert('You have been registered!');
           } else {
             alert('username taken already. Please try another name');
             // ********** change ids *******
@@ -347,13 +360,13 @@ $('#updateJOBPOSTXXXX').click(function(){
         error:function(){
           console.log('error: cannot call api');
         }//error
-      })//ajax post
+      });//ajax post
     }//if
-
-  })//#XXXCREATE-ACC-BTN-EMPLOIYER
-
+  });//#XXXCREATE-ACC-BTN-EMPLOIYER
+  // employer registration ENDS
 
   // PATCH - student profile - update student profile details ===========================
+
   $('#updateSTUDENTPROFILE').click(function(){
     event.preventDefault();
 
@@ -400,9 +413,9 @@ $('#updateJOBPOSTXXXX').click(function(){
         error: function(){
           console.log('error:cannot call api');
         }//error
-      })//ajax
+      });//ajax
     }//if
-  })//updateJOBPOSTXXXX
+  });//updateJOBPOSTXXXX
 
 
 
@@ -514,48 +527,43 @@ $('#updateJOBPOSTXXXX').click(function(){
 
   // student profiles JS------------------------------
 
+  // ICON NAV STARTS ------------------------------
   // declaring vars
-  var navDisplay = false;
-  var icon = document.querySelector('#icon img');
-  var popoutNav = document.querySelector('.nav__popover');
-
-  // icon nav
-  icon.addEventListener('click', () => {
-    if (!navDisplay) {
-      popoutNav.style.display = 'block';
-      navDisplay = true;
-    } else if (navDisplay) {
-      popoutNav.style.display = 'none';
-      navDisplay = false;
-    }
-  }, false);
-
-  // conditional for closing icon nav by  clicking outside of it
-  window.addEventListener('click', (e) => {
-    if (e.target != icon) {
-      popoutNav.style.display = 'none';
-      navDisplay = false;
-    }
-  }, false);
-
-  $('.student-carousel').slick({
-    arrows: true,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    prevArrow: '<div class="slick-prev"></div>',
-    nextArrow: '<div class="slick-next"></div>',
-
-    onBeforeChange: function () {
-      $('.slick-slide').removeClass('card__card-body--active');
-    },
-
-    onAfterChange: function () {
-      $('.slick-active').next().addClass('card__card-body--active');
-    }
-  });
+  // var navDisplay = false;
+  // var icon = document.querySelector('#icon img');
+  // var popoutNav = document.querySelector('.nav__popover');
+  //
+  // // icon nav
+  // icon.addEventListener('click', () => {
+  //   if (!navDisplay) {
+  //     popoutNav.style.display = 'block';
+  //     navDisplay = true;
+  //   } else if (navDisplay) {
+  //     popoutNav.style.display = 'none';
+  //     navDisplay = false;
+  //   }
+  // }, false);
+  //
+  // // conditional for closing icon nav by  clicking outside of it
+  // window.addEventListener('click', (e) => {
+  //   if (e.target != icon) {
+  //     popoutNav.style.display = 'none';
+  //     navDisplay = false;
+  //   }
+  // }, false);
+  // ICON NAV ENDS ------------------------------
 
   if ($('body').data('title') === 'student-profiles-page') {
+
+    $('.student-carousel').slick({
+      arrows: true,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      prevArrow: '<div class="slick-prev"></div>',
+      nextArrow: '<div class="slick-next"></div>',
+    });
+
     window.addEventListener('load', () => {
       $.ajax({
         url: `${url}/allStudents`,
@@ -587,57 +595,6 @@ $('#updateJOBPOSTXXXX').click(function(){
   } //if bodydata ends
   // student profiles JS ENDS------------------------------
 
-  // student registration instant login tests ------------------------------
-  // student registration  =====================================================
-    //
-    // $('#XXXCREATE-ACC-BTN-STUDENT').click(function(){
-    //   event.preventDefault()//this prevents code breaking when no data is found
-    //   let sName = $('#username-INPUT').val();
-    //   let sUsername = $('#username-INPUT').val();
-    //   let sEmail = $('#email-INPUT').val();
-    //   let sPassword = $('#password-INPUT').val();
-    //   let sPfpUrl = $('#portfolio-INPUT').val();
-    //   let sStudy = $('#study-INPUT').val();
-    //   let sEducator = $('#educator-INPUT').val();
-    //   let sExtra = $('#extra-INPUT').val();
-    //
-    //   console.log(sName, sUsername, sEmail, sPassword, sPfpUrl, sStudy, sEducator, sExtra);
-    //
-    //   if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sStudy == '' || sEducator == ''){
-    //     alert('Please enter all student details');
-    //   } else {
-    //     $.ajax({
-    //       url: `${url}//registerStudent`,
-    //       type : 'POST',
-    //       data : {
-    //         name: sName,
-    //         username: sUsername,
-    //         email: sEmail,
-    //         password: sPassword,
-    //         pfpUrl: sPfpUrl,
-    //         studyField: sStudy,
-    //         educator: sEducator,
-    //         extra: sExtra
-    //       },
-    //       success:function(user){
-    //         console.log(user); //remove when development is finished
-    //         if (user !== 'username taken already. Please try another name'){
-    //           alert('Please login to manipulate the products data');
-    //         } else {
-    //           alert('username taken already. Please try another name');
-    //           // ********** change ids *******
-    //           $('#username').val('');
-    //           $('#email').val('');
-    //           $('#password').val('');
-    //         } //else
-    //       }, //success
-    //       error:function(){
-    //         console.log('error: cannot call api');
-    //       }//error
-    //     })//ajax post
-    //   }//if
-    // })//#XXXCREATE-ACC-BTN-STUDENT
-  // student registration instant login ENDS ------------------------------
 
  }()); //iife ENDS
 

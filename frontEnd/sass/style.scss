@@ -1,4 +1,6 @@
 @import 'vars';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
 //importing our colour scheme variables
 
 // font extends begins
@@ -7,6 +9,42 @@
   font-weight: 300;
   color: white;
   font-family: 'KoHo', sans-serif;
+}
+
+//for body text
+%inter-font-default {
+  font-weight: 300;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+// font extends ENDS
+
+// header set
+h1 {
+  text-transform: uppercase;
+  @extend %koho-font-default;
+}
+
+h5,
+h6 {
+  @extend %koho-font-default;
+}
+
+p,
+a {
+  @extend %inter-font-default;
+}
+
+a:hover,
+a:active,
+a[tabindex]:focus {
+  color: $peach;
+}
+
+a {
+  text-decoration: none;
+}
+// header set ENDS
 
 /* nav section */
 nav{
@@ -14,22 +52,6 @@ nav{
   width: 70%;
   margin-left: 150px;
 }
-
-$dark: #21262A; //background
-$blue: #5667A9; //circle gradients and home buttons
-$peach: #E8AB9D; //circle gradients
-$white: #FFFFFF; //outer glow
-$bglight: rgba( 255, 255, 255, 0.20 );
-$shadow: rgba( 230, 235, 252, 0.57 );
-$border: rgba( 255, 255, 255, 0.11 );
-$opacity-front: 1;
-$opacity-back: .2;
-$blur-front: 0;
-$blur-back: .8px;
-$drop-front: 4px 10px 10px rgba(0,0,0, .6);
-$drop-back: 4px 4px 4px rgba(0,0,0, .2);
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-
 
 #homeBG{
   background-image: url("../image/homeBG.png");
@@ -442,41 +464,6 @@ p {
   color: orange;
 }
 
-//for body text
-%inter-font-default {
-  font-weight: 300;
-  color: white;
-  font-family: 'Inter', sans-serif;
-}
-// font extends ENDS
-
-// header set
-h1 {
-  text-transform: uppercase;
-  @extend %koho-font-default;
-}
-
-h5,
-h6 {
-  @extend %koho-font-default;
-}
-
-p,
-a {
-  @extend %inter-font-default;
-}
-
-a:hover,
-a:active,
-a[tabindex]:focus {
-  color: $peach;
-}
-
-a {
-  text-decoration: none;
-}
-// header set ENDS
-
 /* nav section */
 nav{
   border: 2px solid white;
@@ -748,6 +735,7 @@ body {
   color: white;
   font-size: 0.9rem;
   margin: 15px 0 0 0;
+  width: 100%;
   @extend %inter-font-default;
 }
 

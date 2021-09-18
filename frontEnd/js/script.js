@@ -154,41 +154,41 @@ $('#editPost').click(function(){
   //   })//ajax
   // }//if
 
-  console.log(jobTitle, posterName, jobDescription, username, userid);
-  if ( jobTitle == '' || posterName == '' || jobDescription == ''){
-    alert('Please enter post update information');
-  } else {
-    $.ajax({
-      url: `${url}/updatePost/:id`,
-      type: 'PATCH',
-      data:{
-        jobTitle: jobTitle,
-        posterName: posterName,
-        jobDescription: jobDescription,
-        // ** does this need to be added to models/employer
-        username_id: userid
-      },
-      success: function(data){
-        console.log(data);
-        if(data == '401 error: user has no permission to update'){
-          alert('401 error: user has no permission to update');
+  // ----- working ver below, had to comment out for now
 
-        } else {
-          alert('updated');
-        }//else
-        // ** NEED TO UPDATE THE IDS **
-        $('#inputidUpdate').val('');
-        $('#inputidUpdate').val('');
-        $('#inputidUpdate').val('');
-
-
-      }, //success
-      error: function(){
-        console.log('error:cannot call api');
-      }//error
-    });//ajax
-  }//if
-
+  // console.log(jobTitle, posterName, jobDescription, username, userid);
+  // if ( jobTitle == '' || posterName == '' || jobDescription == ''){
+  //   alert('Please enter post update information');
+  // } else {
+  //   $.ajax({
+  //     url: `${url}/updatePost/:id`,
+  //     type: 'PATCH',
+  //     data:{
+  //       jobTitle: jobTitle,
+  //       posterName: posterName,
+  //       jobDescription: jobDescription,
+  //       // ** does this need to be added to models/employer
+  //       username_id: userid
+  //     },
+  //     success: function(data){
+  //       console.log(data);
+  //       if(data == '401 error: user has no permission to update'){
+  //         alert('401 error: user has no permission to update');
+  //
+  //       } else {
+  //         alert('updated');
+  //       }//else
+  //       // ** NEED TO UPDATE THE IDS **
+  //       $('#inputidUpdate').val('');
+  //       $('#inputidUpdate').val('');
+  //       $('#inputidUpdate').val('');
+  //
+  //     }, //success
+  //     error: function(){
+  //       console.log('error:cannot call api');
+  //     }//error
+  //   });//ajax
+  // }//if
 
   // GET - student to view job posts =================================================
 
@@ -344,65 +344,66 @@ $('#editPost').click(function(){
 
   // POST - employer registration  =====================================================
 
-  $('#').click(function() {
-    event.preventDefault();//this prevents code breaking when no data is found
-    let eName = $('#name').val();
-    let eUsername = $('#username').val();
-    let eEmail = $('#user-email').val();
-    let ePassword = $('#password').val();
-    let eCheckPass = $('#check-password-INPUT').val();
-    let ePfpUrl = $('#profile-INPUT').val();
-    let eWorkField = $('#r-name').val();
-    let eCompanyName = $('#company-name').val();
-    let eExtra = $('#r-extra').val();
+  if ($('body').data('title') === 'employer-reg-page') { // ADD THIS TITLE INTO EMPLOYER REG PAGE
 
-    console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
+    $('#').click(function() {
+      event.preventDefault(); //this prevents code breaking when no data is found
+      let eName = $('#name').val();
+      let eUsername = $('#username').val();
+      let eEmail = $('#user-email').val();
+      let ePassword = $('#password').val();
+      let eCheckPass = $('#check-password-INPUT').val();
+      let ePfpUrl = $('#profile-INPUT').val();
+      let eWorkField = $('#r-name').val();
+      let eCompanyName = $('#company-name').val();
+      let eExtra = $('#r-extra').val();
 
-    if (ePassword != eCheckPass) {
-      $('#check-password-INPUT').val('');
-      alert('Passwords do not match. Please try again');
-    } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
-      alert('Please enter all employer details');
-    } else {
-      $.ajax({
-        url: `${url}/registerEmployer`,
-        type : 'POST',
-        data : {
-          name: eName,
-          username: eUsername,
-          email: eEmail,
-          password: ePassword,
-          // pfpUrl: ePfpUrl,
-          workField: eWorkField,
-          companyName: eCompanyName,
-          extra: eExtra
-        },
-        success:function(user){
-          sessionStorage.setItem('userID', user._id);
-          sessionStorage.setItem('userFullName', user.name);
-          sessionStorage.setItem('username', user.username);
-          sessionStorage.setItem('userEmail', user.email);
-          sessionStorage.setItem('userPass', user.password);
-          console.log(sessionStorage);
-          console.log(user); //remove when development is finished
-          if (user !== 'username taken already. Please try another name'){
-            alert('You have been registered!');
-          } else {
-            console.log('username taken already. Please try another name');
-            // ********** change ids *******
-            $('#username').val('');
-            $('#user-email').val('');
-            $('#password').val('');
-          } //else
+      console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
 
-        }, //success
-        error:function(){
-          console.log('error: cannot call api');
-        }//error
-      });//ajax post
-    }//if
-
-  });//#XXXCREATE-ACC-BTN-EMPLOIYER
+      if (ePassword != eCheckPass) {
+        $('#check-password-INPUT').val('');
+        alert('Passwords do not match. Please try again');
+      } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
+        alert('Please enter all employer details');
+      } else {
+        $.ajax({
+          url: `${url}/registerEmployer`,
+          type : 'POST',
+          data : {
+            name: eName,
+            username: eUsername,
+            email: eEmail,
+            password: ePassword,
+            pfpUrl: ePfpUrl,
+            workField: eWorkField,
+            companyName: eCompanyName,
+            extra: eExtra
+          },
+          success:function(user){
+            sessionStorage.setItem('userID', user._id);
+            sessionStorage.setItem('userFullName', user.name);
+            sessionStorage.setItem('username', user.username);
+            sessionStorage.setItem('userEmail', user.email);
+            sessionStorage.setItem('userPass', user.password);
+            console.log(sessionStorage);
+            console.log(user); //remove when development is finished
+            if (user !== 'username taken already. Please try another name'){
+              alert('You have been registered!');
+            } else {
+              console.log('username taken already. Please try another name');
+              // ********** change ids *******
+              $('#username').val('');
+              $('#user-email').val('');
+              $('#password').val('');
+            } //else
+          }, //success
+          error:function(){
+            console.log('error: cannot call api');
+          }//error
+        });//ajax post
+      }//if
+    });//#XXXCREATE-ACC-BTN-EMPLOIYER
+  }// bodydata checker
   // employer registration ENDS
 
   // PATCH - student profile - update student profile details ===========================
@@ -573,30 +574,35 @@ $('#editPost').click(function(){
   // student profiles JS------------------------------
 
   // ICON NAV STARTS ------------------------------
-  // declaring vars
-  var navDisplay = false;
-  var icon = document.querySelector('#icon img');
-  var popoutNav = document.querySelector('.nav__popover');
 
-  // icon nav
-  icon.addEventListener('click', () => {
-    console.log('the click goes thru');
-    if (!navDisplay) {
-      popoutNav.style.display = 'block';
-      navDisplay = true;
-    } else if (navDisplay) {
-      popoutNav.style.display = 'none';
-      navDisplay = false;
-    }
-  }, false);
+  // checking if the icon exists in a page
+  if (document.querySelector('.nav__popover')) {
+    // declaring vars
+    var navDisplay = false;
+    var icon = document.querySelector('#icon img');
+    var popoutNav = document.querySelector('.nav__popover');
 
-  // conditional for closing icon nav by  clicking outside of it
-  window.addEventListener('click', (e) => {
-    if (e.target != icon) {
-      popoutNav.style.display = 'none';
-      navDisplay = false;
-    }
-  }, false);
+    // icon nav
+    icon.addEventListener('click', () => {
+      if (!navDisplay) {
+        popoutNav.style.display = 'block';
+        navDisplay = true;
+      } else if (navDisplay) {
+        popoutNav.style.display = 'none';
+        navDisplay = false;
+      }
+    }, false);
+
+    // conditional for closing icon nav by  clicking outside of it
+    window.addEventListener('click', (e) => {
+      if (e.target != icon) {
+        popoutNav.style.display = 'none';
+        navDisplay = false;
+        // nav will close if you click anywhere outside of the icon
+      }
+    }, false);
+  }
+
   // ICON NAV ENDS ------------------------------
 
   if ($('body').data('title') === 'student-profiles-page') {

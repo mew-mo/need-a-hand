@@ -1,23 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap");
 body {
+  width: 100vw;
   overflow-x: hidden;
 }
 
-h2,
+h1, h2,
 h4,
 h5,
-h6, h1 {
+h6, .nav__links a, .nav__links--right a {
   font-weight: 300;
   color: white;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
 }
 
-.card-text, p,
-a {
+p,
+a, .card-text {
   font-weight: 300;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1 {
@@ -41,6 +42,68 @@ a {
 .md-icon {
   font-size: 30px;
   cursor: pointer;
+}
+
+.a__icon--adjust-top {
+  font-size: 30px;
+  position: relative;
+  top: 8px;
+}
+
+.nav {
+  border: none;
+  width: 100vw;
+  margin-left: 0;
+}
+
+.nav__links, .nav__links--right {
+  margin-left: 20%;
+}
+.nav__links a, .nav__links--right a {
+  position: relative;
+  top: 30px;
+  font-weight: 400;
+  margin-left: 50px;
+}
+
+.nav__link,
+#icon {
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.nav__links--right a {
+  margin-left: 40vw;
+}
+
+#icon {
+  position: absolute;
+  top: 30px;
+}
+
+#logo {
+  width: 150px;
+  margin-left: 20px;
+}
+
+.nav__popover {
+  position: absolute;
+  display: none;
+  top: 115px;
+  left: 83%;
+  height: 100px;
+  width: 130px;
+  background-color: #21262A;
+  border: 1px solid rgba(196, 196, 196, 0.72);
+  border-radius: 23px;
+}
+.nav__popover .a__popover-links {
+  padding-top: 5px;
+}
+.nav__popover a {
+  margin: 15px 0 0 20px;
+  display: block;
+  text-decoration: underline;
 }
 
 /* nav section */
@@ -137,7 +200,7 @@ nav {
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -145,7 +208,7 @@ nav {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -153,7 +216,7 @@ nav {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 
@@ -268,11 +331,6 @@ footer {
 
 /* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav {
-  margin-left: 150px;
-  width: 70%;
-}
-
 #createAd,
 #viewStudentProfile,
 #viewEmployerProfile,
@@ -314,7 +372,7 @@ footer {
   display: inline-block;
 }
 
-.testClass {
+#userProfile {
   position: relative;
   margin-left: 310px;
   margin-top: 140px;
@@ -443,11 +501,6 @@ p {
   margin-top: 200px;
   color: #FFFFFF;
 }
-#sidebarContent .icon__bookmark--blank {
-  font-size: 30px;
-  position: relative;
-  top: 5px;
-}
 #sidebarContent .icon__search {
   position: absolute;
   left: 320px;
@@ -481,6 +534,10 @@ p {
 
 #searchForm a {
   font-size: 1.4rem;
+}
+
+.nav__popover--dash {
+  margin-top: 20px;
 }
 
 /* Home page section */
@@ -540,9 +597,10 @@ p {
 
 /* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav {
-  margin-left: 150px;
-  width: 70%;
+.icon__nav-icon {
+  background: linear-gradient(90deg, #e8ab9d 0%, #5a6cb0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #createAd,
@@ -586,10 +644,6 @@ p {
   display: inline-block;
 }
 
-body {
-  background-color: #212529;
-}
-
 #active {
   color: #e8ab9d;
 }
@@ -603,27 +657,6 @@ body {
   top: 85px;
   left: 250px;
   font-size: 3.2rem;
-}
-
-.nav__student-profiles {
-  border: none;
-  width: 100vw;
-  margin-left: 0;
-}
-
-.nav__links {
-  margin-left: 20%;
-}
-
-.nav__link,
-#icon {
-  margin-left: 50px;
-  cursor: pointer;
-}
-
-#logo {
-  width: 150px;
-  margin-left: 20px;
 }
 
 .img-container__crop-main-icon {
@@ -641,26 +674,6 @@ body {
   margin: 0 auto;
   height: 100%;
   width: auto;
-}
-
-.nav__popover {
-  position: absolute;
-  display: none;
-  top: 115px;
-  left: 83%;
-  height: 100px;
-  width: 130px;
-  background-color: #21262A;
-  border: 1px solid rgba(196, 196, 196, 0.72);
-  border-radius: 23px;
-}
-.nav__popover .a__popover-links {
-  padding-top: 5px;
-}
-.nav__popover a {
-  margin: 15px 0 0 20px;
-  display: block;
-  text-decoration: underline;
 }
 
 #studentProfiles {
@@ -712,14 +725,6 @@ body {
 }
 
 .slick-active .card-body {
-  border: 2px solid #e8ab9d;
-  border-radius: 52px;
-  -webkit-box-shadow: 0px 0px 14px #e8ab9d;
-  -moz-box-shadow: 0px 0px 14px #e8ab9d;
-  box-shadow: 0px 0px 14px #e8ab9d;
-}
-
-.slick-active + .slick-active .card-body {
   border: 2px solid #5A6CB0;
   border-radius: 52px;
   -webkit-box-shadow: 0px 0px 14px #5A6CB0;
@@ -727,12 +732,20 @@ body {
   box-shadow: 0px 0px 14px #5A6CB0;
 }
 
-.slick-active + .slick-active + .slick-active .card-body {
+.slick-active + .slick-active .card-body {
   border: 2px solid #e8ab9d;
   border-radius: 52px;
   -webkit-box-shadow: 0px 0px 14px #e8ab9d;
   -moz-box-shadow: 0px 0px 14px #e8ab9d;
   box-shadow: 0px 0px 14px #e8ab9d;
+}
+
+.slick-active + .slick-active + .slick-active .card-body {
+  border: 2px solid #5A6CB0;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px #5A6CB0;
+  -moz-box-shadow: 0px 0px 14px #5A6CB0;
+  box-shadow: 0px 0px 14px #5A6CB0;
 }
 
 .card-title {

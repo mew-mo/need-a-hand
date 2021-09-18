@@ -4,6 +4,7 @@
 //importing our colour scheme variables
 
 body {
+  width: 100vw;
   overflow-x: hidden;
 }
 
@@ -61,7 +62,89 @@ a {
   font-size: 30px;
   cursor: pointer;
 }
+
+.a__icon--adjust-top {
+  font-size: 30px;
+  position: relative;
+  top: 8px;
+}
 // icons end
+
+// mixins
+@mixin card-style($color: $purple) {
+  border: 2px solid $color;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px $color;
+   -moz-box-shadow: 0px 0px 14px $color;
+        box-shadow: 0px 0px 14px $color;
+}
+// mixins END
+
+// universal nav
+.nav {
+  border: none;
+  width: 100vw;
+  margin-left: 0;
+}
+
+.nav__links {
+  margin-left: 20%;
+
+  a {
+    position: relative;
+    top: 30px;
+    font-weight: 400;
+    margin-left: 50px;
+    @extend %koho-font-default;
+  }
+}
+
+.nav__link,
+#icon {
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.nav__links--right {
+  @extend .nav__links;
+
+  a {
+    margin-left: 40vw;
+  }
+}
+
+#icon {
+  position: absolute;
+  top: 30px;
+}
+
+#logo {
+  width: 150px;
+  margin-left: 20px;
+}
+
+.nav__popover {
+  position: absolute;
+  display: none;
+  top: 115px;
+  left: 83%;
+  height: 100px;
+  width: 130px;
+  background-color: $dark;
+  border: 1px solid $placeholder;
+  border-radius: 23px;
+
+  .a__popover-links {
+    padding-top: 5px;
+  }
+
+  a {
+    margin: 15px 0 0 20px;
+    display: block;
+    text-decoration: underline;
+  }
+}
+// universal nav ENDS
 
 /* nav section */
 nav{
@@ -375,10 +458,6 @@ footer{
 
 /* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav {
-  margin-left: 150px;
-  width: 70%;
-}
 
 #createAd,
 #viewStudentProfile,
@@ -426,20 +505,13 @@ footer{
 
 // USER PROFILE CSS
 
-
-// #userProfile {
-//
-// }
-
-
-.testClass {
+#userProfile {
   position: relative;
   margin-left: 310px;
   margin-top: 140px;
   width: 55rem;
   height: 25rem;
   border-radius: 70px;
-  // border: solid 1px white;
   box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
 -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
 -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
@@ -577,19 +649,12 @@ p {
   margin-top: 200px;
   color: $white;
 
-  .icon__bookmark--blank {
-    font-size: 30px;
-    position: relative;
-    top: 5px;
-  }
-
   .icon__search {
     position: absolute;
     left: 320px;
     margin-top: 10px;
     color: $placeholder;
     font-size: 30px;
-
   }
 }
 
@@ -620,7 +685,10 @@ p {
   a {
     font-size: 1.4rem;
   }
+}
 
+.nav__popover--dash {
+  margin-top: 20px;
 }
 // student dash ENDS
 
@@ -674,9 +742,11 @@ margin-right: 50px;
 /* login/register forms ENDS */
 
 /* Employer dashboard starts */
-#dashNav{
-  margin-left: 150px;
-  width: 70%;
+
+.icon__nav-icon {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #createAd,
@@ -715,9 +785,6 @@ margin-right: 50px;
 }
 
 // student profiles begins
-body {
-  background-color: #212529;
-}
 
 #active {
   color: $peach;
@@ -732,27 +799,6 @@ body {
   top: 85px;
   left: 250px;
   font-size: 3.2rem;
-}
-
-.nav__student-profiles {
-  border: none;
-  width: 100vw;
-  margin-left: 0;
-}
-
-.nav__links {
-  margin-left: 20%;
-}
-
-.nav__link,
-#icon {
-  margin-left: 50px;
-  cursor: pointer;
-}
-
-#logo {
-  width: 150px;
-  margin-left: 20px;
 }
 
 .img-container__crop-main-icon {
@@ -770,28 +816,6 @@ body {
     margin: 0 auto;
     height: 100%;
     width: auto;
-  }
-}
-
-.nav__popover {
-  position: absolute;
-  display: none;
-  top: 115px;
-  left: 83%;
-  height: 100px;
-  width: 130px;
-  background-color: $dark;
-  border: 1px solid $grey;
-  border-radius: 23px;
-
-  .a__popover-links {
-    padding-top: 5px;
-  }
-
-  a {
-    margin: 15px 0 0 20px;
-    display: block;
-    text-decoration: underline;
   }
 }
 
@@ -846,31 +870,19 @@ body {
 
 .slick-active {
   .card-body {
-    border: 2px solid $peach;
-    border-radius: 52px;
-    -webkit-box-shadow: 0px 0px 14px $peach;
-     -moz-box-shadow: 0px 0px 14px $peach;
-          box-shadow: 0px 0px 14px $peach;
+    @include card-style;
   }
 }
 
 .slick-active + .slick-active {
   .card-body {
-    border: 2px solid $purple;
-    border-radius: 52px;
-    -webkit-box-shadow: 0px 0px 14px $purple;
-     -moz-box-shadow: 0px 0px 14px $purple;
-          box-shadow: 0px 0px 14px $purple;
-    }
+    @include card-style($peach);
+  }
 }
 
 .slick-active + .slick-active + .slick-active {
   .card-body {
-    border: 2px solid $peach;
-    border-radius: 52px;
-    -webkit-box-shadow: 0px 0px 14px $peach;
-     -moz-box-shadow: 0px 0px 14px $peach;
-          box-shadow: 0px 0px 14px $peach;
+    @include card-style;
   }
 }
 

@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap");
@@ -30,8 +29,7 @@ a {
   text-decoration: none;
 }
 
-}
-
+/* nav section */
 #homeBG {
   background-image: url("../image/homeBG.png");
   max-width: 100%;
@@ -41,48 +39,40 @@ a {
   display: flex;
   justify-content: flex-end;
   margin-right: 400px;
+}
 
 #login {
-  border: 1px solid #E8AB9D;
+  border: 1px solid #e8ab9d;
   background-color: #21262A;
   width: 120px;
 }
+
 /* nav section ENDS */
-  
 /* Home page section */
 #homePage {
-  border: 2px solid #FFFFFF;
-  width: 50%;
-  margin-left: 250px;
+  max-width: 900px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   text-align: center;
-}
-
-
-#exit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 530px;
-}
-
-/* login/register forms */
-#loginSection,
-#registerSection {
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-}
-
-#homePage {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(1px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.11);
-  margin-left: 600px;
-  margin-top: 70px;
-  width: 40%;
-  text-align: center;
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  height: 100%;
+}
+
+/* login/register forms */
+#loginSection,
+#registerSection {
+  border: 2px solid #FFFFFF;
+  width: 50%;
+  margin-left: 250px;
 }
 
 #studentReg,
@@ -91,8 +81,10 @@ a {
 }
 
 #tagline {
-  margin-top: 120px;
-  margin-left: 640px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
 }
 
 .container {
@@ -218,13 +210,12 @@ footer {
 }
 
 /* login form */
-#home {
-  margin-left: 100px;
-  width: 180px;
+#homeLogo {
+  margin-left: 40px;
+  width: 150px;
 }
 
-#loginSection,
-#registerSection {
+#loginSection {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
@@ -238,40 +229,51 @@ footer {
 
 #heading {
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin: auto;
-  position: relative;
   height: 60px;
 }
 
 #WelcomeTitle {
   display: inline-block;
+  margin-left: 105px;
 }
 
 .fa-times {
-  margin-left: 200px;
+  position: fixed;
+  float: right;
+  margin-left: 80px;
   font-size: 30px;
 }
 
+.fa-times:hover {
+  border-radius: 20px;
+  background: #e8ab9d;
+  font-size: 40px;
+}
+
 #loginForm {
-  justify-content: center;
-  align-items: center;
+  display: inline-flex;
+  margin: auto;
+  max-width: 80%;
+}
+
+#passwordForm {
+  display: inline-flex;
   margin: auto;
   max-width: 80%;
 }
 
 #loginSubmit {
   border-radius: 10px;
-  border: 1px solid #E8AB9D;
+  border: 1px solid #e8ab9d;
   background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 15px 25px 0 rgba(230, 235, 252, 0.57);
+  box-shadow: 0 5px 15px 5px rgba(230, 235, 252, 0.57);
   width: 30%;
 }
 
 #loginSubmit:hover {
   background-color: #21262A;
-  border: none;
+  border: 1px solid #21262A;
 }
 
 #reg {
@@ -279,21 +281,121 @@ footer {
 }
 
 /* login form ENDS */
-/* register form */
-#registerForm {
-  max-width: 60%;
+/* employment register form */
+#registerSection {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  margin-left: 600px;
+  width: 35%;
+  text-align: center;
+}
+
+#regHeading {
+  height: 60px;
+}
+
+#regTitle {
+  display: inline-block;
+}
+
+#nameForm,
+#userNameForm,
+#emailForm,
+#passwordForm,
+#repeatPWForm,
+#jobTitleForm,
+#jobNameForm {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  margin: auto;
+  width: 80%;
+}
+
+#name {
+  width: 300px;
+  margin-left: 100px;
+}
+
+#username {
+  width: 300px;
+  margin-left: 98px;
+}
+
+#userEmail {
+  width: 300px;
+  margin-left: 135px;
+}
+
+#regPassword {
+  width: 300px;
+  margin-left: 103px;
+}
+
+#r-password {
+  width: 300px;
+  margin-left: 46px;
+}
+
+#r-name {
+  width: 300px;
+  margin-left: 52px;
+}
+
+#companyName {
+  width: 300px;
+  margin-left: 57px;
+}
+
+#studentRegTitle {
+  display: inline-block;
+  margin-left: 70px;
+}
+
+#regSubmit {
+  border-radius: 10px;
+  border: 1px solid #e8ab9d;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px 5px rgba(230, 235, 252, 0.57);
+  width: 30%;
+}
+
+#regSubmit:hover {
+  background-color: #21262A;
+  border: 1px solid #21262A;
 }
 
 #cancel1 {
   position: relative;
   display: inline-block;
   margin-left: 50px;
+  border-radius: 10px;
 }
 
-#regSubmit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 250px;
+#cancel1:hover {
+  background-color: #e8ab9d;
+  border: none;
+}
+
+#exit {
+  margin-left: 240px;
+}
+
+#studentRegSubmit {
+  border-radius: 10px;
+  border: 1px solid #e8ab9d;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 25px 0 rgba(230, 235, 252, 0.57);
+  width: 30%;
+}
+
+#studentRegSubmit:hover {
+  background-color: #21262A;
+  border: none;
 }
 
 /* login/register forms ENDS */
@@ -425,74 +527,6 @@ p {
   padding: 40px;
 }
 
-/* nav section */
-nav {
-  border: 2px solid white;
-  width: 70%;
-  margin-left: 150px;
-}
-
-#login {
-  margin-left: 550px;
-}
-
-/* nav section ENDS */
-/* Home page section */
-#homePage {
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-  text-align: center;
-}
-
-#exit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 530px;
-}
-
-/* login/register forms */
-#loginSection,
-#registerSection {
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-}
-
-#WelcomeTitle {
-  text-align: center;
-}
-
-#loginForm,
-#registerForm {
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-#loginSubmit {
-  position: relative;
-  display: inline-block;
-  margin-left: 50px;
-}
-
-#reg {
-  position: absolute;
-  display: inline-block;
-}
-
-#cancel1 {
-  position: relative;
-  display: inline-block;
-  margin-left: 50px;
-}
-
-#regSubmit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 250px;
-}
-
-/* login/register forms ENDS */
 /* Employer dashboard starts */
 #dashNav {
   margin-left: 150px;

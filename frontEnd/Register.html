@@ -5,59 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="css\style.css">
 
   <title>User Register</title>
 </head>
-<body class="container bg-dark">
+<body class="bg-dark">
 
-<nav class="mt-3">
-  <!-- add logo as home button -->
-  <a href="index.html"><button id="home" type="button" name="button" class="btn btn-light btn-md rounded-pill">Add logo img here</button></a>
+  <div id="loginNav" class="">
+    <img id="homeLogo" class="mt-4" src="image/NAHLogo.png" alt="">
+  </div>
 
-  <a href="index.html"><button id="exit" type="submit" name="button" type="submit" class="btn btn-light btn-md rounded-pill">Exit icon</button></a>
-</nav>
-  <div id="registerSection" class="mt-5 pt-3 pb-3" >
-    <h1 id="WelcomeTitle" class="text-light">Employer Sign up!</h1>
+  <div id="registerSection" class="my-2 pt-3 pb-3" >
+    <div id="regHeading">
+    <h1 id="regTitle" class="text-light">Employment Register</h1>
+    <a href="index.html"><i class="fa fa-times text-white" aria-hidden="true"></i></a>
+    </div>
     <!-- login form -->
-    <form id="registerForm" class="my-4 rounded-pill">
-
-      <label for="name" class="text-light">Full Name</label>
+    <form id="nameForm" class="my-4 rounded-pill">
+      <label for="name" class="text-light mr-5">Full Name</label>
       <input id="name" type="text" name="name" class="form-control"  value="">
-      <br>
+    </form>
+    <form id="userNameForm" class="my-4 rounded-pill">
       <label for="username" class="text-light"> Username: </label>
       <input id="username" type="text" name="username" class="form-control" value="">
-      <br>
+    </form>
+    <form id="emailForm" class="my-4 rounded-pill">
       <label for="email" class="text-light">Email</label>
-      <input id="user-email" type="email" name="r-email" class="form-control" value="">
-      <br>
+      <input id="userEmail" type="email" name="r-email" class="form-control" value="">
+    </form>
+    <form id="passwordForm" class="my-4 rounded-pill">
       <label for="password" class="text-light"> Password: </label>
-      <input id="password" type="password" name="password"  class="form-control" value="">
-      <br>
+      <input id="regPassword" type="password" name="password"  class="form-control" value="">
+    </form>
+    <form id="repeatPWForm" class="my-4 rounded-pill">
       <label for="r-password" class="text-light">Confirm Password</label>
       <input id="r-password" type="password" name="r-password" class="form-control" value="">
-      <br>
-      <label for="r-name" class="text-light">Employment title</label>
-      <input id="r-name" type="text" name="r-name" class="form-control" value="">
-      <br>
-      <label for="r-name" class="text-light">Company Name</label>
-      <input id="company-name" type="text" name="r-name" class="form-control" value="">
-      <br>
-      <label for="r-extra" class="text-light">extra</label>
-      <input id="r-extra" type="text" name="r-extra" class="form-control" value="">
-
     </form>
-    <div id="regFormButtons"></div>
-      <a href="index.html"><button id="cancel1" name="r-button" type="button" class="btn btn-primary">Cancel</button></a>
+    <form id="jobTitleForm" class="my-4 rounded-pill">
+      <label for="r-name" class="text-light">Employment title</label>
+      <input id="r-name" type="text" name="r-name" class="form-control  " value="">
+    </form>
+    <form id="jobNameForm" class="my-4 rounded-pill">
+      <label for="r-name" class="text-light">Company Name</label>
+      <input id="companyName" type="text" name="r-name" class="form-control" value="">
+    </form>
 
+    <div id="regFormButtons">
       <a href="employerDash.html"><button id="regSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
-            <!-- <button id="regSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button> -->
+
+      <a href="index.html"><button id="cancel1" name="r-button" type="button" class="btn btn-dark">Cancel</button></a>
     </div>
   </div>
-      <!-- <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div> -->
 
       <!-- // SCRIPT LINKS - -->
 

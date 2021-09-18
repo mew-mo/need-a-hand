@@ -1,27 +1,5 @@
 
-$dark: #21262A; //background
-$blue: #5667A9; //circle gradients and home buttons
-$peach: #E8AB9D; //circle gradients
-$white: #FFFFFF; //outer glow
-$bglight: rgba( 255, 255, 255, 0.20 );
-$shadow: rgba( 230, 235, 252, 0.57 );
-$border: rgba( 255, 255, 255, 0.11 );
-$opacity-front: 1;
-$opacity-back: .2;
-$blur-front: 0;
-$blur-back: .8px;
-$drop-front: 4px 10px 10px rgba(0,0,0, .6);
-$drop-back: 4px 4px 4px rgba(0,0,0, .2);
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-
-
-// index.html starts
-#homeNav{
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 400px;
-}
-
 @import 'vars';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
@@ -71,16 +49,22 @@ a {
 // header set ENDS
 
 /* nav section */
-nav{
-  border: 2px solid white;
-  width: 70%;
-  margin-left: 150px;
-}
+// nav{
+//   border: 2px solid white;
+//   width: 70%;
+//   margin-left: 150px;
+// }
 
-
+// index.html starts
 #homeBG{
   background-image: url("../image/homeBG.png");
   max-width: 100%;
+}
+
+#homeNav{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 400px;
 }
 
 #login {
@@ -91,13 +75,24 @@ nav{
 /* nav section ENDS */
 
 /* Home page section */
-#homePage{
-  border: 2px solid $white;
-  width: 50%;
-  margin-left: 250px;
-  text-align: center;
-}
 
+#homePage {
+  max-width: 900px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  background: $bglight;
+  box-shadow: 0 8px 32px 0 $shadow;
+  backdrop-filter: blur( 2px );
+  -webkit-backdrop-filter: blur( 1px );
+  border-radius: 10px;
+  border: 1px solid $border;
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  height: 100%;
+}
 
 /* login/register forms */
 #loginSection,
@@ -107,27 +102,16 @@ nav{
   margin-left: 250px;
 }
 
-#homePage {
-  background: $bglight;
-  box-shadow: 0 8px 32px 0 $shadow;
-  backdrop-filter: blur( 2px );
-  -webkit-backdrop-filter: blur( 1px );
-  border-radius: 10px;
-  border: 1px solid $border;
-  margin-left: 600px;
-  margin-top: 70px;
-  width: 40%;
-  text-align: center;
-}
-
 #studentReg,
 #employerReg {
 background-color: $blue;
 }
 
 #tagline {
-  margin-top: 120px;
-  margin-left: 640px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
 }
 
 .container {
@@ -266,16 +250,12 @@ footer{
 // index.html ENDS
 
 /* login form */
-#loginNav{
+#homeLogo {
+  margin-left: 40px;
+  width: 150px;
 }
 
-#home {
-  margin-left: 100px;
-  width: 180px;
-}
-
-#loginSection,
-#registerSection {
+#loginSection {
   background: $bglight;
   box-shadow: 0 8px 32px 0 $shadow;
   backdrop-filter: blur( 2px );
@@ -286,25 +266,39 @@ footer{
   width: 30%;
   text-align: center;
 }
+
 #heading{
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin: auto;
-  position: relative;
   height:60px;
 }
+
 #WelcomeTitle {
   display: inline-block;
+  margin-left: 105px;
 }
+
 .fa-times {
-  margin-left: 200px;
+  position: fixed;
+  float: right;
+  margin-left: 80px;
   font-size: 30px;
 }
 
+.fa-times:hover {
+  border-radius: 20px;
+  background: $peach;
+  font-size: 40px;
+}
+
 #loginForm {
-  justify-content: center;
-  align-items: center;
+  display: inline-flex;
+  margin: auto;
+  max-width: 80%;
+}
+
+#passwordForm {
+  display: inline-flex;
   margin: auto;
   max-width: 80%;
 }
@@ -313,39 +307,132 @@ footer{
   border-radius: 10px;
   border: 1px solid $peach;
   background: $bglight;
-  box-shadow: 0 15px 25px 0 $shadow;
+  box-shadow: 0 5px 15px 5px $shadow;
   width: 30%;
 }
+
 #loginSubmit:hover {
   background-color: $dark;
-  border: none;
+  border: 1px solid $dark;
 }
 
 #reg {
   margin-left: 140px;
 }
-
 /* login form ENDS */
 
-/* register form */
+/* employment register form */
+#registerSection{
+  background: $bglight;
+  box-shadow: 0 8px 32px 0 $shadow;
+  backdrop-filter: blur( 2px );
+  -webkit-backdrop-filter: blur( 1px );
+  border-radius: 10px;
+  border: 1px solid $border;
+  margin-left: 600px;
+  width: 35%;
+  text-align: center;
+}
+
+#regHeading {
+  // margin: auto;
+  height:60px;
+}
+
+#regTitle {
+  display: inline-block;
+}
+
+#nameForm,
+#userNameForm,
+#emailForm,
+#passwordForm,
+#repeatPWForm,
+#jobTitleForm,
+#jobNameForm {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  margin: auto;
+  width: 80%;
+}
+
+#name {
+  width: 300px;
+  margin-left: 100px;
+}
+#username{
+  width: 300px;
+  margin-left: 98px;
+}
+#userEmail{
+  width: 300px;
+  margin-left: 135px;
+}
+#regPassword{
+  width: 300px;
+  margin-left: 103px;
+}
+#r-password{
+  width: 300px;
+  margin-left: 46px;
+}
+#r-name{
+  width: 300px;
+  margin-left: 52px;
+}
+#companyName{
+  width: 300px;
+  margin-left: 57px;
+}
 
 
-#registerForm {
-  max-width: 60%;
+
+#studentRegTitle {
+  display: inline-block;
+  margin-left: 70px;
+}
+
+#regSubmit {
+  border-radius: 10px;
+  border: 1px solid $peach;
+  background: $bglight;
+  box-shadow: 0 5px 15px 5px $shadow;
+  width: 30%;
+}
+#regSubmit:hover {
+  background-color: $dark;
+  border: 1px solid $dark;
 }
 
 #cancel1 {
   position: relative;
   display: inline-block;
   margin-left: 50px;
+  border-radius: 10px;
+}
+
+#cancel1:hover {
+  background-color: $peach;
+  border: none;
+}
+ #exit {
+   margin-left: 240px;
+ }
+#studentRegSubmit {
+  border-radius: 10px;
+  border: 1px solid $peach;
+  background: $bglight;
+  box-shadow: 0 15px 25px 0 $shadow;
+  width: 30%;
+}
+#studentRegSubmit:hover {
+  background-color: $dark;
+  border: none;
 }
 
 
-#regSubmit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 250px;
-}
+
 
 
 /* login/register forms ENDS */
@@ -497,65 +584,6 @@ p {
   padding: 40px;
 }
 
-/* nav section */
-nav{
-  border: 2px solid white;
-  width: 70%;
-  margin-left: 150px;
-}
-#login{
-  margin-left: 550px;
-}
-/* nav section ENDS */
-
-/* Home page section */
-#homePage{
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-  text-align: center;
-}
-#exit{
-  position: absolute;
-  display: inline-block;
-  margin-left: 530px;
-}
-
-/* login/register forms */
-#loginSection,
-#registerSection{
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-}
-#WelcomeTitle{
-  text-align: center;
-}
-#loginForm,
-#registerForm{
-margin-left: 50px;
-margin-right: 50px;
-}
-#loginSubmit{
-  position: relative;
-  display: inline-block;
-  margin-left: 50px;
-}
-#reg{
-  position: absolute;
-  display: inline-block;
-}
-#cancel1{
-  position: relative;
-  display: inline-block;
-  margin-left: 50px;
-}
-#regSubmit{
-  position: absolute;
-  display: inline-block;
-  margin-left: 250px;
-}
-/* login/register forms ENDS */
 
 /* Employer dashboard starts */
 #dashNav{

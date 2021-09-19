@@ -6,57 +6,57 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css\style.css">
+  <link rel="stylesheet" href="css/style.css">
 
-  <title>Student Register</title>
+  <title>Need A Hand | Employer Register</title>
 </head>
 <body class="bg-dark">
 
   <div id="loginNav" class="">
-    <img id="homeLogo" class="mt-5" src="image/NAHLogo.png" alt="">
+    <img id="homeLogo" class="mt-4" src="image/NAHLogo.png" alt="">
   </div>
 
   <div id="registerSection" class="my-2 pt-3 pb-3" >
-    <div id="heading">
-    <h1 id="studentRegTitle" class="text-light">Student Sign up!</h1>
-    <a href="index.html"><i id="exit" class="fa fa-times text-white" aria-hidden="true"></i></a>
+    <div id="regHeading">
+    <h1 id="regTitle" class="text-light">Employer
+       Register</h1>
+    <a href="index.html"><i class="fa fa-times text-white" aria-hidden="true"></i></a>
     </div>
     <!-- login form -->
-    <form id="registerForm" class="my-4 rounded-pill">
-
-      <label for="name" class="text-light">Full Name</label>
+    <form id="nameForm" class="my-4 rounded-pill">
+      <label for="name" class="text-light mr-5">Full Name</label>
       <input id="name" type="text" name="name" class="form-control"  value="">
-      <br>
+    </form>
+    <form id="userNameForm" class="my-4 rounded-pill">
       <label for="username" class="text-light"> Username: </label>
       <input id="username" type="text" name="username" class="form-control" value="">
-      <br>
+    </form>
+    <form id="emailForm" class="my-4 rounded-pill">
       <label for="email" class="text-light">Email</label>
-      <input id="user-email" type="email" name="r-email" class="form-control" value="">
-      <br>
+      <input id="userEmail" type="email" name="r-email" class="form-control" value="">
+    </form>
+    <form id="passwordForm" class="my-4 rounded-pill">
       <label for="password" class="text-light"> Password: </label>
-      <input id="password" type="password" name="password"  class="form-control" value="">
-      <br>
+      <input id="regPassword" type="password" name="password"  class="form-control" value="">
+    </form>
+    <form id="repeatPWForm" class="my-4 rounded-pill">
       <label for="r-password" class="text-light">Confirm Password</label>
       <input id="r-password" type="password" name="r-password" class="form-control" value="">
-      <br>
-      <label for="studyField" class="text-light">Study Field</label>
-      <input id="StudyName" type="text" name="r-name" class="form-control" value="">
-      <br>
-      <label for="educatorName" class="text-light">Educator Name</label>
-      <input id="educatorName" type="text" name="r-name" class="form-control" value="">
-      <br>
-      <label for="Studentextra" class="text-light">extra</label>
-      <input id="studentExtra" type="text" name="r-extra" class="form-control" value="">
-
-
+    </form>
+    <form id="jobTitleForm" class="my-4 rounded-pill">
+      <label for="r-name" class="text-light">Employment title</label>
+      <input id="r-name" type="text" name="r-name" class="form-control  " value="">
+    </form>
+    <form id="jobNameForm" class="my-4 rounded-pill">
+      <label for="r-name" class="text-light">Company Name</label>
+      <input id="companyName" type="text" name="r-name" class="form-control" value="">
     </form>
 
     <div id="regFormButtons">
-      <a href="studentDash.html"><button id="studentRegSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
+      <a href="employerDash.html"><button id="regSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
 
       <a href="index.html"><button id="cancel1" name="r-button" type="button" class="btn btn-dark">Cancel</button></a>
     </div>
-
   </div>
 
       <!-- // SCRIPT LINKS - -->
@@ -72,3 +72,4 @@
       <script src="js/script.js"></script>
 
 </body>
+</html>

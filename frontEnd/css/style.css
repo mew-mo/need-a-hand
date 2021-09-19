@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap");
-h5,
-h6, h1 {
+h1, h5,
+h6 {
   font-weight: 300;
   color: white;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
 }
 
-.card-text, p,
-a {
+p,
+a, .card-text {
   font-weight: 300;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1 {
@@ -124,7 +124,7 @@ h3 {
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -132,7 +132,7 @@ h3 {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -140,7 +140,7 @@ h3 {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 

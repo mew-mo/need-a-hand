@@ -155,6 +155,16 @@ nav{
 }
 
 // index.html starts
+
+#loggedInNav {
+  display: none;
+  padding-bottom: 50px;
+
+  a {
+    margin-left: 50vw;
+  }
+}
+
 #homeBG{
   background-image: url("../image/homeBG.png");
   max-width: 100%;
@@ -573,10 +583,6 @@ footer{
   display: inline-block;
 }
 
-#updateProduct{
-
-}
-
 // USER PROFILE CSS
 
 #userProfile {
@@ -889,7 +895,8 @@ margin-right: 50px;
     display: inline;
     margin: 0 auto;
     height: 100%;
-    width: auto;
+    width: 100%;
+    object-fit: cover;
   }
 }
 
@@ -928,7 +935,8 @@ margin-right: 50px;
     display: inline;
     margin: 0 auto;
     height: 100%;
-    width: auto;
+    width: 100%;
+    object-fit: cover;
   }
 }
 

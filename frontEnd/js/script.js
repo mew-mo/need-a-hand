@@ -1,6 +1,4 @@
-
 (function() {
-
 
   // declaring url
   let url;//declare url as a variable in es6
@@ -22,7 +20,6 @@ console.log(sessionStorage);
 
 // employerDASH  =============================================================
 
-
   $('#createListing').hide();
   $('#jobPost').hide();
 
@@ -30,7 +27,6 @@ console.log(sessionStorage);
   $('#createAd').click(function(){
     $('#createListing').show();
   });
-
 
   // POST and GET - employer dash - add a job post and display it =====================
   // ** cc to add category **
@@ -321,6 +317,7 @@ $('#editPost').click(function(){
           sessionStorage.setItem('username', user.username);
           sessionStorage.setItem('userEmail', user.email);
           sessionStorage.setItem('userPass', user.password);
+          sessionStorage.setItem('accType', 'student');
           console.log(sessionStorage);
           console.log(user); //remove when development is finished
           if (user !== 'username taken already. Please try another name') {
@@ -385,6 +382,8 @@ $('#editPost').click(function(){
   //         sessionStorage.setItem('username', user.username);
   //         sessionStorage.setItem('userEmail', user.email);
   //         sessionStorage.setItem('userPass', user.password);
+  //         sessionStorage.setItem('accType', 'employer');
+
   //         console.log(sessionStorage);
   //         console.log(user); //remove when development is finished
   //         if (user !== 'username taken already. Please try another name'){
@@ -441,8 +440,10 @@ $('#editPost').click(function(){
                 // session storage
                 sessionStorage.setItem('userID', user._id);
                 sessionStorage.setItem('userName', user.username);
+                sessionStorage.setItem('iconImg', user.pfpUrl);
                 sessionStorage.setItem('userEmail', user.email);
                 sessionStorage.setItem('userPass', user.password);
+                sessionStorage.setItem('accType', 'student');
                 window.location.href = "studentDash.html";
               } //else
             } //success
@@ -481,8 +482,10 @@ $('#editPost').click(function(){
                 // session storage
                 sessionStorage.setItem('userID', user._id);
                 sessionStorage.setItem('userName', user.username);
+                sessionStorage.setItem('iconImg', user.pfpUrl);
                 sessionStorage.setItem('userEmail', user.email);
                 sessionStorage.setItem('userPass', user.password);
+                sessionStorage.setItem('accType', 'employer');
                 window.location.href = "employerDash.html";
               } //else
             } //success
@@ -493,13 +496,24 @@ $('#editPost').click(function(){
 
     // checks if logout btn is present on document before running code
     if (document.querySelector('#logoutSubmit')) {
-      document.querySelector('#logoutSubmit').adaddEventListener('click', () => {
-        sessionStorage.clear();
-        alert('You have been logged out.');
-        window.location.href = 'index.html';
+      document.querySelector('#logoutSubmit').addEventListener('click', () => {
+        logOut();
       }, false);
     } // if logout btn exists ENDS
 
+    // checks if second logout btn is present on document before running code
+    if (document.querySelector('#logOut')) {
+      document.querySelector('#logOut').addEventListener('click', () => {
+        logOut();
+      }, false);
+    } // if second logout btn exists ENDS
+
+    // logout function
+    logOut = () => {
+      sessionStorage.clear();
+      alert('You have been logged out.');
+      window.location.href = 'index.html';
+    };
   // login and logout ENDS
 
   // PATCH - student profile - update student profile details ===========================
@@ -549,8 +563,6 @@ $('#editPost').click(function(){
           $('#inputidUpdate').val('');
           $('#inputidUpdate').val('');
           $('#inputidUpdate').val('');
-
-
         }, //success
         error: function(){
           console.log('error:cannot call api');
@@ -558,8 +570,6 @@ $('#editPost').click(function(){
       });//ajax
     }//if
   });//updateJOBPOSTXXXX
-
-
 
 // once create job post has been created and 'job post advert' clicked - data is called
 
@@ -584,89 +594,43 @@ $('#editPost').click(function(){
 
 // cc above ====================================================================
 
+  // CONDITIONAL DASHBOARD LINKS  STARTS
+  // ==================================================
 
+  changeDashLink = (page) => {
+    if (document.querySelector('#dashLink')) {
+      document.querySelector('#dashLink').href = page;
+    }
+  };
 
-// $('#login').click(function(){
-//   $('#loginForm').show();
-//   $('#registerForm').hide();
-// })
+  if (sessionStorage.accType == 'student') {
+    changeDashLink('studentDash.html');
+  } else if (sessionStorage.accType === 'employer') {
+    changeDashLink('employerDash.html');
+  }
+  // conditional dashboard links ENDS ------------------------------
 
-  // (function ($) {
-  //   $(function () {
-  //
-  //     class Vacantions {
-  //       constructor() {
-  //         this.slider = $('.js-vacancy_list');
-  //       }
-  //
-  //       initializeSlider() {
-  //         var $this = this;
-  //
-  //         // On init event
-  //         $this.slider.on('init', function (event) {
-  //           var prevVacantions = $(event.target).find('.js-vacancy_item.slick-active').first().prev().length;
-  //           var nextVacantions = $(event.target).find('.js-vacancy_item.slick-active').last().next().length;
-  //
-  //           (!prevVacantions) ? $('.js-ag-vacancy_arrow.js-ag-vacancy_arrow__prev').addClass('js-ag-vacancy_arrow__hide') : $('.js-ag-vacancy_arrow.js-ag-vacancy_arrow__prev').removeClass('js-ag-vacancy_arrow__hide');
-  //           (!nextVacantions) ? $('.js-ag-vacancy_arrow.js-ag-vacancy_arrow__next').addClass('js-ag-vacancy_arrow__hide') : $('.js-ag-vacancy_arrow.js-ag-vacancy_arrow__next').removeClass('js-ag-vacancy_arrow__hide');
-  //         });
-  //
-  //         $this.slider.slick({
-  //           infinite: false,
-  //           slidesToShow: 2,
-  //           variableWidth: true,
-  //           rows: false,
-  //           arrows: true,
-  //           adaptiveHeight: true,
-  //           prevArrow: $('.js-ag-vacancy_arrow__prev'),
-  //           nextArrow: $('.js-ag-vacancy_arrow__next'),
-  //           responsive: [
-  //             {
-  //               breakpoint: 1200,
-  //               settings: {
-  //                 slidesToShow: 1,
-  //               }
-  //             },
-  //             {
-  //               breakpoint: 768,
-  //               settings: {
-  //                 slidesToShow: 2,
-  //               }
-  //             },
-  //             {
-  //               breakpoint: 600,
-  //               settings: {
-  //                 slidesToShow: 1,
-  //               }
-  //             }
-  //           ]
-  //         });
-  //
-  //         // On swipe event
-  //         $this.slider.on('swipe afterChange', function (event) {
-  //           var prevVacantions = $(event.target).find('.js-vacancy_item.slick-active').first().prev().length;
-  //           var nextVacantions = $(event.target).find('.js-vacancy_item.slick-active').last().next().length;
-  //
-  //           (!prevVacantions) ? $('.js-ag-vacancy_arrow.js-ag-vacancy_arrow__prev').addClass('js-ag-vacancy_arrow__hide') : $('.js-ag-vacancy_arrow.js-ag-vacancy_arrow__prev').removeClass('js-ag-vacancy_arrow__hide');
-  //           (!nextVacantions) ? $('.js-ag-vacancy_arrow.js-ag-vacancy_arrow__next').addClass('js-ag-vacancy_arrow__hide') : $('.js-ag-vacancy_arrow.js-ag-vacancy_arrow__next').removeClass('js-ag-vacancy_arrow__hide');
-  //         });
-  //       }
-  //
-  //       init() {
-  //         this.initializeSlider();
-  //       }
-  //     }
-  //
-  //     var vacantions = new Vacantions();
-  //     vacantions.init();
-  //
-  //
-  //   });
-  // })(jQuery);
+  // CONDITIONAL HOME NAV STARTS
+  // ==================================================
 
-  // student profiles JS------------------------------
+    // checking if the session storage has content and the page is home (has conditional nav)
+    if (sessionStorage.length != 0 && document.querySelector('#loggedInNav')) {
+      document.querySelector('#loggedInNav').style.display = 'block';
+      document.querySelector('#homeNav').style.display = 'none';
+    } else if (sessionStorage.length == 0 && document.querySelector('#loggedInNav')) {
+      // hide nav if the session storage doesnt have content and user is on homepage
+      document.querySelector('#loggedInNav').style.display = 'none';
+      document.querySelector('#homeNav').style.display = 'flex';
+    }
 
-  // ICON NAV STARTS ------------------------------
+  // conditional home nav ENDS ------------------------------
+
+  // ICON NAV STARTS
+  // ==================================================
+
+  if (sessionStorage.iconImg) {
+    document.querySelector('#icon').innerHTML = `<img src="${sessionStorage.iconImg}" alt="@${sessionStorage.userName}'s icon'">`;
+  } //NOTE : need to have err prevention if user doesnt have an icon
 
   // checking if the icon exists in a page
   if (document.querySelector('.nav__popover')) {
@@ -695,8 +659,10 @@ $('#editPost').click(function(){
       }
     }, false);
   }
-
   // ICON NAV ENDS ------------------------------
+
+  // STUDENT PROFILES JS STARTS
+  // ==================================================
 
   if ($('body').data('title') === 'student-profiles-page') {
 

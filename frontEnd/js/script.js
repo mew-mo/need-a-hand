@@ -9,6 +9,7 @@ $(document).ready(function(){
 
   $('#createListing').hide();
   $('#jobPost').hide();
+  $('#hidden').hide();
 
 
   $('#createAd').click(function(){
@@ -81,81 +82,158 @@ $('#addPost').click(function(){
       document.getElementById('jobPost').innerHTML ="";
       for (i = 0; i < postFromMDB.length; i++) {
             console.log(postFromMDB[i]);
+
+            let commentElements = [];
+              if (postFromMDB[i].comments !== null) {
+
+            let commentList = postFromMDB[i].comments;
+
+              for(x = 1; x < commentList.length; x++) {
+
+              commentElements += `<li>${commentList[x]}</li>`; }
+            }
+
             document.getElementById('jobPost').innerHTML +=
             `
             <div>
-              <h2>${postFromMDB[i].jobTitle}</h2>
-              <h4>${postFromMDB[i].posterName}</h4>
+              <h2 id="postTitle">${postFromMDB[i].jobTitle}</h2>
+              <h4 id="posterName">${postFromMDB[i].posterName}</h4>
               <hr>
               <p id="postDetails">${postFromMDB[i].jobDescription}</p>
             <div>
+
             <div>
-              <button id="editPost" data-post-id="${postFromMDB[i]._id}" name="productButton" type="submit" class="btn btn-primary mx-2">Edit</button>
+              <button id="editPost" data-edit-id="${postFromMDB[i]._id}" name="productButton" type="submit" class="btn btn-primary mx-2 edit-button">Edit</button>
               <br>
               <br>
-              <button id="deletePost" name="productButton" type="submit" class="btn btn-primary mx-2">Delete</button>
-            </div>`;
+              <button id="deletePost" data-delete-id="${postFromMDB[i]._id}" name="productButton" type="submit" class="btn btn-primary mx-2 delete-button">Delete</button>
+
+              <span id="titleUpdate">${postFromMDB[i].jobTitle}</span>
+              <span id="detailsUpdate">${postFromMDB[i].jobDescription}</span>
+              <span id="posterName">${postFromMDB[i].posterName}</span>
+              <span id="postUser">${postFromMDB[i].username}</span>
+
+            </div>
+
+            <p class="commentBox" data-id="${postFromMDB[i]._id}">
+            ${commentElements}
+            //comments go here
+            </p>
+            <br><b>Post comment</b>
+            <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
+            <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented" data-id="${postFromMDB[i]._id}">Comment</button>
+            `;
           } // for loop one ends
-
-    }, //end of success
-    error:function(){
-    }
-  });//ajax get
-}//else
-
-
-
+        }, //end of success
+      error:function(){
+      }
+    });//ajax get
+  }//else
 });//add post
+
+// POST - comment section ======================================================
+
+  $(document).on('click', '.commented', function(event) {
+    event.preventDefault();
+      let postID = this.dataset.id;
+      console.log(postID);
+      console.log("comment clicked");
+
+    let userComment = $("input[data-id='" + postID +"']").val();
+      console.log(userComment);
+
+      if ( userComment == ''){
+        alert('Please enter a comment');
+      } else {
+        console.log("Comment added: " + userComment);
+        $.ajax({
+          url: `${url}/postComment/${postID}`,
+          type: 'PATCH',
+          data:{
+          comment: userComment },
+          success: function(data){
+              if(data == '401 error: user has no permission to update') {
+                alert('401 error: user has no permission to');
+              } else { alert('updated');
+            }//else
+        $("input[data-id='" + postID +"']").val('');
+        }, //success
+          error: function(){
+            console.log('error:cannot call api'); }//error
+        });//ajax
+      }//if
+  }); //end of commented click event function
+
+
 
 
 // PATCH - employer dash - update job post  ============================================
 
-$('#editPost').click(function(){
-  alert('edit button clicked');
-});//edit post btn
-  // event.preventDefault();
-  //
-  // // ** not sure about username **
-  // let userid = sessionStorage.getItem('userID');
-  //
-  // // let productId = $('#productId').val();
-  // let jobTitle = $('#jobTitle').val();
-  // // let posterName = $('#inputidUpdate').val();
-  // let jobDescription = $('#jobDescription').val();
-  //
-  // console.log(jobTitle, posterName, jobDescription, username, userid);
-  // if ( jobTitle == '' || posterName == '' || jobDescription == ''){
-  //   alert('Please enter post update information');
-  // } else {
-  //   $.ajax({
-  //     url: `${url}/updatePost/:id`,
-  //     type: 'PATCH',
-  //     data:{
-  //       jobTitle: jobTitle,
-  //       // posterName: posterName,
-  //       jobDescription: jobDescription,
-  //       // ** does this need to be added to models/employer
-  //       username_id: userid
-  //     },
-  //     success: function(data){
-  //       console.log(data);
-  //       if(data == '401 error: user has no permission to update'){
-  //         alert('401 error: user has no permission to update');
-  //
-  //       } else {
-  //         alert('updated');
-  //       }//else
-  //       // ** NEED TO UPDATE THE IDS **
-  //       $('#jobTitle').val('');
-  //       $('#jobDescription').val('');
-  //
-  //     }, //success
-  //     error: function(){
-  //       console.log('error:cannot call api');
-  //     }//error
-  //   })//ajax
-  // }//if
+// click edit button to display input fields
+// input fields will call api data already
 
+
+window.addEventListener('click', (e) => {
+  if (e.target.innerHTML === 'Edit') {
+    $('#jobTitle-test').val(e.target.parentNode.children[4].innerText);
+    $('#jobDescription-test').val(e.target.parentNode.children[5].innerText);
+    $('#postHide').val(e.target.parentNode.children[6].innerText);
+    $('#userHide').val(e.target.parentNode.children[7].innerText);
+  }
+}, false);
+
+$(document).on('click', '.edit-button', function(event) {
+    event.preventDefault();
+
+
+    console.log("edit clicked");
+    $('#hidden').show();
+
+
+    var editId = $(this).attr("data-edit-id");
+    console.log(editId);
+
+      let userid = sessionStorage.getItem('userID');
+
+    let jobTitle = $('#jobTitle-test').val();
+    let jobDescription = $('#jobDescription-test').val();
+    let posterName = $('#postHide').val();
+    let username = $('#userHide').val();
+
+
+  console.log(jobDescription, userid);
+
+  if ( jobDescription == '') {
+    alert('Please enter post update information');
+  } else {
+    $.ajax({
+      url: `${url}/updatePost/${editId}`,
+      type: 'PATCH',
+      data: {
+        jobTitle: jobTitle,
+        jobDescription: jobDescription,
+        posterName: posterName,
+        username: username,
+        user_id: userid
+      },
+      success: function(data){
+        console.log(data);
+        if(data == '401 error: user has no permission to update'){
+          alert('401 error: user has no permission to update');
+
+        } else {
+          alert('updated');
+        }//else
+        $('#postTitle').val('');
+        $('#postDetails').val('');
+
+      }, //success
+      error: function() {
+        console.log('error:cannot call api');
+      }//error
+    });//ajax
+  }//if
+})
 
 
 
@@ -247,9 +325,135 @@ $('#editPost').click(function(){
 
 }; //end of studentDash function
 
+// DELETE - employer dashboard - delete a post ===========================
+
+// $(document).on('click', '.delete-button', function(event) {
+//
+//
+//     event.preventDefault();
+//     var deleteId = $(this).attr("data-delete-id")
+//     console.log(deleteId);
+//
+//     console.log("delete clicked");
+//   //
+//   // if (!sessionStorage['userID']){
+//   //   alert('401 permission denied');
+//   //   return;
+//   // };
+//
+//   let postID = $('#delProductId').val();
+//   console.log(postID);
+//
+//   if (postID == ''){
+//     alert('Please enter the post id to delete the product');
+//   } else {
+//     $.ajax({
+//       url : `${url}/deletePost/${postID}`,
+//       type:'DELETE',
+//       data :{
+//         user_id : sessionStorage['userID']
+//       },
+//       success : function(data){
+//         console.log(data);
+//         if (data == 'Post Deleted'){
+//           alert('Post Deleted');
+//           $('#delProductId').val('');
+//         } else {
+//           alert('Enter a valid id');
+//         } //else
+//       }, //success
+//       error:function(){
+//         console.log('error: cannot call api');
+//       }//error
+//     })//ajax
+//   }//if
+//
+// });//deleteProduct
+
+// DELETE - employer dashboard - delete a post ===========================
+
+$(document).on('click', '.delete-button', function(event) {
 
 
-  // POST - student registration  =====================================================
+    event.preventDefault();
+    var deleteId = $(this).attr("data-delete-id");
+    console.log(deleteId);
+
+    console.log("delete clicked");
+  //
+  // if (!sessionStorage['userID']){
+  //   alert('401 permission denied');
+  //   return;
+  // };
+
+
+    $.ajax({
+      url : `${url}/deletePost/${deleteId}`,
+      type:'DELETE',
+      data :{
+        user_id : sessionStorage['userID']
+      },
+      success : function(data){
+        console.log(data);
+        if (data == 'Post Deleted'){
+          alert('Post Deleted');
+          // $('#delProductId').val('');
+        } else {
+          alert('Enter a valid id');
+        } //else
+      }, //success
+      error:function(){
+        console.log('error: cannot call api');
+      }//error
+    });//ajax
+
+
+});//deleteProduct
+
+
+
+// DELETE - employer dashboard - delete a post ===========================
+
+// $(document).on('click', '.delete-button', function(event) {
+//     event.preventDefault();
+//
+//     console.log("delete clicked");
+//   //
+//   // if (!sessionStorage['userID']){
+//   //   alert('401 permission denied');
+//   //   return;
+//   // };
+//
+//   let postID = $('#delProductId').val();
+//   console.log(postID);
+//
+//   if (postID == ''){
+//     alert('Please enter the post id to delete the product');
+//   } else {
+//     $.ajax({
+//       url : `${url}/deletePost/${postID}`,
+//       type:'DELETE',
+//       data :{
+//         user_id : sessionStorage['userID']
+//       },
+//       success : function(data){
+//         console.log(data);
+//         if (data == 'Post Deleted'){
+//           alert('Post Deleted');
+//           $('#delProductId').val('');
+//         } else {
+//           alert('Enter a valid id');
+//         } //else
+//       }, //success
+//       error:function(){
+//         console.log('error: cannot call api');
+//       }//error
+//     })//ajax
+//   }//if
+//
+// });//deleteProduct
+
+// POST - student registration  =====================================================
 
   $('#sRegSubmit').click(function(){
     event.preventDefault();//this prevents code breaking when no data is found

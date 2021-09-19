@@ -37,7 +37,8 @@ app.post('/addPost', (req, res) => {
     jobTitle: req.body.jobTitle,
     posterName: req.body.posterName,
     username: req.body.username,
-    jobDescription: req.body.jobDescription
+    jobDescription: req.body.jobDescription,
+    comments: []
   });
   //save to the database and notify the user
   post.save().then(result => {
@@ -221,6 +222,29 @@ app.patch('/updateStudent/:id', (req, res) => {
     }//else
   })
 })
+
+
+// update comments
+app.patch('/postComment/:id', (req, res) => {
+  console.log("tested post");
+  const idParam = req.params.id;
+  console.log(req.body.comment);
+  Post.findById(idParam, (err, post) => {
+    if (Post['user_id'] == req.body.userId) {
+      const updatedPostComment = {
+        $push: {
+        comments: req.body.comment }
+      }
+      Post.updateOne({_id:idParam}, updatedPost)
+      .then(result => {
+        res.send(result);
+      }).catch(err => res.send(err));
+    } else {
+      res.send('error: product not found')
+    }//else
+  })
+})
+
 //BRANCH:updating-patch ENDS ---------------------------------------------------
 
 //BRANCH:reading-get - get method to access data from Products.json

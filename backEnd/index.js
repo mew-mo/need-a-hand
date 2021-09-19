@@ -18,8 +18,8 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use(bodyParser.json());//calling body parser method
-app.use(bodyParser.urlencoded({extended: false}));//using default
+app.use(bodyParser.json({limit: '10mb'}));//calling body parser method
+app.use(bodyParser.urlencoded({extended: false, limit: '10mb'}));//using default
 
 app.use(cors()); //calling cors method
 

@@ -117,47 +117,44 @@ nav {
   max-width: 100%;
 }
 
+#homeNav {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 400px;
+}
+
 #login {
-  border: 1px solid #E8AB9D;
+  border: 1px solid #e8ab9d;
   background-color: #21262A;
   width: 120px;
-  margin-left: 65%;
 }
 
 /* nav section ENDS */
 /* Home page section */
 #homePage {
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
+  max-width: 900px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   text-align: center;
-}
-
-#exit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 530px;
-}
-
-/* login/register forms */
-#loginSection,
-#registerSection {
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-}
-
-#homePage {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(1px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.11);
-  margin-left: 600px;
-  margin-top: 70px;
-  width: 40%;
-  text-align: center;
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  height: 100%;
+}
+
+/* login/register forms */
+#loginSection,
+#registerSection {
+  border: 2px solid #FFFFFF;
+  width: 50%;
+  margin-left: 250px;
 }
 
 #studentReg,
@@ -166,8 +163,10 @@ nav {
 }
 
 #tagline {
-  margin-top: 120px;
-  margin-left: 670px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
 }
 
 .container {
@@ -184,15 +183,22 @@ nav {
   transform-style: preserve-3d;
 }
 
+h3 {
+  font-size: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .product-card {
-  max-width: 360px;
+  max-width: 300px;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(1px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.11);
-  width: 300px;
   height: 400px;
 }
 .product-card:nth-child(1) {
@@ -271,62 +277,207 @@ footer {
 #left {
   position: relative;
   display: inline-block;
-  width: 20%;
-  margin-left: 20%;
+  padding-left: 400px;
+}
+
+.fa-github {
+  margin-left: 100px;
+  font-size: 50px;
 }
 
 #right {
   position: absolute;
   display: inline-block;
-  float: right;
+  padding-left: 200px;
+}
+
+/* login form */
+#homeLogo {
+  margin-left: 40px;
+  width: 150px;
+}
+
+#loginSection {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
   margin-left: 600px;
-}
-
-/* login/register forms */
-#exit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 530px;
-}
-
-#loginSection,
-#registerSection {
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-}
-
-#WelcomeTitle {
+  width: 30%;
   text-align: center;
 }
 
-#loginForm,
-#registerForm {
-  margin-left: 50px;
-  margin-right: 50px;
+#heading {
+  display: flex;
+  margin: auto;
+  height: 60px;
+}
+
+#WelcomeTitle {
+  display: inline-block;
+  margin-left: 105px;
+}
+
+.fa-times {
+  position: fixed;
+  float: right;
+  margin-left: 80px;
+  font-size: 30px;
+}
+
+.fa-times:hover {
+  border-radius: 20px;
+  background: #e8ab9d;
+  font-size: 40px;
+}
+
+#loginForm {
+  display: inline-flex;
+  margin: auto;
+  max-width: 80%;
+}
+
+#passwordForm {
+  display: inline-flex;
+  margin: auto;
+  max-width: 80%;
 }
 
 #loginSubmit {
-  position: relative;
-  display: inline-block;
-  margin-left: 50px;
+  border-radius: 10px;
+  border: 1px solid #e8ab9d;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px 5px rgba(230, 235, 252, 0.57);
+  width: 30%;
+}
+
+#loginSubmit:hover {
+  background-color: #21262A;
+  border: 1px solid #21262A;
 }
 
 #reg {
-  position: absolute;
+  margin-left: 140px;
+}
+
+/* login form ENDS */
+/* employment register form */
+#registerSection {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  margin-left: 600px;
+  width: 35%;
+  text-align: center;
+}
+
+#regHeading {
+  height: 60px;
+}
+
+#regTitle {
   display: inline-block;
+}
+
+#nameForm,
+#userNameForm,
+#emailForm,
+#passwordForm,
+#repeatPWForm,
+#jobTitleForm,
+#jobNameForm {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  margin: auto;
+  width: 80%;
+}
+
+#name {
+  width: 300px;
+  margin-left: 100px;
+}
+
+#username {
+  width: 300px;
+  margin-left: 98px;
+}
+
+#userEmail {
+  width: 300px;
+  margin-left: 135px;
+}
+
+#regPassword {
+  width: 300px;
+  margin-left: 103px;
+}
+
+#r-password {
+  width: 300px;
+  margin-left: 46px;
+}
+
+#r-name {
+  width: 300px;
+  margin-left: 52px;
+}
+
+#companyName {
+  width: 300px;
+  margin-left: 57px;
+}
+
+#studentRegTitle {
+  display: inline-block;
+  margin-left: 70px;
+}
+
+#regSubmit {
+  border-radius: 10px;
+  border: 1px solid #e8ab9d;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px 5px rgba(230, 235, 252, 0.57);
+  width: 30%;
+}
+
+#regSubmit:hover {
+  background-color: #21262A;
+  border: 1px solid #21262A;
 }
 
 #cancel1 {
   position: relative;
   display: inline-block;
   margin-left: 50px;
+  border-radius: 10px;
 }
 
-#regSubmit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 250px;
+#cancel1:hover {
+  background-color: #e8ab9d;
+  border: none;
+}
+
+#exit {
+  margin-left: 240px;
+}
+
+#studentRegSubmit {
+  border-radius: 10px;
+  border: 1px solid #e8ab9d;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 25px 0 rgba(230, 235, 252, 0.57);
+  width: 30%;
+}
+
+#studentRegSubmit:hover {
+  background-color: #21262A;
+  border: none;
 }
 
 /* login/register forms ENDS */

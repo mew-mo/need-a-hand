@@ -1,3 +1,4 @@
+
 (function() {
 
 
@@ -153,8 +154,8 @@ $('#editPost').click(function(){
   //     }//error
   //   })//ajax
   // }//if
-
-  // ----- working ver below, had to comment out for now
+//
+// working ver below, had to comment out for now--
 
   // console.log(jobTitle, posterName, jobDescription, username, userid);
   // if ( jobTitle == '' || posterName == '' || jobDescription == ''){
@@ -324,6 +325,7 @@ $('#editPost').click(function(){
           console.log(user); //remove when development is finished
           if (user !== 'username taken already. Please try another name') {
             alert('You have been registered!');
+            window.location.href = "studentDash.html";
           } else {
             alert('Username taken already. Please try another name');
             // ********** change ids *******
@@ -344,67 +346,161 @@ $('#editPost').click(function(){
 
   // POST - employer registration  =====================================================
 
-  if ($('body').data('title') === 'employer-reg-page') { // ADD THIS TITLE INTO EMPLOYER REG PAGE
+  // $('#').click(function() {
+  //   event.preventDefault();//this prevents code breaking when no data is found
+  //   let eName = $('#name').val();
+  //   let eUsername = $('#username').val();
+  //   let eEmail = $('#user-email').val();
+  //   let ePassword = $('#password').val();
+  //   let eCheckPass = $('#check-password-INPUT').val();
+  //   let ePfpUrl = $('#profile-INPUT').val();
+  //   let eWorkField = $('#r-name').val();
+  //   let eCompanyName = $('#company-name').val();
+  //   let eExtra = $('#r-extra').val();
+  //
+  //   console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
+  //
+  //   if (ePassword != eCheckPass) {
+  //     $('#check-password-INPUT').val('');
+  //     alert('Passwords do not match. Please try again');
+  //   } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
+  //     alert('Please enter all employer details');
+  //   } else {
+  //     $.ajax({
+  //       url: `${url}/registerEmployer`,
+  //       type : 'POST',
+  //       data : {
+  //         name: eName,
+  //         username: eUsername,
+  //         email: eEmail,
+  //         password: ePassword,
+  //         // pfpUrl: ePfpUrl,
+  //         workField: eWorkField,
+  //         companyName: eCompanyName,
+  //         extra: eExtra
+  //       },
+  //       success:function(user){
+  //         sessionStorage.setItem('userID', user._id);
+  //         sessionStorage.setItem('userFullName', user.name);
+  //         sessionStorage.setItem('username', user.username);
+  //         sessionStorage.setItem('userEmail', user.email);
+  //         sessionStorage.setItem('userPass', user.password);
+  //         console.log(sessionStorage);
+  //         console.log(user); //remove when development is finished
+  //         if (user !== 'username taken already. Please try another name'){
+  //           alert('You have been registered!');
+  //           window.location.href = "employerDash.html";
+  //         } else {
+  //           console.log('username taken already. Please try another name');
+  //           // ********** change ids *******
+  //           $('#username').val('');
+  //           $('#user-email').val('');
+  //           $('#password').val('');
+  //         } //else
+  //
+  //       }, //success
+  //       error:function(){
+  //         console.log('error: cannot call api');
+  //       }//error
+  //     });//ajax post
+  //   }//if
+  // });//#XXXCREATE-ACC-BTN-EMPLOIYER
+  // // employer registration ENDS
 
-    $('#').click(function() {
-      event.preventDefault(); //this prevents code breaking when no data is found
-      let eName = $('#name').val();
-      let eUsername = $('#username').val();
-      let eEmail = $('#user-email').val();
-      let ePassword = $('#password').val();
-      let eCheckPass = $('#check-password-INPUT').val();
-      let ePfpUrl = $('#profile-INPUT').val();
-      let eWorkField = $('#r-name').val();
-      let eCompanyName = $('#company-name').val();
-      let eExtra = $('#r-extra').val();
+  // POST - login (and logout) =====================================================
 
-      console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
+    // will only run if the login submit is on the page
+    if (document.querySelector('#loginSubmit')) {
 
-      if (ePassword != eCheckPass) {
-        $('#check-password-INPUT').val('');
-        alert('Passwords do not match. Please try again');
-      } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
-        alert('Please enter all employer details');
-      } else {
-        $.ajax({
-          url: `${url}/registerEmployer`,
-          type : 'POST',
-          data : {
-            name: eName,
-            username: eUsername,
-            email: eEmail,
-            password: ePassword,
-            pfpUrl: ePfpUrl,
-            workField: eWorkField,
-            companyName: eCompanyName,
-            extra: eExtra
-          },
-          success:function(user){
-            sessionStorage.setItem('userID', user._id);
-            sessionStorage.setItem('userFullName', user.name);
-            sessionStorage.setItem('username', user.username);
-            sessionStorage.setItem('userEmail', user.email);
-            sessionStorage.setItem('userPass', user.password);
-            console.log(sessionStorage);
-            console.log(user); //remove when development is finished
-            if (user !== 'username taken already. Please try another name'){
-              alert('You have been registered!');
-            } else {
-              console.log('username taken already. Please try another name');
-              // ********** change ids *******
-              $('#username').val('');
-              $('#user-email').val('');
-              $('#password').val('');
-            } //else
-          }, //success
-          error:function(){
-            console.log('error: cannot call api');
-          }//error
-        });//ajax post
-      }//if
-    });//#XXXCREATE-ACC-BTN-EMPLOIYER
-  }// bodydata checker
-  // employer registration ENDS
+      document.querySelector('#loginSubmit').addEventListener('click', () => {
+        event.preventDefault();
+        let username = $('#username').val();
+        let password = $('#password').val();
+
+        if (username === '' || password === '') {
+          alert('Please enter all of your details.');
+        } else {
+          $.ajax({
+            url: `${url}/loginStudent`,
+            type: 'POST',
+            data: {
+              username: username,
+              password: password
+            },
+            success: function(user) {
+              if (user == 'User not found. Please register') {
+                // if the user isn't found as a student, check if it is an employer account instead
+                checkEmployer();
+              } else if (user == 'Not authorized') {
+                alert('Please try again with correct details.');
+                $('#username').val('');
+                // field where they type the username
+                $('#password').val('');
+                // field where they type the password
+              } else {
+                // session storage
+                sessionStorage.setItem('userID', user._id);
+                sessionStorage.setItem('userName', user.username);
+                sessionStorage.setItem('userEmail', user.email);
+                sessionStorage.setItem('userPass', user.password);
+                window.location.href = "studentDash.html";
+              } //else
+            } //success
+          }); //ajax ends
+        } // else ends
+      }, false);
+      // login click ENDS
+
+      // check if the person trying to login is an employer
+      checkEmployer = () => {
+        console.log('running employer checker!');
+        event.preventDefault();
+        let username = $('#username').val();
+        let password = $('#password').val();
+        if (username === '' || password === '') {
+          alert('Please enter all of your details.');
+        } else {
+          $.ajax({
+            url: `${url}/loginEmployer`,
+            type: 'POST',
+            data: {
+              username: username,
+              password: password
+            },
+            success: function(user) {
+              if (user == 'User not found. Please register') {
+                // if not found as a student or an employer, alerts that the user does not exist
+                alert('User not found: Please register as a new user or enter the correct details.');
+              } else if (user == 'Not authorized') {
+                alert('Please try again with correct details.');
+                $('#username').val('');
+                // field where they type the username
+                $('#password').val('');
+                // field where they type the password
+              } else {
+                // session storage
+                sessionStorage.setItem('userID', user._id);
+                sessionStorage.setItem('userName', user.username);
+                sessionStorage.setItem('userEmail', user.email);
+                sessionStorage.setItem('userPass', user.password);
+                window.location.href = "employerDash.html";
+              } //else
+            } //success
+          }); //ajax ends
+        } // else ends
+      };
+    } //if login btn exists ENDS
+
+    // checks if logout btn is present on document before running code
+    if (document.querySelector('#logoutSubmit')) {
+      document.querySelector('#logoutSubmit').adaddEventListener('click', () => {
+        sessionStorage.clear();
+        alert('You have been logged out.');
+        window.location.href = 'index.html';
+      }, false);
+    } // if logout btn exists ENDS
+
+  // login and logout ENDS
 
   // PATCH - student profile - update student profile details ===========================
 
@@ -484,9 +580,6 @@ $('#editPost').click(function(){
   //      }) // end of then two
   //
   // }); //end of createListing click function.
-
-
-//});//document.ready
 
 
 // cc above ====================================================================

@@ -12,8 +12,8 @@
 </head>
 <body class="bg-dark">
 
-  <div id="loginNav" class="">
-    <img id="homeLogo" class="mt-4" src="image/NAHLogo.png" alt="">
+  <div id="loginNav">
+    <a href="index.html"><img id="homeLogo" class="mt-4" src="image/NAHLogo.png" alt="Need A Hand logo of a hand"></a>
   </div>
 
   <div id="registerSection" class="my-2 pt-3 pb-3" >
@@ -24,36 +24,42 @@
     </div>
     <!-- login form -->
     <form id="nameForm" class="my-4 rounded-pill">
-      <label for="name" class="text-light mr-5">Full Name</label>
-      <input id="name" type="text" name="name" class="form-control"  value="">
+      <label for="eName" class="text-light mr-5">Full Name</label>
+      <input id="eName" type="text" name="name" class="form-control"  value="">
     </form>
     <form id="userNameForm" class="my-4 rounded-pill">
-      <label for="username" class="text-light"> Username: </label>
-      <input id="username" type="text" name="username" class="form-control" value="">
+      <label for="eUsername" class="text-light"> Username: </label>
+      <input id="eUsername" type="text" name="username" class="form-control" value="">
     </form>
     <form id="emailForm" class="my-4 rounded-pill">
-      <label for="email" class="text-light">Email</label>
-      <input id="userEmail" type="email" name="r-email" class="form-control" value="">
+      <label for="eEmail" class="text-light">Email</label>
+      <input id="eEmail" type="email" name="r-email" class="form-control" value="">
     </form>
     <form id="passwordForm" class="my-4 rounded-pill">
-      <label for="password" class="text-light"> Password: </label>
-      <input id="regPassword" type="password" name="password"  class="form-control" value="">
+      <label for="ePassword" class="text-light"> Password: </label>
+      <input id="ePassword" type="password" name="password"  class="form-control" value="">
     </form>
     <form id="repeatPWForm" class="my-4 rounded-pill">
-      <label for="r-password" class="text-light">Confirm Password</label>
-      <input id="r-password" type="password" name="r-password" class="form-control" value="">
+      <label for="eCheckPassword" class="text-light">Confirm Password</label>
+      <input id="eCheckPassword" type="password" name="r-password" class="form-control" value="">
     </form>
     <form id="jobTitleForm" class="my-4 rounded-pill">
-      <label for="r-name" class="text-light">Employment title</label>
-      <input id="r-name" type="text" name="r-name" class="form-control  " value="">
+      <label for="jobTitle" class="text-light">Employment title</label>
+      <input id="jobTitle" type="text" name="r-name" class="form-control  " value="">
     </form>
     <form id="jobNameForm" class="my-4 rounded-pill">
-      <label for="r-name" class="text-light">Company Name</label>
+      <label for="companyName" class="text-light">Company Name</label>
       <input id="companyName" type="text" name="r-name" class="form-control" value="">
     </form>
 
+    <div class="input__select-img">
+      <label for="user-icon">Upload Profile Image:</label>
+
+      <input type="file" id="userIcon" name="user-icon" accept="image/png, image/jpeg">
+    </div>
+
     <div id="regFormButtons">
-      <a href="employerDash.html"><button id="regSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
+      <a href="employerDash.html"><button id="employerRegSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
 
       <a href="index.html"><button id="cancel1" name="r-button" type="button" class="btn btn-dark">Cancel</button></a>
     </div>

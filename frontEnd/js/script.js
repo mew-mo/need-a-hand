@@ -322,7 +322,7 @@ $('#editPost').click(function(){
     console.log(sName, sUsername, sEmail, sPassword, sStudy, sEducator, sExtra);
 
     if (sPassword != sCheckPass) {
-      $('#check-password-INPUT').val('');
+      $('#sCheckPassword').val('');
       alert('Passwords do not match. Please try again');
     } else if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sCheckPass == '' || sStudy == '' || sEducator == '') {
       alert('Please enter all student details');
@@ -344,7 +344,7 @@ $('#editPost').click(function(){
           educator: sEducator,
           extra: sExtra
         },
-        success:function(user) {
+        success: function(user) {
           window.name = user.pfpUrl;
           sessionStorage.setItem('userID', user._id);
           sessionStorage.setItem('userName', user.name);
@@ -363,8 +363,8 @@ $('#editPost').click(function(){
             $('#sPassword').val('');
           } //else
         }, //success
-        error:function() {
-          console.log('error: cannot call api');
+        error: function() {
+          alert('Error: Cannot call API');
         }//error
       });//ajax post
     }//if
@@ -374,68 +374,70 @@ $('#editPost').click(function(){
 
   // POST - employer registration  =====================================================
 
-  // $('#').click(function() {
-  //   event.preventDefault();//this prevents code breaking when no data is found
-  //   let eName = $('#name').val();
-  //   let eUsername = $('#username').val();
-  //   let eEmail = $('#user-email').val();
-  //   let ePassword = $('#password').val();
-  //   let eCheckPass = $('#check-password-INPUT').val();
-  //   let ePfpUrl = $('#profile-INPUT').val();
-  //   let eWorkField = $('#r-name').val();
-  //   let eCompanyName = $('#company-name').val();
-  //   let eExtra = $('#r-extra').val();
-  //
-  //   console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
-  //
-  //   if (ePassword != eCheckPass) {
-  //     $('#check-password-INPUT').val('');
-  //     alert('Passwords do not match. Please try again');
-  //   } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
-  //     alert('Please enter all employer details');
-  //   } else {
-  //     $.ajax({
-  //       url: `${url}/registerEmployer`,
-  //       type : 'POST',
-  //       data : {
-  //         name: eName,
-  //         username: eUsername,
-  //         email: eEmail,
-  //         password: ePassword,
-  //         // pfpUrl: ePfpUrl,
-  //         workField: eWorkField,
-  //         companyName: eCompanyName,
-  //         extra: eExtra
-  //       },
-  //       success:function(user){
-  //         sessionStorage.setItem('userID', user._id);
-  //         sessionStorage.setItem('userFullName', user.name);
-  //         sessionStorage.setItem('username', user.username);
-  //         sessionStorage.setItem('userEmail', user.email);
-  //         sessionStorage.setItem('userPass', user.password);
-  //         sessionStorage.setItem('accType', 'employer');
+  $('#employerRegSubmit').click(function() {
+    event.preventDefault();//this prevents code breaking when no data is found
+    let eName = $('#eName').val();
+    let eUsername = $('#eUsername').val();
+    let eEmail = $('#eEmail').val();
+    let ePassword = $('#ePassword').val();
+    let eCheckPass = $('#eCheckPassword').val();
+    let ePfpUrl = uploadedImg.url;
+    let eWorkField = $('#jobTitle').val();
+    let eCompanyName = $('#company-name').val();
+    let eExtra = $('#companyName').val();
 
-  //         console.log(sessionStorage);
-  //         console.log(user); //remove when development is finished
-  //         if (user !== 'username taken already. Please try another name'){
-  //           alert('You have been registered!');
-  //           window.location.href = "employerDash.html";
-  //         } else {
-  //           console.log('username taken already. Please try another name');
-  //           // ********** change ids *******
-  //           $('#username').val('');
-  //           $('#user-email').val('');
-  //           $('#password').val('');
-  //         } //else
-  //
-  //       }, //success
-  //       error:function(){
-  //         console.log('error: cannot call api');
-  //       }//error
-  //     });//ajax post
-  //   }//if
-  // });//#XXXCREATE-ACC-BTN-EMPLOIYER
-  // // employer registration ENDS
+    console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
+
+    if (ePassword != eCheckPass) {
+      $('#eCheckPassword').val('');
+      alert('Passwords do not match. Please try again');
+    } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
+      alert('Please enter all employer details');
+    } else if (!ePfpUrl) {
+      alert('Please upload an icon for the best experience on this website.');
+    } else if (document.querySelector('#userIcon').files[0].size > 10000000) {
+      alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
+    } else {
+      $.ajax({
+        url: `${url}/registerEmployer`,
+        type : 'POST',
+        data : {
+          name: eName,
+          username: eUsername,
+          email: eEmail,
+          password: ePassword,
+          pfpUrl: ePfpUrl,
+          workField: eWorkField,
+          companyName: eCompanyName,
+          extra: eExtra
+        },
+        success:function(user) {
+          window.name = user.pfpUrl;
+          sessionStorage.setItem('userID', user._id);
+          sessionStorage.setItem('userFullName', user.name);
+          sessionStorage.setItem('username', user.username);
+          sessionStorage.setItem('userEmail', user.email);
+          sessionStorage.setItem('userPass', user.password);
+          sessionStorage.setItem('accType', 'employer');
+
+          console.log(sessionStorage);
+          console.log(user); //remove when development is finished
+          if (user !== 'username taken already. Please try another name'){
+            alert('You have been registered!');
+            window.location.href = "employerDash.html";
+          } else {
+            console.log('Username taken already. Please try another name');
+            $('#eUsername').val('');
+            $('#ePassword').val('');
+          } //else
+        }, //success
+        error: function(){
+          alert('Error: cannot call API');
+        }//error
+      });//ajax post
+    }//if
+  });//#XXXCREATE-ACC-BTN-EMPLOIYER
+  // employer registration ENDS
 
   // POST - login (and logout) =====================================================
 
@@ -469,9 +471,9 @@ $('#editPost').click(function(){
                 // field where they type the password
               } else {
                 // session storage
+                window.name = user.pfpUrl;
                 sessionStorage.setItem('userID', user._id);
                 sessionStorage.setItem('userName', user.username);
-                sessionStorage.setItem('iconImg', user.pfpUrl);
                 sessionStorage.setItem('userEmail', user.email);
                 sessionStorage.setItem('userPass', user.password);
                 sessionStorage.setItem('accType', 'student');
@@ -511,6 +513,7 @@ $('#editPost').click(function(){
                 // field where they type the password
               } else {
                 // session storage
+                window.name = user.pfpUrl;
                 sessionStorage.setItem('userID', user._id);
                 sessionStorage.setItem('userName', user.username);
                 sessionStorage.setItem('iconImg', user.pfpUrl);

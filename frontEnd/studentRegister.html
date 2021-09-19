@@ -12,8 +12,8 @@
 </head>
 <body class="bg-dark">
 
-  <div id="loginNav" class="">
-    <img id="homeLogo" class="mt-5" src="image/NAHLogo.png" alt="">
+  <div id="loginNav">
+    <a href="index.html"><img id="homeLogo" class="mt-4" src="image/NAHLogo.png" alt="Need A Hand logo of a hand"></a>
   </div>
 
   <div id="registerSection" class="my-2 pt-3 pb-3" >
@@ -48,10 +48,11 @@
       <label for="sExtra" class="text-light">extra</label>
       <input id="sExtra" type="text" name="extra" class="form-control" value="">
 
-      <label for="user-icon">Upload Profile Image:</label>
+      <div class="input__select-img">
+        <label for="user-icon">Upload Profile Image:</label>
 
-      <input type="file" id="userIcon" name="user-icon" accept="image/png, image/jpeg">
-
+        <input type="file" id="userIcon" name="user-icon" accept="image/png, image/jpeg">
+      </div>
     </form>
 
     <div id="regFormButtons">

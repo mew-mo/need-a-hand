@@ -1,8 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap");
-h1, h5,
-h6 {
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+h1, h2,
+h4,
+h5,
+h6, .nav__links a, .nav__links--right a {
   font-weight: 300;
   color: white;
   font-family: 'KoHo', sans-serif;
@@ -19,6 +25,10 @@ h1 {
   text-transform: uppercase;
 }
 
+h2 {
+  font-size: 2.1rem;
+}
+
 a:hover,
 a:active,
 a[tabindex]:focus {
@@ -29,7 +39,79 @@ a {
   text-decoration: none;
 }
 
+.md-icon {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.a__icon--adjust-top {
+  font-size: 30px;
+  position: relative;
+  top: 8px;
+}
+
+.nav {
+  border: none;
+  width: 100vw;
+  margin-left: 0;
+}
+
+.nav__links, .nav__links--right {
+  margin-left: 20%;
+}
+.nav__links a, .nav__links--right a {
+  position: relative;
+  top: 30px;
+  font-weight: 400;
+  margin-left: 50px;
+}
+
+.nav__link,
+#icon {
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.nav__links--right a {
+  margin-left: 40vw;
+}
+
+#icon {
+  position: absolute;
+  top: 30px;
+}
+
+#logo {
+  width: 150px;
+  margin-left: 20px;
+}
+
+.nav__popover {
+  position: absolute;
+  display: none;
+  top: 115px;
+  left: 83%;
+  height: 100px;
+  width: 130px;
+  background-color: #21262A;
+  border: 1px solid rgba(196, 196, 196, 0.72);
+  border-radius: 23px;
+}
+.nav__popover .a__popover-links {
+  padding-top: 5px;
+}
+.nav__popover a {
+  margin: 15px 0 0 20px;
+  display: block;
+  text-decoration: underline;
+}
+
 /* nav section */
+nav {
+  width: 70%;
+  margin-left: 150px;
+}
+
 #homeBG {
   background-image: url("../image/homeBG.png");
   max-width: 100%;
@@ -400,11 +482,6 @@ footer {
 
 /* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav {
-  margin-left: 150px;
-  width: 70%;
-}
-
 #createAd,
 #viewStudentProfile,
 #viewEmployerProfile,
@@ -446,7 +523,7 @@ footer {
   display: inline-block;
 }
 
-.testClass {
+#userProfile {
   position: relative;
   margin-left: 310px;
   margin-top: 140px;
@@ -501,24 +578,48 @@ p {
   border: 1px solid #BA9FB8;
 }
 
-.classBroke {
+.nav__dashboards #icon {
+  position: absolute;
+  top: 50px;
+}
+.nav__dashboards #upperTitle {
+  position: absolute;
+  top: 50px;
+  left: 600px;
+}
+.nav__dashboards #lowerTitle {
+  position: absolute;
+  font-size: 5rem;
+  left: 700px;
+}
+
+.sidebar__fix {
+  position: fixed;
   float: left;
   padding: 20px;
   width: 25%;
-  height: 940px;
-  background-image: linear-gradient(to right, #DFB1A2, #B59EBC, #7E82DA);
+  height: 100vh;
+  background: linear-gradient(322deg, rgba(90, 108, 176, 0.9) 0%, rgba(232, 171, 157, 0.6) 43%, rgba(33, 38, 42, 0) 100%);
+  border-right: 1px solid rgba(196, 196, 196, 0.72);
+}
+.sidebar__fix #logo {
+  position: absolute;
+  top: 100px;
+  left: 25%;
 }
 
 #posts {
+  margin-left: 25%;
+  margin-top: 200px;
   padding: 10px;
-  height: 100%;
   width: 70%;
-  float: left;
 }
 
 #sdjobPost {
   width: 70%;
   margin-left: 180px;
+  margin-bottom: 90px;
+  border: 1px solid rgba(196, 196, 196, 0.72);
   border-radius: 70px;
   box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
@@ -526,11 +627,131 @@ p {
   background-color: #383838;
   padding: 40px;
 }
+#sdjobPost img {
+  width: 200px;
+  padding: 20px 0 40px 0;
+}
+#sdjobPost .post__content {
+  padding: 40px;
+}
+#sdjobPost h2,
+#sdjobPost h4 {
+  display: inline;
+}
+#sdjobPost h4 {
+  margin-left: 20px;
+}
+#sdjobPost .icon__bookmark--blank,
+#sdjobPost .icon__comment {
+  color: #e8ab9d;
+  float: right;
+  font-size: 30px;
+}
 
+#sidebarContent {
+  margin-top: 200px;
+  color: #FFFFFF;
+}
+#sidebarContent .icon__search {
+  position: absolute;
+  left: 320px;
+  margin-top: 10px;
+  color: rgba(196, 196, 196, 0.72);
+  font-size: 30px;
+}
+
+.sidebar__txt,
+.sidebar__filter {
+  display: block;
+  margin-left: 10%;
+}
+
+.sidebar__txt {
+  margin-bottom: 30px;
+}
+
+.sidebar__filter {
+  height: 50px;
+  width: 80%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(196, 196, 196, 0.72);
+}
+
+::placeholder {
+  padding-left: 10px;
+  color: rgba(196, 196, 196, 0.72);
+}
+
+#searchForm a {
+  font-size: 1.4rem;
+}
+
+.nav__popover--dash {
+  margin-top: 20px;
+}
+
+/* Home page section */
+#homePage {
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+  text-align: center;
+}
+
+#exit {
+  position: absolute;
+  display: inline-block;
+  margin-left: 530px;
+}
+
+/* login/register forms */
+#loginSection,
+#registerSection {
+  border: 2px solid white;
+  width: 50%;
+  margin-left: 250px;
+}
+
+#WelcomeTitle {
+  text-align: center;
+}
+
+#loginForm,
+#registerForm {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#loginSubmit {
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+#reg {
+  position: absolute;
+  display: inline-block;
+}
+
+#cancel1 {
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+#regSubmit {
+  position: absolute;
+  display: inline-block;
+  margin-left: 250px;
+}
+
+/* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav {
-  margin-left: 150px;
-  width: 70%;
+.icon__nav-icon {
+  background: linear-gradient(90deg, #e8ab9d 0%, #5a6cb0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #createAd,
@@ -574,10 +795,6 @@ p {
   display: inline-block;
 }
 
-body {
-  background-color: #212529;
-}
-
 #active {
   color: #e8ab9d;
 }
@@ -591,27 +808,6 @@ body {
   top: 85px;
   left: 250px;
   font-size: 3.2rem;
-}
-
-.nav__student-profiles {
-  border: none;
-  width: 100vw;
-  margin-left: 0;
-}
-
-.nav__links {
-  margin-left: 20%;
-}
-
-.nav__link,
-#icon {
-  margin-left: 50px;
-  cursor: pointer;
-}
-
-#logo {
-  width: 150px;
-  margin-left: 20px;
 }
 
 .img-container__crop-main-icon {
@@ -629,26 +825,6 @@ body {
   margin: 0 auto;
   height: 100%;
   width: auto;
-}
-
-.nav__popover {
-  position: absolute;
-  display: none;
-  top: 115px;
-  left: 83%;
-  height: 100px;
-  width: 130px;
-  background-color: #21262A;
-  border: 1px solid rgba(196, 196, 196, 0.72);
-  border-radius: 23px;
-}
-.nav__popover .a__popover-links {
-  padding-top: 5px;
-}
-.nav__popover a {
-  margin: 15px 0 0 20px;
-  display: block;
-  text-decoration: underline;
 }
 
 #studentProfiles {
@@ -700,14 +876,6 @@ body {
 }
 
 .slick-active .card-body {
-  border: 2px solid #e8ab9d;
-  border-radius: 52px;
-  -webkit-box-shadow: 0px 0px 14px #e8ab9d;
-  -moz-box-shadow: 0px 0px 14px #e8ab9d;
-  box-shadow: 0px 0px 14px #e8ab9d;
-}
-
-.slick-active + .slick-active .card-body {
   border: 2px solid #5A6CB0;
   border-radius: 52px;
   -webkit-box-shadow: 0px 0px 14px #5A6CB0;
@@ -715,12 +883,20 @@ body {
   box-shadow: 0px 0px 14px #5A6CB0;
 }
 
-.slick-active + .slick-active + .slick-active .card-body {
+.slick-active + .slick-active .card-body {
   border: 2px solid #e8ab9d;
   border-radius: 52px;
   -webkit-box-shadow: 0px 0px 14px #e8ab9d;
   -moz-box-shadow: 0px 0px 14px #e8ab9d;
   box-shadow: 0px 0px 14px #e8ab9d;
+}
+
+.slick-active + .slick-active + .slick-active .card-body {
+  border: 2px solid #5A6CB0;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px #5A6CB0;
+  -moz-box-shadow: 0px 0px 14px #5A6CB0;
+  box-shadow: 0px 0px 14px #5A6CB0;
 }
 
 .card-title {

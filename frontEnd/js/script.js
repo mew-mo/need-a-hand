@@ -1,6 +1,7 @@
 
 (function() {
 
+
   // declaring url
   let url;//declare url as a variable in es6
   $.ajax({
@@ -156,43 +157,39 @@ $('#editPost').click(function(){
 //
 // working ver below, had to comment out for now--
 
-//   console.log(jobTitle, posterName, jobDescription, username, userid);
-//   if ( jobTitle == '' || posterName == '' || jobDescription == ''){
-//     alert('Please enter post update information');
-//   } else {
-//     $.ajax({
-//       url: `${url}/updatePost/:id`,
-//       type: 'PATCH',
-//       data:{
-//         jobTitle: jobTitle,
-//         posterName: posterName,
-//         jobDescription: jobDescription,
-//         // ** does this need to be added to models/employer
-//         username_id: userid
-//       },
-//       success: function(data){
-//         console.log(data);
-//         if(data == '401 error: user has no permission to update'){
-//           alert('401 error: user has no permission to update');
-//
-//         } else {
-//           alert('updated');
-//         }//else
-//         // ** NEED TO UPDATE THE IDS **
-//         $('#inputidUpdate').val('');
-//         $('#inputidUpdate').val('');
-//         $('#inputidUpdate').val('');
-//
-//
-//       }, //success
-//       error: function(){
-//         console.log('error:cannot call api');
-//       }//error
-//     });//ajax
-//   }//if
-// });//updateJOBPOSTXXXX
-
-
+  // console.log(jobTitle, posterName, jobDescription, username, userid);
+  // if ( jobTitle == '' || posterName == '' || jobDescription == ''){
+  //   alert('Please enter post update information');
+  // } else {
+  //   $.ajax({
+  //     url: `${url}/updatePost/:id`,
+  //     type: 'PATCH',
+  //     data:{
+  //       jobTitle: jobTitle,
+  //       posterName: posterName,
+  //       jobDescription: jobDescription,
+  //       // ** does this need to be added to models/employer
+  //       username_id: userid
+  //     },
+  //     success: function(data){
+  //       console.log(data);
+  //       if(data == '401 error: user has no permission to update'){
+  //         alert('401 error: user has no permission to update');
+  //
+  //       } else {
+  //         alert('updated');
+  //       }//else
+  //       // ** NEED TO UPDATE THE IDS **
+  //       $('#inputidUpdate').val('');
+  //       $('#inputidUpdate').val('');
+  //       $('#inputidUpdate').val('');
+  //
+  //     }, //success
+  //     error: function(){
+  //       console.log('error:cannot call api');
+  //     }//error
+  //   });//ajax
+  // }//if
 
   // GET - student to view job posts =================================================
 
@@ -670,29 +667,35 @@ $('#editPost').click(function(){
   // student profiles JS------------------------------
 
   // ICON NAV STARTS ------------------------------
-  // declaring vars
-  // var navDisplay = false;
-  // var icon = document.querySelector('#icon img');
-  // var popoutNav = document.querySelector('.nav__popover');
-  //
-  // // icon nav
-  // icon.addEventListener('click', () => {
-  //   if (!navDisplay) {
-  //     popoutNav.style.display = 'block';
-  //     navDisplay = true;
-  //   } else if (navDisplay) {
-  //     popoutNav.style.display = 'none';
-  //     navDisplay = false;
-  //   }
-  // }, false);
-  //
-  // // conditional for closing icon nav by  clicking outside of it
-  // window.addEventListener('click', (e) => {
-  //   if (e.target != icon) {
-  //     popoutNav.style.display = 'none';
-  //     navDisplay = false;
-  //   }
-  // }, false);
+
+  // checking if the icon exists in a page
+  if (document.querySelector('.nav__popover')) {
+    // declaring vars
+    var navDisplay = false;
+    var icon = document.querySelector('#icon img');
+    var popoutNav = document.querySelector('.nav__popover');
+
+    // icon nav
+    icon.addEventListener('click', () => {
+      if (!navDisplay) {
+        popoutNav.style.display = 'block';
+        navDisplay = true;
+      } else if (navDisplay) {
+        popoutNav.style.display = 'none';
+        navDisplay = false;
+      }
+    }, false);
+
+    // conditional for closing icon nav by  clicking outside of it
+    window.addEventListener('click', (e) => {
+      if (e.target != icon) {
+        popoutNav.style.display = 'none';
+        navDisplay = false;
+        // nav will close if you click anywhere outside of the icon
+      }
+    }, false);
+  }
+
   // ICON NAV ENDS ------------------------------
 
   if ($('body').data('title') === 'student-profiles-page') {
@@ -735,6 +738,5 @@ $('#editPost').click(function(){
       }); //ajax ends
     }); //window eventlistener ENDS
   } //if bodydata ends
-  // student profiles JS ENDS------------------------------
-
- }()); //iife ENDS
+// student profiles JS ENDS------------------------------
+}()); //iife ENDS

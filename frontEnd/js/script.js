@@ -1,7 +1,12 @@
 (function() {
 
   // declaring url
-  let url;//declare url as a variable in es6
+  let url;
+  // declaring where the user's uploaded image url will sit
+  var uploadedImg = {
+    url: ''
+  };
+  // starting the server
   $.ajax({
     url: 'config.json',
     type: 'GET',
@@ -14,8 +19,9 @@
     }
   });
 
-console.log('script is linked'); //testing if script.js is working
-console.log(sessionStorage);
+
+  console.log('script is linked'); //testing if script.js is working
+  console.log(sessionStorage);
 
 
 // employerDASH  =============================================================
@@ -101,7 +107,6 @@ $('#addPost').click(function(){
     });//ajax get
   }//else
 });//add post
-
 
 // PATCH - employer dash - update job post  ============================================
 
@@ -231,7 +236,6 @@ $('#editPost').click(function(){
   // there should be a way to do it by running an if statement comparing the session storage property "userID" with the product ID (productsFromMongo.user_id) and then only showing the products which match, if that makes sense
 
 
-
   //   let name = $('#a-name').val();
   //   let price = $('#a-price').val();
   //   let image_url = $('#a-imageurl').val();
@@ -277,26 +281,55 @@ $('#editPost').click(function(){
 
   // POST - student registration  =====================================================
 
-  $('#XXXCREATE-ACC-BTN-STUDENT').click(function() {
-    event.preventDefault();//this prevents code breaking when no data is found
-    let sName = $('#name-INPUT').val();
-    let sUsername = $('#username-INPUT').val();
-    let sEmail = $('#email-INPUT').val();
-    let sPassword = $('#password-INPUT').val();
-    let sCheckPass = $('#check-password-INPUT').val();
-    let sPfpUrl = $('#pfp-INPUT').val();
-    let sStudy = $('#study-INPUT').val();
-    let sEducator = $('#educator-INPUT').val();
-    let sExtra = $('#extra-INPUT').val();
+  convertImg = () => {
+    // checks if the files exist before running
+    if (document.querySelector('#userIcon').files && document.querySelector('#userIcon').files[0]) {
+      var reader = new FileReader();
+      var file = document.querySelector('#userIcon').files[0];
+      // creates a filereader
 
-    console.log(sName, sUsername, sEmail, sPassword, sStudyField, sEducator, sExtra);
+      // read the data as a url for the file-
+      reader.readAsDataURL(file);
+
+      // when the filereader loads, generate the url of the target (user img)
+      reader.addEventListener('load', (e) => {
+        uploadedImg.url = e.target.result;
+        console.log(uploadedImg.url);
+      });
+    }
+  }; //convertimg ENDS
+
+  // calls image conversion once user has selected an image- important so user can change the image before registering fully
+  if (document.querySelector('#userIcon')) {
+    document.querySelector('#userIcon').addEventListener('change', convertImg);
+  }
+
+  $('#studentRegSubmit').click(function() {
+
+    // might have to make it so the max file size uploaded is something small like 200x200 just so the url string isnt so insanely long
+
+    event.preventDefault();//this prevents code breaking when no data is found
+    let sName = $('#sName').val();
+    let sUsername = $('#sUsername').val();
+    let sEmail = $('#sEmail').val();
+    let sPassword = $('#sPassword').val();
+    let sCheckPass = $('#sCheckPassword').val();
+    let sPfpUrl = uploadedImg.url;
+    let sStudy = $('#studyField').val();
+    let sEducator = $('#educatorName').val();
+    let sExtra = $('#sExtra').val();
+
+    console.log(sName, sUsername, sEmail, sPassword, sStudy, sEducator, sExtra);
 
     if (sPassword != sCheckPass) {
-      $('#check-password-INPUT').val('');
+      $('#sCheckPassword').val('');
       alert('Passwords do not match. Please try again');
     } else if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sCheckPass == '' || sStudy == '' || sEducator == '') {
-
       alert('Please enter all student details');
+    } else if (!sPfpUrl) {
+      alert('Please upload an icon for the best experience on this website.');
+    } else if (document.querySelector('#userIcon').files[0].size > 10000000) {
+      alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
     } else {
       $.ajax({
         url: `${url}/registerStudent`,
@@ -306,14 +339,15 @@ $('#editPost').click(function(){
           username: sUsername,
           email: sEmail,
           password: sPassword,
-          // pfpUrl: req.body.pfpUrl,
-          studyField: sStudyField,
+          pfpUrl: sPfpUrl,
+          studyField: sStudy,
           educator: sEducator,
           extra: sExtra
         },
-        success:function(user) {
+        success: function(user) {
+          window.name = user.pfpUrl;
           sessionStorage.setItem('userID', user._id);
-          sessionStorage.setItem('userFullName', user.name);
+          sessionStorage.setItem('userName', user.name);
           sessionStorage.setItem('username', user.username);
           sessionStorage.setItem('userEmail', user.email);
           sessionStorage.setItem('userPass', user.password);
@@ -325,86 +359,85 @@ $('#editPost').click(function(){
             window.location.href = "studentDash.html";
           } else {
             alert('Username taken already. Please try another name');
-            // ********** change ids *******
-            $('#username').val('');
-            $('#user-email').val('');
-            $('#password').val('');
-
+            $('#sUsername').val('');
+            $('#sPassword').val('');
           } //else
         }, //success
-        error:function() {
-          console.log('error: cannot call api');
+        error: function() {
+          alert('Error: Cannot call API');
         }//error
       });//ajax post
     }//if
-  });//#XXXCREATE-ACC-BTN-STUDENT
+  });// registration ends
 
   // student registration ENDS
 
   // POST - employer registration  =====================================================
 
-  // $('#').click(function() {
-  //   event.preventDefault();//this prevents code breaking when no data is found
-  //   let eName = $('#name').val();
-  //   let eUsername = $('#username').val();
-  //   let eEmail = $('#user-email').val();
-  //   let ePassword = $('#password').val();
-  //   let eCheckPass = $('#check-password-INPUT').val();
-  //   let ePfpUrl = $('#profile-INPUT').val();
-  //   let eWorkField = $('#r-name').val();
-  //   let eCompanyName = $('#company-name').val();
-  //   let eExtra = $('#r-extra').val();
-  //
-  //   console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
-  //
-  //   if (ePassword != eCheckPass) {
-  //     $('#check-password-INPUT').val('');
-  //     alert('Passwords do not match. Please try again');
-  //   } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
-  //     alert('Please enter all employer details');
-  //   } else {
-  //     $.ajax({
-  //       url: `${url}/registerEmployer`,
-  //       type : 'POST',
-  //       data : {
-  //         name: eName,
-  //         username: eUsername,
-  //         email: eEmail,
-  //         password: ePassword,
-  //         // pfpUrl: ePfpUrl,
-  //         workField: eWorkField,
-  //         companyName: eCompanyName,
-  //         extra: eExtra
-  //       },
-  //       success:function(user){
-  //         sessionStorage.setItem('userID', user._id);
-  //         sessionStorage.setItem('userFullName', user.name);
-  //         sessionStorage.setItem('username', user.username);
-  //         sessionStorage.setItem('userEmail', user.email);
-  //         sessionStorage.setItem('userPass', user.password);
-  //         sessionStorage.setItem('accType', 'employer');
+  $('#employerRegSubmit').click(function() {
+    event.preventDefault();//this prevents code breaking when no data is found
+    let eName = $('#eName').val();
+    let eUsername = $('#eUsername').val();
+    let eEmail = $('#eEmail').val();
+    let ePassword = $('#ePassword').val();
+    let eCheckPass = $('#eCheckPassword').val();
+    let ePfpUrl = uploadedImg.url;
+    let eWorkField = $('#jobTitle').val();
+    let eCompanyName = $('#company-name').val();
+    let eExtra = $('#companyName').val();
 
-  //         console.log(sessionStorage);
-  //         console.log(user); //remove when development is finished
-  //         if (user !== 'username taken already. Please try another name'){
-  //           alert('You have been registered!');
-  //           window.location.href = "employerDash.html";
-  //         } else {
-  //           console.log('username taken already. Please try another name');
-  //           // ********** change ids *******
-  //           $('#username').val('');
-  //           $('#user-email').val('');
-  //           $('#password').val('');
-  //         } //else
-  //
-  //       }, //success
-  //       error:function(){
-  //         console.log('error: cannot call api');
-  //       }//error
-  //     });//ajax post
-  //   }//if
-  // });//#XXXCREATE-ACC-BTN-EMPLOIYER
-  // // employer registration ENDS
+    console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
+
+    if (ePassword != eCheckPass) {
+      $('#eCheckPassword').val('');
+      alert('Passwords do not match. Please try again');
+    } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
+      alert('Please enter all employer details');
+    } else if (!ePfpUrl) {
+      alert('Please upload an icon for the best experience on this website.');
+    } else if (document.querySelector('#userIcon').files[0].size > 10000000) {
+      alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
+    } else {
+      $.ajax({
+        url: `${url}/registerEmployer`,
+        type : 'POST',
+        data : {
+          name: eName,
+          username: eUsername,
+          email: eEmail,
+          password: ePassword,
+          pfpUrl: ePfpUrl,
+          workField: eWorkField,
+          companyName: eCompanyName,
+          extra: eExtra
+        },
+        success:function(user) {
+          window.name = user.pfpUrl;
+          sessionStorage.setItem('userID', user._id);
+          sessionStorage.setItem('userFullName', user.name);
+          sessionStorage.setItem('username', user.username);
+          sessionStorage.setItem('userEmail', user.email);
+          sessionStorage.setItem('userPass', user.password);
+          sessionStorage.setItem('accType', 'employer');
+
+          console.log(sessionStorage);
+          console.log(user); //remove when development is finished
+          if (user !== 'username taken already. Please try another name'){
+            alert('You have been registered!');
+            window.location.href = "employerDash.html";
+          } else {
+            console.log('Username taken already. Please try another name');
+            $('#eUsername').val('');
+            $('#ePassword').val('');
+          } //else
+        }, //success
+        error: function(){
+          alert('Error: cannot call API');
+        }//error
+      });//ajax post
+    }//if
+  });//#XXXCREATE-ACC-BTN-EMPLOIYER
+  // employer registration ENDS
 
   // POST - login (and logout) =====================================================
 
@@ -438,9 +471,9 @@ $('#editPost').click(function(){
                 // field where they type the password
               } else {
                 // session storage
+                window.name = user.pfpUrl;
                 sessionStorage.setItem('userID', user._id);
                 sessionStorage.setItem('userName', user.username);
-                sessionStorage.setItem('iconImg', user.pfpUrl);
                 sessionStorage.setItem('userEmail', user.email);
                 sessionStorage.setItem('userPass', user.password);
                 sessionStorage.setItem('accType', 'student');
@@ -480,6 +513,7 @@ $('#editPost').click(function(){
                 // field where they type the password
               } else {
                 // session storage
+                window.name = user.pfpUrl;
                 sessionStorage.setItem('userID', user._id);
                 sessionStorage.setItem('userName', user.username);
                 sessionStorage.setItem('iconImg', user.pfpUrl);
@@ -511,6 +545,7 @@ $('#editPost').click(function(){
     // logout function
     logOut = () => {
       sessionStorage.clear();
+      window.name = '';
       alert('You have been logged out.');
       window.location.href = 'index.html';
     };
@@ -628,8 +663,8 @@ $('#editPost').click(function(){
   // ICON NAV STARTS
   // ==================================================
 
-  if (sessionStorage.iconImg) {
-    document.querySelector('#icon').innerHTML = `<img src="${sessionStorage.iconImg}" alt="@${sessionStorage.userName}'s icon'">`;
+  if (sessionStorage.length != 0 && document.querySelector('#icon')) {
+    document.querySelector('#icon').innerHTML = `<img src="${window.name}" alt="@${sessionStorage.userName}'s icon'">`;
   } //NOTE : need to have err prevention if user doesnt have an icon
 
   // checking if the icon exists in a page
@@ -705,4 +740,5 @@ $('#editPost').click(function(){
     }); //window eventlistener ENDS
   } //if bodydata ends
 // student profiles JS ENDS------------------------------
+
 }()); //iife ENDS

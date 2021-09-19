@@ -431,7 +431,7 @@ $('#editPost').click(function(){
             $('#ePassword').val('');
           } //else
         }, //success
-        error: function(){
+        error: function() {
           alert('Error: cannot call API');
         }//error
       });//ajax post

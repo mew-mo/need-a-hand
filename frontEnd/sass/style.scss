@@ -480,26 +480,36 @@ footer{
   width: 80%;
 }
 
-#eName {
+#eName,
+#sName {
   width: 300px;
   margin-left: 100px;
 }
-#eUsername {
+
+#eUsername,
+#sUsername {
   width: 300px;
   margin-left: 98px;
 }
-#eEmail {
+
+#eEmail,
+#sEmail {
   width: 300px;
   margin-left: 135px;
 }
-#ePassword {
+
+#ePassword,
+#sPassword {
   width: 300px;
   margin-left: 103px;
 }
-#eCheckPassword {
+
+#eCheckPassword,
+#sCheckPassword {
   width: 300px;
   margin-left: 46px;
 }
+
 #jobTitle {
   width: 300px;
   margin-left: 52px;
@@ -509,9 +519,8 @@ footer{
   margin-left: 57px;
 }
 
-
 // student register forms
-#studyName{
+#studyField{
   width: 300px;
   margin-left: 100px;
 }
@@ -519,7 +528,7 @@ footer{
   width: 300px;
   margin-left: 70px;
 }
-#studentExtra{
+#sExtra{
   width: 300px;
   margin-left: 55px;
 }

@@ -422,27 +422,32 @@ footer {
   width: 80%;
 }
 
-#eName {
+#eName,
+#sName {
   width: 300px;
   margin-left: 100px;
 }
 
-#eUsername {
+#eUsername,
+#sUsername {
   width: 300px;
   margin-left: 98px;
 }
 
-#eEmail {
+#eEmail,
+#sEmail {
   width: 300px;
   margin-left: 135px;
 }
 
-#ePassword {
+#ePassword,
+#sPassword {
   width: 300px;
   margin-left: 103px;
 }
 
-#eCheckPassword {
+#eCheckPassword,
+#sCheckPassword {
   width: 300px;
   margin-left: 46px;
 }
@@ -457,7 +462,7 @@ footer {
   margin-left: 57px;
 }
 
-#studyName {
+#studyField {
   width: 300px;
   margin-left: 100px;
 }
@@ -467,7 +472,7 @@ footer {
   margin-left: 70px;
 }
 
-#studentExtra {
+#sExtra {
   width: 300px;
   margin-left: 55px;
 }
@@ -515,7 +520,6 @@ footer {
 #sExtra {
   margin-bottom: 25px;
 }
-
 
 #studentRegSubmit {
   border-radius: 10px;

@@ -21,35 +21,40 @@
     <h1 id="studentRegTitle" class="text-light">Student Sign up!</h1>
     <a href="index.html"><i id="exit" class="fa fa-times text-white" aria-hidden="true"></i></a>
     </div>
-    <!-- login form -->
-    <form id="registerForm" class="my-4 rounded-pill">
+      <!-- login form -->
+      <form id="nameForm" class="my-4 rounded-pill">
+        <label for="name" class="text-light mr-5">Full Name</label>
+        <input id="name" type="text" name="name" class="form-control"  value="">
+      </form>
+      <form id="userNameForm" class="my-4 rounded-pill">
+        <label for="username" class="text-light"> Username: </label>
+        <input id="username" type="text" name="username" class="form-control" value="">
+      </form>
+      <form id="emailForm" class="my-4 rounded-pill">
+        <label for="email" class="text-light">Email</label>
+        <input id="userEmail" type="email" name="r-email" class="form-control" value="">
+      </form>
+      <form id="passwordForm" class="my-4 rounded-pill">
+        <label for="password" class="text-light"> Password: </label>
+        <input id="regPassword" type="password" name="password"  class="form-control" value="">
+      </form>
+      <form id="repeatPWForm" class="my-4 rounded-pill">
+        <label for="r-password" class="text-light">Confirm Password</label>
+        <input id="r-password" type="password" name="r-password" class="form-control" value="">
+      </form>
+      <form id="studyFieldForm" class="my-4 rounded-pill">
+        <label for="r-name" class="text-light">Study Field</label>
+        <input id="studyName" type="text" name="r-name" class="form-control" value="">
+      </form>
+      <form id="educatorNameForm" class="my-4 rounded-pill">
+        <label for="r-name" class="text-light">Educator Name</label>
+        <input id="educatorName" type="text" name="r-name" class="form-control" value="">
+      </form>
+      <form id="studentExtraForm" class="my-4 rounded-pill">
+        <label for="r-name" class="text-light">Additional Details</label>
+        <input id="studentExtra" type="text" name="r-extra" class="form-control" value="">
+      </form>
 
-      <label for="name" class="text-light">Full Name</label>
-      <input id="name" type="text" name="name" class="form-control"  value="">
-      <br>
-      <label for="username" class="text-light"> Username: </label>
-      <input id="username" type="text" name="username" class="form-control" value="">
-      <br>
-      <label for="email" class="text-light">Email</label>
-      <input id="user-email" type="email" name="r-email" class="form-control" value="">
-      <br>
-      <label for="password" class="text-light"> Password: </label>
-      <input id="password" type="password" name="password"  class="form-control" value="">
-      <br>
-      <label for="r-password" class="text-light">Confirm Password</label>
-      <input id="r-password" type="password" name="r-password" class="form-control" value="">
-      <br>
-      <label for="studyField" class="text-light">Study Field</label>
-      <input id="StudyName" type="text" name="r-name" class="form-control" value="">
-      <br>
-      <label for="educatorName" class="text-light">Educator Name</label>
-      <input id="educatorName" type="text" name="r-name" class="form-control" value="">
-      <br>
-      <label for="Studentextra" class="text-light">extra</label>
-      <input id="studentExtra" type="text" name="r-extra" class="form-control" value="">
-
-
-    </form>
 
     <div id="regFormButtons">
       <a href="studentDash.html"><button id="studentRegSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>

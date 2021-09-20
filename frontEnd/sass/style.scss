@@ -35,6 +35,10 @@ h2 {
   font-size: 2.1rem;
 }
 
+h3 {
+  font-size: 1.8rem;
+}
+
 h2,
 h4,
 h5,
@@ -42,6 +46,7 @@ h6 {
   @extend %koho-font-default;
 }
 
+h3,
 p,
 a {
   @extend %inter-font-default;
@@ -68,6 +73,17 @@ a {
   font-size: 30px;
   position: relative;
   top: 8px;
+}
+
+.loading__icon {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 75%;
 }
 // icons end
 
@@ -249,13 +265,6 @@ font-size: 20px;
 	transform-style: preserve-3d;
 }
 
-h3{
-  font-size: 20px;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .product-card {
    max-width: 300px;
    background: $bglight;
@@ -266,6 +275,13 @@ h3{
    border: 1px solid $border;
    height: 400px;
 
+   h3 {
+     font-size: 20px;
+     width: 80%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
 
    &:nth-child(1) {
       transform: translate3d(0,0,-15px);
@@ -432,6 +448,11 @@ footer{
 
 #reg {
   margin-left: 140px;
+
+  a {
+    color: $peach;
+    text-decoration: underline;
+  }
 }
 /* login form ENDS */
 
@@ -553,28 +574,37 @@ footer{
 // USER PROFILE CSS
 
 #userProfile {
-  position: relative;
+  display: none;
+  position: absolute;
   margin-left: 310px;
   margin-top: 140px;
   width: 55rem;
   height: 25rem;
   border-radius: 70px;
   box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
--webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
--moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+    -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+    -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
   background-color: #383838;
   padding: 40px;
 }
 
 #userImage {
+  width: 300px;
+  height: 300px;
   position: absolute;
   right: 30px;
   top: -50px;
   overflow: hidden;
-  width: 20em;
-  height: 20em;
-  border-radius: 250px;
-  border: solid 3px white;
+  border: solid 3px $peach;
+  border-radius: 50%;
+
+  img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 #fullName,
@@ -584,29 +614,44 @@ p {
   width: 50%;
 }
 
-#breakPoint {
-  width: 250px;
-  height: 10px;
-  background-color: #cf82b5;
-  border: solid 1px #cf82b5;
-  border-radius: 100px;
+#logOut {
+  position: relative;
+  top: 90px;
+  width: auto;
+  padding: 10px;
+  @extend #studentRegSubmit;
 }
 
-.fa-star {
-  margin-top: 15px;
+.img__divider--profile {
+  width: 25%;
 }
 
-.checked {
-  color: #7B82DE;
+#myName {
+  padding: 25px 0 15px 0;
 }
 
-#logOut,
-#editProfile {
-  margin-top: 100px;
-  background-color: #BA9FB8;
-  border: 1px solid #BA9FB8;
+#myTitle {
+  margin-left: 5px;
+  display: inline;
 }
 
+#myDesc {
+  padding: 25px 0 0 0;
+}
+
+.icon__edit {
+  color: $peach;
+}
+
+.modal__update-field {
+  @extend .sidebar__filter;
+}
+
+.update-modal__update-btn--user {
+  width: auto;
+  padding: 10px;
+  @extend #studentRegSubmit;
+}
 // USER PROFILE CSS ENDS
 
 // STUDENT DASHBOARD CSS starts
@@ -775,7 +820,7 @@ p {
   display: inline-block;
 }
 
-// student profiles begins
+// student profiles STARTS
 
 #active {
   color: $peach;

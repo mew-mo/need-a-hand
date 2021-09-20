@@ -1,8 +1,7 @@
+(function() {
+
 console.log('script is linked'); //testing if script.js is working
 console.log(sessionStorage);
-
-
-$(document).ready(function(){
 
 // employerDASH  =============================================================
 
@@ -15,10 +14,6 @@ $(document).ready(function(){
   $('#createAd').click(function(){
     $('#createListing').show();
   });
-
-
-  let url;//declare url as a variable in es6
-(function() {
 
   // declaring url
   let url;
@@ -154,44 +149,38 @@ $('#addPost').click(function(){
 
 // POST - comment section ======================================================
 
-  $(document).on('click', '.commented', function(event) {
-    event.preventDefault();
-      let postID = this.dataset.id;
-      console.log(postID);
-      console.log("comment clicked");
+// POST - comment section ======================================================
 
-    let userComment = $("input[data-id='" + postID +"']").val();
-      console.log(userComment);
-
-      if ( userComment == ''){
-        alert('Please enter a comment');
-      } else {
-        console.log("Comment added: " + userComment);
-        $.ajax({
-          url: `${url}/postComment/${postID}`,
-          type: 'PATCH',
-          data:{
-          comment: userComment },
-          success: function(data){
-              if(data == '401 error: user has no permission to update') {
-                alert('401 error: user has no permission to');
-              } else { alert('updated');
-            }//else
-        $("input[data-id='" + postID +"']").val('');
-        }, //success
-          error: function(){
-            console.log('error:cannot call api'); }//error
-        });//ajax
-      }//if
-  }); //end of commented click event function
-
-          } // for loop one ends
-     }, //end of success
-     error:function(){
-      }
-    });//ajax get
-  }//else
-});//add post
+  // $(document).on('click', '.commented', function(event) {
+  //   event.preventDefault();
+  //     let postID = this.dataset.id;
+  //     console.log(postID);
+  //     console.log("comment clicked");
+  //
+  //   let userComment = $("input[data-id='" + postID +"']").val();
+  //     console.log(userComment);
+  //
+  //     if ( userComment == ''){
+  //       alert('Please enter a comment');
+  //     } else {
+  //       console.log("Comment added: " + userComment);
+  //       $.ajax({
+  //         url: `${url}/postComment/${postID}`,
+  //         type: 'PATCH',
+  //         data:{
+  //         comment: userComment },
+  //         success: function(data){
+  //             if(data == '401 error: user has no permission to update') {
+  //               alert('401 error: user has no permission to');
+  //             } else { alert('updated');
+  //           }//else
+  //       $("input[data-id='" + postID +"']").val('');
+  //       }, //success
+  //         error: function(){
+  //           console.log('error:cannot call api'); }//error
+  //       });//ajax
+  //     }//if
+  // }); //end of commented click event function
 
 // PATCH - employer dash - update job post  ============================================
 
@@ -259,94 +248,46 @@ $(document).on('click', '.edit-button', function(event) {
       }//error
     });//ajax
   }//if
-})
+});
 
   // GET - student to view job posts =================================================
 
   // ** click function id needs to be linked to when student registers / logs in / clicks 'dashboard button' **
-  studentDash = () => {
+//   studentDash = () => {
+//
+//     console.log(url);
+//     // $('#homePage').hide();
+//     // $('#adminPage').hide();
+//     // $('#result').show();
+//     $.ajax({
+//       url:`${url}/allPosts`,
+//       type: 'GET',
+//       dataType : 'json',
+//       // ** postFromMDB may need a different name as it may conflict with the above **
+//       success : function(postFromMDB){
+//         console.log(postFromMDB);
+//         var i;
+//         // ** add id for div where you want data to display **
+//         document.getElementById('sdJobPost').innerHTML ="";
+//         for (i = 0; i < postFromMDB.length; i++) {
+//               console.log(postFromMDB[i]);
+//               document.getElementById('sdJobPost').innerHTML +=
+//               `
+//               <h2>${postFromMDB[i].jobTitle}</h2>
+//               <h4>${postFromMDB[i].posterName}</h4>
+//               <hr>
+//               <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+//               <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
+//               `;
+//             } // for loop one ends
+//       },
+//       error:function(){
+//
+//       }
+//     });//ajax
+//
+// }; //end of studentDash function
 
-    console.log(url);
-    // $('#homePage').hide();
-    // $('#adminPage').hide();
-    // $('#result').show();
-    $.ajax({
-      url:`${url}/allPosts`,
-      type: 'GET',
-      dataType : 'json',
-      // ** postFromMDB may need a different name as it may conflict with the above **
-      success : function(postFromMDB){
-        console.log(postFromMDB);
-        var i;
-        // ** add id for div where you want data to display **
-        document.getElementById('sdJobPost').innerHTML ="";
-        for (i = 0; i < postFromMDB.length; i++) {
-              console.log(postFromMDB[i]);
-              document.getElementById('sdJobPost').innerHTML +=
-              `
-              <h2>${postFromMDB[i].jobTitle}</h2>
-              <h4>${postFromMDB[i].posterName}</h4>
-              <hr>
-              <p id="postDetails">${postFromMDB[i].jobDescription}</p>
-              <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
-              `;
-            } // for loop one ends
-      },
-      error:function(){
-
-      }
-    });//ajax
-
-}; //end of studentDash function
-
-
-  // student profile page  =====================================================
-
-  // there should be a way to do it by running an if statement comparing the session storage property "userID" with the product ID (productsFromMongo.user_id) and then only showing the products which match, if that makes sense
-
-
-  //   let name = $('#a-name').val();
-  //   let price = $('#a-price').val();
-  //   let image_url = $('#a-imageurl').val();
-  //   let userid =  sessionStorage.getItem('userID');
-
-  //   console.log(userid);
-  //   console.log(name,price, image_url);
-  //   if (userid == ){
-  //     alert('Please enter all details');
-  // username: userid
-
-  studentProf = () => {
-
-    console.log(url);
-    $.ajax({
-      url:`${url}/allPosts`,
-      type: 'GET',
-      dataType : 'json',
-      // ** postFromMDB may need a different name as it may conflict with the above **
-      success : function(postFromMDB){
-        console.log(postFromMDB);
-        var i;
-        // ** add id for div where you want data to display **
-        document.getElementById('sdJobPost').innerHTML ="";
-        for (i = 0; i < postFromMDB.length; i++) {
-              console.log(postFromMDB[i]);
-              document.getElementById('sdJobPost').innerHTML +=
-              `
-              <h2>${postFromMDB[i].jobTitle}</h2>
-              <h4>${postFromMDB[i].posterName}</h4>
-              <hr>
-              <p id="postDetails">${postFromMDB[i].jobDescription}</p>
-              <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
-              `;
-            } // for loop one ends
-      },
-      error:function(){
-
-      }
-    });//ajax
-
-}; //end of studentDash function
 
 // DELETE - employer dashboard - delete a post ===========================
 
@@ -414,7 +355,7 @@ $(document).on('click', '.delete-button', function(event) {
       url : `${url}/deletePost/${deleteId}`,
       type:'DELETE',
       data :{
-        user_id : sessionStorage['userID']
+        user_id : sessionStorage.userID
       },
       success : function(data){
         console.log(data);
@@ -433,48 +374,6 @@ $(document).on('click', '.delete-button', function(event) {
 
 });//deleteProduct
 
-
-
-// DELETE - employer dashboard - delete a post ===========================
-
-// $(document).on('click', '.delete-button', function(event) {
-//     event.preventDefault();
-//
-//     console.log("delete clicked");
-//   //
-//   // if (!sessionStorage['userID']){
-//   //   alert('401 permission denied');
-//   //   return;
-//   // };
-//
-//   let postID = $('#delProductId').val();
-//   console.log(postID);
-//
-//   if (postID == ''){
-//     alert('Please enter the post id to delete the product');
-//   } else {
-//     $.ajax({
-//       url : `${url}/deletePost/${postID}`,
-//       type:'DELETE',
-//       data :{
-//         user_id : sessionStorage['userID']
-//       },
-//       success : function(data){
-//         console.log(data);
-//         if (data == 'Post Deleted'){
-//           alert('Post Deleted');
-//           $('#delProductId').val('');
-//         } else {
-//           alert('Enter a valid id');
-//         } //else
-//       }, //success
-//       error:function(){
-//         console.log('error: cannot call api');
-//       }//error
-//     })//ajax
-//   }//if
-//
-// });//deleteProduct
 
 // POST - student registration  =====================================================
 
@@ -803,28 +702,7 @@ $(document).on('click', '.delete-button', function(event) {
     }//if
   });//updateJOBPOSTXXXX
 
-// once create job post has been created and 'job post advert' clicked - data is called
 
-  // $('#updateProduct').click(function(){
-  //   $('#createListing').hide();
-  //   $('#jobPost').show();
-  //   console.log(url);
-  //
-  //     fetch(url)
-  //
-  //      .then(function(response) {
-  //        console.log(response);
-  //        return response.json();
-  //      }) // end of then one
-  //
-  //      .then(function(data) {
-  //        console.log(data);
-  //      }) // end of then two
-  //
-  // }); //end of createListing click function.
-
-
-// cc above ====================================================================
 
   // CONDITIONAL DASHBOARD LINKS  STARTS
   // ==================================================

@@ -435,7 +435,7 @@ footer{
 }
 /* login form ENDS */
 
-/* employment register form */
+/* register forms */
 #registerSection{
   background: $bglight;
   box-shadow: 0 8px 32px 0 $shadow;
@@ -455,14 +455,17 @@ footer{
   margin-left: 120px;
 }
 
-#regSubmit {
+#studentRegSubmit,
+#employerRegSubmit {
   border-radius: 10px;
   border: 1px solid $peach;
   background: $bglight;
   box-shadow: 0 5px 15px 5px $shadow;
   width: 30%;
 }
-#regSubmit:hover {
+
+#studentRegSubmit:hover,
+#employerRegSubmit:hover {
   background-color: $dark;
   border: 1px solid $dark;
 }
@@ -479,6 +482,14 @@ footer{
   border: none;
 }
 
+#exit {
+  margin-left: 240px;
+}
+
+#sExtra {
+  margin-bottom: 25px;
+}
+
 #studentRegSubmit {
   border-radius: 10px;
   border: 1px solid $peach;
@@ -489,6 +500,11 @@ footer{
 #studentRegSubmit:hover {
   background-color: $dark;
   border: none;
+}
+
+.input__select-img {
+  color: $white;
+  padding-bottom: 25px;
 }
 
 /* login/register forms ENDS */
@@ -679,14 +695,6 @@ p {
 #sidebarContent {
   margin-top: 200px;
   color: $white;
-
-  .icon__search {
-    position: absolute;
-    left: 320px;
-    margin-top: 10px;
-    color: $placeholder;
-    font-size: 30px;
-  }
 }
 
 .sidebar__txt,

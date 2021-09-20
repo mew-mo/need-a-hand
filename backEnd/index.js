@@ -18,8 +18,8 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use(bodyParser.json());//calling body parser method
-app.use(bodyParser.urlencoded({extended: false}));//using default
+app.use(bodyParser.json({limit: '10mb'}));//calling body parser method
+app.use(bodyParser.urlencoded({extended: false, limit: '10mb'}));//using default
 
 app.use(cors()); //calling cors method
 
@@ -38,6 +38,7 @@ app.post('/addPost', (req, res) => {
     posterName: req.body.posterName,
     username: req.body.username,
     jobDescription: req.body.jobDescription,
+    comments: [],
     category: req.body.category
   });
   //save to the database and notify the user
@@ -223,6 +224,29 @@ app.patch('/updateStudent/:id', (req, res) => {
     }//else
   })
 })
+
+
+// update comments
+app.patch('/postComment/:id', (req, res) => {
+  console.log("tested post");
+  const idParam = req.params.id;
+  console.log(req.body.comment);
+  Post.findById(idParam, (err, post) => {
+    if (Post['user_id'] == req.body.userId) {
+      const updatedPostComment = {
+        $push: {
+        comments: req.body.comment }
+      }
+      Post.updateOne({_id:idParam}, updatedPost)
+      .then(result => {
+        res.send(result);
+      }).catch(err => res.send(err));
+    } else {
+      res.send('error: product not found')
+    }//else
+  })
+})
+
 //BRANCH:updating-patch ENDS ---------------------------------------------------
 
 //BRANCH:reading-get - get method to access data from Products.json

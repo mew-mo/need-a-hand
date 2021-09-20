@@ -6,6 +6,10 @@ const postSchema = new mongoose.Schema({
   posterName: String,
   username: String,
   jobDescription: String,
+  comments: {
+    type: Array,
+    require: true
+  },
   category: String,
   user_id: {
     type: mongoose.Schema.Types.ObjectId,

@@ -196,6 +196,11 @@ nav{
   background-color: $dark;
   width: 120px;
 }
+
+#login:hover {
+  background-color: $peach;
+  width: 120px;
+}
 /* nav section ENDS */
 
 /* Home page section */
@@ -398,11 +403,17 @@ footer{
   width: 30%;
   text-align: center;
 }
+#loginHeading {
+  display: flex;
+  margin: auto;
+  height:60px;
+}
 
 #heading{
   display: flex;
   margin: auto;
   height:60px;
+  margin-left: 150px;
 }
 
 #WelcomeTitle {
@@ -413,30 +424,13 @@ footer{
 .fa-times {
   position: fixed;
   float: right;
-  margin-left: 100px;
+  margin-left: 110px;
   font-size: 30px;
 }
 
 .fa-times:hover {
-  border-radius: 10px;
-  background: $peach;
+  color: $peach;
   font-size: 30px;
-}
-
-#loginForm {
-  display: flex;
-  align-items: center;
-  text-align: justify;
-  margin: auto;
-  width: 80%;
-}
-
-#passwordForm {
-  display: flex;
-  align-items: center;
-  text-align: justify;
-  margin: auto;
-  width: 80%;
 }
 
 #loginSubmit{
@@ -476,91 +470,10 @@ footer{
 }
 
 #regHeading {
-  height:60px;
-}
-
-#regTitle {
-  display: inline-block;
-}
-
-#nameForm,
-#userNameForm,
-#emailForm,
-#passwordForm,
-#repeatPWForm,
-#jobTitleForm,
-#jobNameForm,
-#studyFieldForm,
-#educatorNameForm,
-#studentExtraForm
- {
   display: flex;
-  align-items: center;
-  text-align: justify;
   margin: auto;
-  width: 80%;
-}
-
-#eName,
-#sName {
-  width: 300px;
-  margin-left: 100px;
-}
-
-#eUsername,
-#sUsername {
-  width: 300px;
-  margin-left: 98px;
-}
-
-#eEmail,
-#sEmail {
-  width: 300px;
-  margin-left: 135px;
-}
-
-#ePassword,
-#sPassword {
-  width: 300px;
-  margin-left: 103px;
-}
-
-#eCheckPassword,
-#sCheckPassword {
-  width: 300px;
-  margin-left: 46px;
-}
-
-#jobTitle {
-  width: 300px;
-  margin-left: 52px;
-}
-#companyName{
-  width: 300px;
-  margin-left: 57px;
-}
-
-// student register forms
-#studyField{
-  width: 300px;
-  margin-left: 100px;
-}
-#educatorName{
-  width: 300px;
-  margin-left: 70px;
-}
-#sExtra{
-  width: 300px;
-  margin-left: 55px;
-}
-
-#studentRegTitle {
-  display: inline-block;
-  margin-left: 150px;
-}
-
-#exit {
-  margin-left: 130px;
+  height:60px;
+  margin-left: 120px;
 }
 
 #studentRegSubmit,

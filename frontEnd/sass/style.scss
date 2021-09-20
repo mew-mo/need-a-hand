@@ -1,81 +1,233 @@
+@import 'vars';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+//importing our colour scheme variables
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+// font extends begins
+//for titles
+%koho-font-default {
+  font-weight: 300;
+  color: white;
+  font-family: 'KoHo', sans-serif;
+}
+
+//for body text
+%inter-font-default {
+  font-weight: 300;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+// font extends ENDS
+
+// header set
+h1 {
+  text-transform: uppercase;
+  @extend %koho-font-default;
+}
+
+h2 {
+  font-size: 2.1rem;
+}
+
+h2,
+h4,
+h5,
+h6 {
+  @extend %koho-font-default;
+}
+
+p,
+a {
+  @extend %inter-font-default;
+}
+
+a:hover,
+a:active,
+a[tabindex]:focus {
+  color: $peach;
+}
+
+a {
+  text-decoration: none;
+}
+// header set ENDS
+
+// setting universal icon properties
+.md-icon {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.a__icon--adjust-top {
+  font-size: 30px;
+  position: relative;
+  top: 8px;
+}
+// icons end
+
+// mixins
+@mixin card-style($color: $purple) {
+  border: 2px solid $color;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px $color;
+   -moz-box-shadow: 0px 0px 14px $color;
+        box-shadow: 0px 0px 14px $color;
+}
+// mixins END
+
+// universal nav
+.nav {
+  border: none;
+  width: 100vw;
+  margin-left: 0;
+}
+
+.nav__links {
+  margin-left: 20%;
+
+  a {
+    position: relative;
+    top: 30px;
+    font-weight: 400;
+    margin-left: 50px;
+    @extend %koho-font-default;
+  }
+}
+
+.nav__link,
+#icon {
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.nav__links--right {
+  @extend .nav__links;
+
+  a {
+    margin-left: 40vw;
+  }
+}
+
+#icon {
+  position: absolute;
+  top: 30px;
+}
+
+#logo {
+  width: 150px;
+  margin-left: 20px;
+}
+
+.nav__popover {
+  position: absolute;
+  display: none;
+  top: 115px;
+  left: 83%;
+  height: 100px;
+  width: 130px;
+  background-color: $dark;
+  border: 1px solid $placeholder;
+  border-radius: 23px;
+
+  .a__popover-links {
+    padding-top: 5px;
+  }
+
+  a {
+    margin: 15px 0 0 20px;
+    display: block;
+    text-decoration: underline;
+  }
+}
+// universal nav ENDS
+
 /* nav section */
 nav{
-  border: 2px solid white;
   width: 70%;
   margin-left: 150px;
 }
 
-$dark: #21262A; //background
-$blue: #5667A9; //circle gradients and home buttons
-$peach: #E8AB9D; //circle gradients
-$white: #FFFFFF; //outer glow
-$bglight: rgba( 255, 255, 255, 0.20 );
-$shadow: rgba( 230, 235, 252, 0.57 );
-$border: rgba( 255, 255, 255, 0.11 );
-$opacity-front: 1;
-$opacity-back: .2;
-$blur-front: 0;
-$blur-back: .8px;
-$drop-front: 4px 10px 10px rgba(0,0,0, .6);
-$drop-back: 4px 4px 4px rgba(0,0,0, .2);
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+// index.html starts
 
+#loggedInNav {
+  display: none;
+  padding-bottom: 50px;
+
+  a {
+    margin-left: 50vw;
+  }
+}
 
 #homeBG{
   background-image: url("../image/homeBG.png");
   max-width: 100%;
 }
 
+#homeNav{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 400px;
+}
+
 #login {
-  border: 1px solid #E8AB9D;
-  background-color: #21262A;
+  border: 1px solid $peach;
+  background-color: $dark;
   width: 120px;
-  margin-left: 65%;
 }
 /* nav section ENDS */
 
 /* Home page section */
-#homePage{
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-  text-align: center;
-}
-#exit{
-  position: absolute;
-  display: inline-block;
-  margin-left: 530px;
-}
-
-/* login/register forms */
-#loginSection,
-#registerSection{
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-}
 
 #homePage {
+  max-width: 800px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
   background: $bglight;
   box-shadow: 0 8px 32px 0 $shadow;
   backdrop-filter: blur( 2px );
   -webkit-backdrop-filter: blur( 1px );
   border-radius: 10px;
   border: 1px solid $border;
-  margin-left: 600px;
-  margin-top: 70px;
-  width: 40%;
-  text-align: center;
+  box-sizing: border-box;
+  margin-top: 80px;
+  margin-bottom: 100px;
+  height: 100%;
+}
+
+/* login/register forms */
+#loginSection,
+#registerSection{
+  border: 2px solid $white;
+  width: 50%;
+  margin-left: 250px;
 }
 
 #studentReg,
 #employerReg {
 background-color: $blue;
+font-size: 20px;
+}
+
+#studentReg:hover,
+#employerReg:hover{
+  background-color: $dark;
+  border: 1px solid $peach;
+  font-size: 20px;
 }
 
 #tagline {
-  margin-top: 120px;
-  margin-left: 670px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
 }
 
 .container {
@@ -92,15 +244,21 @@ background-color: $blue;
 	transform-style: preserve-3d;
 }
 
+h3{
+  font-size: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .product-card {
-   max-width: 360px;
+   max-width: 300px;
    background: $bglight;
    box-shadow: 0 8px 32px 0 $shadow;
    backdrop-filter: blur( 2px );
    -webkit-backdrop-filter: blur( 1px );
    border-radius: 10px;
    border: 1px solid $border;
-   width: 300px;
    height: 400px;
 
 
@@ -186,78 +344,6 @@ background-color: $blue;
   }
 }
 
-// @media (max-width: 480px) {
-//
-//    .container {
-//    flex-direction: column;
-// }
-//
-//  .product-card {
-//
-//    &:nth-child(1) {
-//       transform: translate3d(0,0,-15px);
-//    }
-//
-//    &:nth-child(2) {
-//       transform: translate3d(0,0,0);
-//    }
-//
-//    &:nth-child(3) {
-//       transform: translate3d(0,0,-15px);
-//    }
-// }
-//
-//    @keyframes rotate-left {
-//   0%, 100% {
-//     transform: translate3d(0,0,-15px);
-//     filter: blur($blur-back) drop-shadow($drop-back);
-//   }
-//
-//   33.33% {
-//     transform: translate3d(0,100%,5px);
-//     filter: blur($blur-front) drop-shadow($drop-front);
-//   }
-//
-//    66.66% {
-//     transform: translate3d(0,200%,-15px);
-//     filter: blur($blur-back) drop-shadow($drop-back);
-//   }
-// }
-//
-// @keyframes rotate-center {
-//   0%, 100% {
-//     transform: translate3d(0,0,5px);
-//     filter: blur($blur-front) drop-shadow($drop-front);
-//   }
-//
-//   33.33% {
-//     transform: translate3d(0,100%,-15px);
-//     filter: blur($blur-back) drop-shadow($drop-back);
-//   }
-//
-//    66.66% {
-//     transform: translate3d(0,-100%,-15px);
-//     filter: blur($blur-back) drop-shadow($drop-back);
-//   }
-// }
-//
-// @keyframes rotate-right {
-//   0%, 100% {
-//     transform: translate3d(0,0,-15px);
-//     filter: blur($blur-back) drop-shadow($drop-back);
-//   }
-//
-//   33.33% {
-//     transform: translate3d(0,-200%,-15px);
-//     filter: blur($blur-back) drop-shadow($drop-back);
-//   }
-//
-//    66.66% {
-//     transform: translate3d(0,-100%,5px);
-//     filter: blur($blur-front) drop-shadow($drop-front);
-//   }
-// }
-// }
 footer{
   height: 100px;
   width: 100%;
@@ -266,71 +352,250 @@ footer{
 #left{
   position: relative;
   display: inline-block;
-  width: 20%;
-  margin-left: 20%;
+  padding-left: 400px;
+}
+.fa-github{
+  margin-left: 100px;
+  font-size: 50px;
 }
 #right {
   position: absolute;
   display: inline-block;
-  float: right;
+  padding-left: 200px;
+}
+// index.html ENDS
+
+/* login form */
+#homeLogo {
+  margin-left: 40px;
+  width: 150px;
+}
+
+#loginSection {
+  background: $bglight;
+  box-shadow: 0 8px 32px 0 $shadow;
+  backdrop-filter: blur( 2px );
+  -webkit-backdrop-filter: blur( 1px );
+  border-radius: 10px;
+  border: 1px solid $border;
   margin-left: 600px;
-}
-
-/* login/register forms */
-#exit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 530px;
-}
-
-#loginSection,
-#registerSection {
-  border: 2px solid white;
-  width: 50%;
-  margin-left: 250px;
-}
-
-#WelcomeTitle {
+  width: 30%;
   text-align: center;
 }
 
-#loginForm,
-#registerForm {
-  margin-left: 50px;
-  margin-right: 50px;
+#heading{
+  display: flex;
+  margin: auto;
+  height:60px;
 }
 
-#loginSubmit {
-  position: relative;
+#WelcomeTitle {
   display: inline-block;
-  margin-left: 50px;
+  margin-left: 115px;
+}
+
+.fa-times {
+  position: fixed;
+  float: right;
+  margin-left: 100px;
+  font-size: 30px;
+}
+
+.fa-times:hover {
+  border-radius: 10px;
+  background: $peach;
+  font-size: 30px;
+}
+
+#loginForm {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  margin: auto;
+  width: 80%;
+}
+
+#passwordForm {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  margin: auto;
+  width: 80%;
+}
+
+#loginSubmit{
+  border-radius: 10px;
+  border: 1px solid $peach;
+  background: $bglight;
+  box-shadow: 0 5px 15px 5px $shadow;
+  width: 30%;
+}
+
+#loginSubmit:hover {
+  background-color: $dark;
+  border: 1px solid $dark;
 }
 
 #reg {
-  position: absolute;
+  margin-left: 140px;
+}
+/* login form ENDS */
+
+/* register forms */
+#registerSection{
+  background: $bglight;
+  box-shadow: 0 8px 32px 0 $shadow;
+  backdrop-filter: blur( 2px );
+  -webkit-backdrop-filter: blur( 1px );
+  border-radius: 10px;
+  border: 1px solid $border;
+  margin-left: 600px;
+  width: 35%;
+  text-align: center;
+}
+
+#regHeading {
+  height:60px;
+}
+
+#regTitle {
   display: inline-block;
+}
+
+#nameForm,
+#userNameForm,
+#emailForm,
+#passwordForm,
+#repeatPWForm,
+#jobTitleForm,
+#jobNameForm,
+#studyFieldForm,
+#educatorNameForm,
+#studentExtraForm
+ {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  margin: auto;
+  width: 80%;
+}
+
+#eName,
+#sName {
+  width: 300px;
+  margin-left: 100px;
+}
+
+#eUsername,
+#sUsername {
+  width: 300px;
+  margin-left: 98px;
+}
+
+#eEmail,
+#sEmail {
+  width: 300px;
+  margin-left: 135px;
+}
+
+#ePassword,
+#sPassword {
+  width: 300px;
+  margin-left: 103px;
+}
+
+#eCheckPassword,
+#sCheckPassword {
+  width: 300px;
+  margin-left: 46px;
+}
+
+#jobTitle {
+  width: 300px;
+  margin-left: 52px;
+}
+#companyName{
+  width: 300px;
+  margin-left: 57px;
+}
+
+// student register forms
+#studyField{
+  width: 300px;
+  margin-left: 100px;
+}
+#educatorName{
+  width: 300px;
+  margin-left: 70px;
+}
+#sExtra{
+  width: 300px;
+  margin-left: 55px;
+}
+
+#studentRegTitle {
+  display: inline-block;
+  margin-left: 150px;
+}
+
+#exit {
+  margin-left: 130px;
+}
+
+#studentRegSubmit,
+#employerRegSubmit {
+  border-radius: 10px;
+  border: 1px solid $peach;
+  background: $bglight;
+  box-shadow: 0 5px 15px 5px $shadow;
+  width: 30%;
+}
+
+#studentRegSubmit:hover,
+#employerRegSubmit:hover {
+  background-color: $dark;
+  border: 1px solid $dark;
 }
 
 #cancel1 {
   position: relative;
   display: inline-block;
   margin-left: 50px;
+  border-radius: 10px;
 }
 
-
-#regSubmit {
-  position: absolute;
-  display: inline-block;
-  margin-left: 250px;
+#cancel1:hover {
+  background-color: $peach;
+  border: none;
 }
 
+#exit {
+  margin-left: 240px;
+}
+
+#sExtra {
+  margin-bottom: 25px;
+}
+
+#studentRegSubmit {
+  border-radius: 10px;
+  border: 1px solid $peach;
+  background: $bglight;
+  box-shadow: 0 15px 25px 0 $shadow;
+  width: 30%;
+}
+#studentRegSubmit:hover {
+  background-color: $dark;
+  border: none;
+}
+
+.input__select-img {
+  color: $white;
+  padding-bottom: 25px;
+}
 
 /* login/register forms ENDS */
 /* Employer dashboard starts */
-#dashNav {
-  margin-left: 150px;
-  width: 70%;
-}
 
 #createAd,
 #viewStudentProfile,
@@ -372,40 +637,31 @@ footer{
   display: inline-block;
 }
 
-#updateProduct{
-
-}
-
 // USER PROFILE CSS
 
-
-// #userProfile {
-//
-// }
-
-
-.testClass {
+#userProfile {
   position: relative;
   margin-left: 310px;
   margin-top: 140px;
   width: 55rem;
   height: 25rem;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+-webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+-moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
   background-color: #383838;
-  border: 1px solid transparent;
-  border-image: linear-gradient(to right, #E1B3A3, #A593C8, #7C83DB);
-  border-image-slice: 1;
-  padding: 10px;
+  padding: 40px;
 }
 
 #userImage {
   position: absolute;
-  right: 10px;
+  right: 30px;
   top: -50px;
   overflow: hidden;
   width: 20em;
   height: 20em;
-  border: solid 3px white;
   border-radius: 250px;
+  border: solid 3px white;
 }
 
 #fullName,
@@ -416,7 +672,7 @@ p {
 }
 
 #breakPoint {
-  width: 190px;
+  width: 250px;
   height: 10px;
   background-color: #cf82b5;
   border: solid 1px #cf82b5;
@@ -425,9 +681,327 @@ p {
 
 .fa-star {
   margin-top: 15px;
-  font-size: 80px;
 }
 
 .checked {
-  color: orange;
+  color: #7B82DE;
 }
+
+#logOut,
+#editProfile {
+  margin-top: 100px;
+  background-color: #BA9FB8;
+  border: 1px solid #BA9FB8;
+}
+
+// USER PROFILE CSS ENDS
+
+// STUDENT DASHBOARD CSS starts
+
+// nav
+.nav__dashboards {
+  #icon {
+    position: absolute;
+    top: 50px;
+  }
+
+  #upperTitle {
+    position: absolute;
+    top: 50px;
+    left: 600px;
+  }
+
+  #lowerTitle {
+    position: absolute;
+    font-size: 5rem;
+    left: 700px;
+  }
+}
+
+.sidebar__fix {
+  position: fixed;
+  float: left;
+  padding: 20px;
+  width: 25%;
+  height: 100vh;
+  background: $dark-gradient;
+  border-right: 1px solid $placeholder;
+
+  #logo {
+    position: absolute;
+    top: 100px;
+    left: 25%;
+  }
+}
+
+#posts {
+  margin-left: 25%;
+  margin-top: 200px;
+  padding: 10px;
+  width: 70%;
+}
+
+#sdjobPost {
+  width: 70%;
+  margin-left: 180px;
+  margin-bottom: 90px;
+  border: 1px solid $placeholder;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  background-color: #383838;
+  padding: 40px;
+
+  img {
+    width: 200px;
+    padding: 20px 0 40px 0;
+  }
+
+  .post__content {
+    padding: 40px;
+  }
+
+  h2,
+  h4 {
+    display: inline;
+  }
+
+  h4 {
+    margin-left: 20px;
+  }
+
+  .icon__bookmark--blank,
+  .icon__comment {
+    color: $peach;
+    float: right;
+    font-size: 30px;
+  }
+}
+
+#sidebarContent {
+  margin-top: 200px;
+  color: $white;
+}
+
+.sidebar__txt,
+.sidebar__filter {
+  display: block;
+  margin-left: 10%;
+}
+
+.sidebar__txt {
+  margin-bottom: 30px;
+}
+
+.sidebar__filter {
+  height: 50px;
+  width: 80%;
+  padding: 10px;
+  background-color: $low-white;
+  border: 1px solid $placeholder;
+}
+
+::placeholder {
+  padding-left: 10px;
+  color: $placeholder;
+}
+
+#searchForm {
+  a {
+    font-size: 1.4rem;
+  }
+}
+
+.nav__popover--dash {
+  margin-top: 20px;
+}
+// student dash ENDS
+
+
+/* Employer dashboard starts */
+
+.icon__nav-icon {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#createAd,
+#viewStudentProfile,
+#viewEmployerProfile,
+#logout{
+  margin-left: 11px;
+}
+#jobPost{
+  border: 2px solid white;
+  width: 70%;
+  margin-left: 150px;
+}
+#postDetails{
+  position: relative;
+  display: inline-block;
+  width: 600px;
+}
+#editPost{
+  position: absolute;
+  width: 100px;
+}
+#deletePost{
+  width: 100px;
+  margin-left: 600px;
+}
+/* create post begins */
+#createListing{
+  border: 2px solid white;
+  width: 40%;
+  margin-left: 300px;
+}
+#cancel2{
+  position: relative;
+  display: inline-block;
+}
+
+// student profiles begins
+
+#active {
+  color: $peach;
+}
+
+#upperTitle {
+  margin-left: 30px;
+}
+
+#lowerTitle {
+  position: absolute;
+  top: 85px;
+  left: 250px;
+  font-size: 3.2rem;
+}
+
+.img-container__crop-main-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  top: -110px;
+  left: 83%;
+  overflow: hidden;
+  border: 2px solid $peach;
+  border-radius: 50%;
+
+  img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+#studentProfiles {
+  margin-top: 30px;
+}
+
+.img__divider {
+  position: absolute;
+  top: 155px;
+  left: 480px;
+  height: 10px;
+}
+
+.student-carousel {
+  width: 80%;
+}
+
+.card {
+  margin: 50px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+.img-container__crop {
+  margin: 20px 25% 15px 35%;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid $peach;
+  border-radius: 50%;
+
+  img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.card-body {
+  height: 500px;
+  background-color: $dark;
+  border: 2px solid $peach;
+  border-radius: 52px;
+  -webkit-box-shadow: 0px 0px 14px $peach;
+   -moz-box-shadow: 0px 0px 14px $peach;
+        box-shadow: 0px 0px 14px $peach;
+}
+
+.slick-active {
+  .card-body {
+    @include card-style;
+  }
+}
+
+.slick-active + .slick-active {
+  .card-body {
+    @include card-style($peach);
+  }
+}
+
+.slick-active + .slick-active + .slick-active {
+  .card-body {
+    @include card-style;
+  }
+}
+
+.card-title {
+  margin: 15px 0 15px 0;
+}
+
+.card-text {
+  color: white;
+  font-size: 0.9rem;
+  margin: 15px 0 0 0;
+  width: 100%;
+  @extend %inter-font-default;
+}
+
+.slick-prev,
+.slick-prev:before,
+.slick-prev:after,
+.slick-next:hover {
+ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8ab9d'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e")
+}
+
+.slick-next,
+.slick-next:before,
+.slick-next:after,
+.slick-next:hover {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e8ab9d'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 0;
+}
+
+.img-container__crop-students {
+  margin: 25px 5px 20px 0;
+  width: 150px;
+  height: 150px;
+  @extend .img-container__crop;
+}
+
+// student profiles ENDS ------------------------------

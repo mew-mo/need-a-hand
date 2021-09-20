@@ -10,6 +10,7 @@ const postSchema = new mongoose.Schema({
     type: Array,
     require: true
   },
+  category: String,
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employer'

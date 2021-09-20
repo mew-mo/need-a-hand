@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css\style.css">
+
+  <title>Need A Hand | Student Register</title>
+</head>
+<body class="bg-dark">
+
+  <div id="loginNav">
+    <a href="index.html"><img id="homeLogo" class="mt-4" src="image/NAHLogo.png" alt="Need A Hand logo of a hand"></a>
+  </div>
+
+  <div id="registerSection" class="my-2 pt-3 pb-3" >
+    <div id="heading">
+    <h1 id="studentRegTitle" class="text-light">Student Sign up!</h1>
+    <a href="index.html"><i id="exit" class="fa fa-times text-white" aria-hidden="true"></i></a>
+    </div>
+    <!-- login form -->
+
+    <form id="nameForm" class="my-4 rounded-pill">
+        <label for="sName" class="text-light mr-5">Full Name</label>
+        <input id="sName" type="text" name="name" class="form-control"  value="">
+      </form>
+      <form id="userNameForm" class="my-4 rounded-pill">
+        <label for="sUsername" class="text-light"> Username: </label>
+        <input id="sUsername" type="text" name="username" class="form-control" value="">
+      </form>
+      <form id="emailForm" class="my-4 rounded-pill">
+        <label for="sEmail" class="text-light">Email</label>
+        <input id="sEmail" type="email" name="r-email" class="form-control" value="">
+      </form>
+      <form id="passwordForm" class="my-4 rounded-pill">
+        <label for="sPassword" class="text-light"> Password: </label>
+        <input id="sPassword" type="password" name="password"  class="form-control" value="">
+      </form>
+      <form id="repeatPWForm" class="my-4 rounded-pill">
+        <label for="sCheckPassword" class="text-light">Confirm Password</label>
+        <input id="sCheckPassword" type="password" name="r-password" class="form-control" value="">
+      </form>
+      <form id="studyFieldForm" class="my-4 rounded-pill">
+        <label for="studyField" class="text-light">Study Field</label>
+        <input id="studyField" type="text" name="r-name" class="form-control" value="">
+      </form>
+      <form id="educatorNameForm" class="my-4 rounded-pill">
+        <label for="educatorName" class="text-light">Educator Name</label>
+        <input id="educatorName" type="text" name="r-name" class="form-control" value="">
+      </form>
+      <form id="studentExtraForm" class="my-4 rounded-pill">
+        <label for="sExtra" class="text-light">Additional Details</label>
+        <input id="sExtra" type="text" name="r-extra" class="form-control" value="">
+      </form>
+      <div class="input__select-img">
+        <label for="user-icon">Upload Profile Image:</label>
+
+        <input type="file" id="userIcon" name="user-icon" accept="image/png, image/jpeg">
+      </div>
+
+
+    <!-- <form id="registerForm" class="my-4 rounded-pill">
+
+      <label for="sName" class="text-light">Full Name</label>
+      <input id="sName" type="text" name="name" class="form-control"  value="">
+      <br>
+      <label for="sUsername" class="text-light"> Username: </label>
+      <input id="sUsername" type="text" name="username" class="form-control" value="">
+      <br>
+      <label for="sEmail" class="text-light">Email</label>
+      <input id="sEmail" type="email" name="r-email" class="form-control" value="">
+      <br>
+      <label for="sPassword" class="text-light"> Password: </label>
+      <input id="sPassword" type="password" name="password"  class="form-control" value="">
+      <br>
+      <label for="sCheckPassword" class="text-light">Confirm Password</label>
+      <input id="sCheckPassword" type="password" name="r-password" class="form-control" value="">
+      <br>
+      <label for="studyField" class="text-light">Study Field</label>
+      <input id="studyField" type="text" name="study-field" class="form-control" value="">
+      <br>
+      <label for="educatorName" class="text-light">Educator Name</label>
+      <input id="educatorName" type="text" name="educator-name" class="form-control" value="">
+      <br>
+      <label for="sExtra" class="text-light">extra</label>
+      <input id="sExtra" type="text" name="extra" class="form-control" value="">
+
+
+    </form> -->
+
+    <div id="regFormButtons">
+      <a href="studentDash.html"><button id="studentRegSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
+
+      <a href="index.html"><button id="cancel1" name="r-button" type="button" class="btn btn-dark">Cancel</button></a>
+    </div>
+
+  </div>
+
+      <!-- // SCRIPT LINKS - -->
+
+
+      <!-- jquery -->
+      <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js"></script>
+      <!-- bootstrap -->
+      <script src="../frontEnd/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+      <!-- custom javascript -->
+      <!-- *** CHANGE TO SCRIPT.MIN.JS AFTER YOU HAVE FINISHED WITH THE CONSOLE ** -->
+      <script src="js/script.js"></script>
+
+</body>
+</html>

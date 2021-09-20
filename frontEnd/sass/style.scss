@@ -454,6 +454,11 @@ footer{
 
 #reg {
   margin-left: 140px;
+
+  a {
+    color: $peach;
+    text-decoration: underline;
+  }
 }
 /* login form ENDS */
 
@@ -657,7 +662,7 @@ footer{
 
 #userProfile {
   display: none;
-  position: relative;
+  position: absolute;
   margin-left: 310px;
   margin-top: 140px;
   width: 55rem;
@@ -697,9 +702,11 @@ p {
 }
 
 #logOut {
-  margin-top: 100px;
-  background-color: #BA9FB8;
-  border: 1px solid #BA9FB8;
+  position: relative;
+  top: 90px;
+  width: auto;
+  padding: 10px;
+  @extend #studentRegSubmit;
 }
 
 .img__divider--profile {
@@ -721,6 +728,16 @@ p {
 
 .icon__edit {
   color: $peach;
+}
+
+.modal__update-field {
+  @extend .sidebar__filter;
+}
+
+.update-modal__update-btn--user {
+  width: auto;
+  padding: 10px;
+  @extend #studentRegSubmit;
 }
 // USER PROFILE CSS ENDS
 

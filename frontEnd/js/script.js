@@ -365,17 +365,17 @@ $(document).on('click', '.delete-button', function(event) {
   convertImg = () => {
     // checks if the files exist before running
     if (document.querySelector('#userIcon').files && document.querySelector('#userIcon').files[0]) {
-      var reader = new FileReader();
-      var file = document.querySelector('#userIcon').files[0];
       // creates a filereader
+      var reader = new FileReader();
+      // finds the file that was uploaded
+      var file = document.querySelector('#userIcon').files[0];
 
-      // read the data as a url for the file-
+      // reads the file data as a url
       reader.readAsDataURL(file);
 
-      // when the filereader loads, generate the url of the target (user img)
+      // when the filereader loads, generate the url of the target (user img) and set that as the uploaded img url
       reader.addEventListener('load', (e) => {
         uploadedImg.url = e.target.result;
-        console.log(uploadedImg.url);
       });
     }
   }; //convertimg ENDS
@@ -635,62 +635,6 @@ $(document).on('click', '.delete-button', function(event) {
     };
   // login and logout ENDS
 
-  // PATCH - student profile - update student profile details ===========================
-
-  $('#updateSTUDENTPROFILE').click(function(){
-
-    event.preventDefault();
-
-    // ** not sure about username **
-    let userid = sessionStorage.getItem('userID');
-
-    // let productId = $('#productId').val();
-    let sName = $('#name').val();
-    let sUsername = $('#username').val();
-    let sEmail = $('#user-email').val();
-    let ePassword = $('#password').val();
-    // let ePfpUrl = $('#profile-INPUT').val();
-    let eWorkField = $('#r-name').val();
-    let eCompanyName = $('#company-name').val();
-    let eExtra = $('#r-extra').val();
-
-    console.log(name, studyField, educator, extra, userid);
-    if ( name == '' || studyField == '' || educator == '' || extra == ''){
-      alert('Please enter profile update information');
-    } else {
-      $.ajax({
-        url: `${url}/updateStudent/:id`,
-        type: 'PATCH',
-        data:{
-          name: name,
-          studyField: studyField,
-          educator: educator,
-          extra: extra,
-          // ** does this need to be added to models/employer
-          username_id: userid
-        },
-        success: function(data){
-          console.log(data);
-          if(data == '401 error: user has no permission to update'){
-            alert('401 error: user has no permission to update');
-
-          } else {
-            alert('updated');
-          }//else
-          // ** NEED TO UPDATE THE IDS **
-          $('#inputidUpdate').val('');
-          $('#inputidUpdate').val('');
-          $('#inputidUpdate').val('');
-          $('#inputidUpdate').val('');
-        }, //success
-        error: function(){
-          console.log('error:cannot call api');
-        }//error
-      });//ajax
-    }//if
-  });//updateJOBPOSTXXXX
-
-
   // GET - CONDITIONAL USER PROFILE STARTS
   // ==================================================
 
@@ -712,12 +656,23 @@ $(document).on('click', '.delete-button', function(event) {
             document.querySelector('#userProfile').style.display = 'block';
           }, // complete
           success: function(itemsFromDB) {
+            // profile content
             document.querySelector('#myName').innerHTML = `${itemsFromDB.name} | @${itemsFromDB.username}`;
 
             document.querySelector('#userImage').innerHTML = `<img src="${window.name}" alt="@${itemsFromDB.username}'s profile picture'">`;
             document.querySelector('#myTitle').innerHTML = `${itemsFromDB.studyField} | ${itemsFromDB.educator}`;
 
             document.querySelector('#myDesc').innerHTML = `${itemsFromDB.extra}`;
+            // profile content ENDS
+            // modal content
+            document.querySelector('.label__update-place').innerHTML = 'Educator';
+            $('#updateName').val(`${itemsFromDB.name}`);
+            $('#updateUsername').val(`${itemsFromDB.username}`);
+            $('#updateEmail').val(`${itemsFromDB.email}`);
+            $('#updateField').val(`${itemsFromDB.studyField}`);
+            $('#updatePlace').val(`${itemsFromDB.educator}`);
+            $('#updateExtra').val(`${itemsFromDB.extra}`);
+            // modal content ENDS
           }, //success ends
           error: function() {
             alert('Error: Cannot GET');
@@ -728,7 +683,6 @@ $(document).on('click', '.delete-button', function(event) {
     } else if (sessionStorage.accType == 'employer') {
 
       window.addEventListener('load', () => {
-        console.log('employer call goinggg');
         $.ajax({
           url: `${url}/getEmployer/${sessionStorage.userID}`,
           type: 'GET',
@@ -742,12 +696,24 @@ $(document).on('click', '.delete-button', function(event) {
             document.querySelector('#userProfile').style.display = 'block';
           }, // complete
           success: function(itemsFromDB) {
-            document.querySelector('#myName').innerHTML = `${itemsFromDB.name} | @${itemsFromDB.username}`;
+
+            // profile
+            document.querySelector('#myName').innerHTML =  `${itemsFromDB.name} | @${itemsFromDB.username}`;
 
             document.querySelector('#userImage').innerHTML = `<img src="${window.name}" alt="@${itemsFromDB.username}'s profile picture'">`;
-            document.querySelector('#myTitle').innerHTML = `${itemsFromDB.workField} | ${itemsFromDB.companyName}`;
+            document.querySelector('#myTitle').innerHTML =   `${itemsFromDB.workField} | ${itemsFromDB.companyName}`;
 
-            document.querySelector('#myDesc').innerHTML = `${itemsFromDB.extra}`;
+            document.querySelector('#myDesc').innerHTML =  `${itemsFromDB.extra}`;
+            // profile ENDS
+            // modal content
+            document.querySelector('#label__update-place').innerHTML = 'Company Name';
+            $('#updateName').val(`${itemsFromDB.name}`);
+            $('#updateUsername').val(`${itemsFromDB.username}`);
+            $('#updateEmail').val(`${itemsFromDB.email}`);
+            $('#updateField').val(`${itemsFromDB.workField}`);
+            $('#updatePlace').val(`${itemsFromDB.companyName}`);
+            $('#updateExtra').val(`${itemsFromDB.extra}`);
+            // modal content ENDS
           }, //success ends
           error: function() {
             alert('Error: Cannot GET');
@@ -757,6 +723,171 @@ $(document).on('click', '.delete-button', function(event) {
     } // student employer if else ends
   } // if user profile ends
   // conditional user profile ENDS
+
+  // PATCH - UPDATE USER PROFILE STARTS
+  // ==================================================
+
+  if (document.querySelector('.icon__edit')) {
+    document.querySelector('.icon__edit').addEventListener('click', () => {
+      console.log('EDIT CLICKED');
+      $('#updateUserModal').modal('show');
+    }, false);
+    // show edit modal
+
+    document.querySelector('.update-modal__update-btn--user').addEventListener('click', () => {
+
+      // checking if it's a student account
+      if (sessionStorage.accType == 'student') {
+        event.preventDefault();
+
+        var pass = {
+          newPass: ''
+        };
+
+        let userId = sessionStorage.getItem('userID');
+        let name = $('#updateName').val();
+        let username = $('#updateUsername').val();
+        let email = $('#updateEmail').val();
+        let password = $('#updatePass').val();
+        let passwordCheck = $('#checkUpdatePass').val();
+        let studyField = $('#updateField').val();
+        let educator = $('#updatePlace').val();
+        let extra = $('#updateExtra').val();
+        let pfpUrl = uploadedImg.url;
+
+        // password setting conditionals
+        if (password == '') {
+          pass.newPass = sessionStorage.userPass;
+          console.log(pass.newPass);
+        } else if (password && passwordCheck == '') {
+          alert('Please re-enter your new password');
+        } else if (password != passwordCheck) {
+          $('#checkUpdatePass').val('');
+          alert('Passwords do not match. Please try again');
+        } else if (password) {
+          pass.newPass = password;
+        }
+
+        if (name == '' || username == '' || email == '' || studyField == '' || educator == '' || extra == '') {
+          alert('Please enter all update details');
+        } else {
+          $.ajax({
+            url: `${url}/updateStudent/${userId}`,
+            type: 'PATCH',
+            data: {
+              name: name,
+              username: username,
+              email: email,
+              password: pass.newPass,
+              pfpUrl: pfpUrl,
+              studyField: studyField,
+              educator: educator,
+              extra: extra
+            },
+            success: function(data) {
+              if (data == 'Error: Student profile not found') {
+                alert('Error: Student profile not found');
+              } else {
+                alert('Successfully updated your details.');
+                // resetting pass fields
+                $('#updatePass').val('');
+                $('#checkUpdatePass').val('');
+                // updating the session to match your updated details
+                window.name = pfpUrl;
+                sessionStorage.setItem('userFullName', name);
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('userEmail', email);
+                sessionStorage.setItem('userPass', pass.newPass);
+                $('#updateUserModal').modal('hide');
+                location.reload();
+              } //else
+            }, //success
+            error: function() {
+              alert('Error: Can\'t call API');
+            } // error
+          }); // ajax
+        } //else
+
+        // checking if its an employer account
+      } else if (sessionStorage.accType == 'employer') {
+        event.preventDefault();
+
+        var ePass = {
+          newPass: ''
+        };
+
+        let userId = sessionStorage.getItem('userID');
+        let name = $('#updateName').val();
+        let username = $('#updateUsername').val();
+        let email = $('#updateEmail').val();
+        let password = $('#updatePass').val();
+        let passwordCheck = $('#checkUpdatePass').val();
+        let workField = $('#updateField').val();
+        let companyName = $('#updatePlace').val();
+        let extra = $('#updateExtra').val();
+        let pfpUrl = uploadedImg.url;
+
+        // password setting conditionals
+        if (password == '') {
+          ePass.newPass = sessionStorage.userPass;
+          console.log(ePass.newPass);
+        } else if (password && passwordCheck == '') {
+          alert('Please re-enter your new password');
+        } else if (password != passwordCheck) {
+          $('#checkUpdatePass').val('');
+          alert('Passwords do not match. Please try again');
+        } else if (password) {
+          ePass.newPass = password;
+        }
+
+        if (name == '' || username == '' || email == '' || workField == '' || companyName == '' || extra == '') {
+          alert('Please enter all update details');
+        } else {
+          $.ajax({
+            url: `${url}/updateEmployer/${userId}`,
+            type: 'PATCH',
+            data: {
+              name: name,
+              username: username,
+              email: email,
+              password: ePass.newPass,
+              pfpUrl: pfpUrl,
+              workField: workField,
+              companyName: companyName,
+              extra: extra
+            },
+            success: function(data) {
+              if (data == 'Error: Employer profile not found') {
+                alert('Error: Employer profile not found');
+              } else {
+                alert('Successfully updated your details.');
+                // resetting pass fields
+                $('#updatePass').val('');
+                $('#checkUpdatePass').val('');
+                // updating the session to match your updated details
+                sessionStorage.setItem('userFullName', name);
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('userEmail', email);
+                sessionStorage.setItem('userPass', ePass.newPass);
+                window.name = pfpUrl;
+                $('#updateUserModal').modal('hide');
+                location.reload();
+              } //else
+            }, //success
+            error: function() {
+              alert('Error: Can\'t call API');
+            } // error
+          }); // ajax
+        } //else
+      } // if employer or student ENDS
+    }, false); // edit onclick ENDS
+
+    document.querySelector('.update-modal__cancel-btn').addEventListener('click', () => {
+      $('#updateUserModal').modal('hide');
+    }, false);
+
+  } // if icon edit ENDS
+  // update user profile ENDS
 
   // CONDITIONAL DASHBOARD LINKS STARTS
   // ==================================================
@@ -794,7 +925,7 @@ $(document).on('click', '.delete-button', function(event) {
 
   if (sessionStorage.length != 0 && document.querySelector('#icon')) {
     document.querySelector('#icon').innerHTML = `<img src="${window.name}" alt="@${sessionStorage.userName}'s icon'">`;
-  } //NOTE : need to have err prevention if user doesnt have an icon
+  }
 
   // checking if the icon exists in a page
   if (document.querySelector('.nav__popover')) {
@@ -825,7 +956,7 @@ $(document).on('click', '.delete-button', function(event) {
   }
   // ICON NAV ENDS ------------------------------
 
-  // STUDENT PROFILES JS STARTS
+  // GET - STUDENT PROFILES JS STARTS
   // ==================================================
 
   if ($('body').data('title') === 'student-profiles-page') {

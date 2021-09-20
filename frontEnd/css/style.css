@@ -6,20 +6,21 @@ body {
   overflow-x: hidden;
 }
 
-.nav__links a, .nav__links--right a, h2,
+h1, h2,
 h4,
 h5,
-h6, h1 {
+h6, .nav__links a, .nav__links--right a {
   font-weight: 300;
   color: white;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
 }
 
-.card-text, p,
-a {
+h3,
+p,
+a, .card-text {
   font-weight: 300;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1 {
@@ -28,6 +29,10 @@ h1 {
 
 h2 {
   font-size: 2.1rem;
+}
+
+h3 {
+  font-size: 1.8rem;
 }
 
 a:hover,
@@ -49,6 +54,17 @@ a {
   font-size: 30px;
   position: relative;
   top: 8px;
+}
+
+.loading__icon {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 75%;
 }
 
 .nav {
@@ -200,14 +216,6 @@ nav {
   transform-style: preserve-3d;
 }
 
-h3 {
-  font-size: 20px;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .product-card {
   max-width: 300px;
   background: rgba(255, 255, 255, 0.2);
@@ -218,12 +226,19 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.11);
   height: 400px;
 }
+.product-card h3 {
+  font-size: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .product-card:nth-child(1) {
   transform: translate3d(0, 0, -15px);
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -231,7 +246,7 @@ h3 {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -239,7 +254,7 @@ h3 {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 
@@ -583,6 +598,7 @@ footer {
 }
 
 #userProfile {
+  display: none;
   position: relative;
   margin-left: 310px;
   margin-top: 140px;
@@ -597,14 +613,21 @@ footer {
 }
 
 #userImage {
+  width: 300px;
+  height: 300px;
   position: absolute;
   right: 30px;
   top: -50px;
   overflow: hidden;
-  width: 20em;
-  height: 20em;
-  border-radius: 250px;
-  border: solid 3px white;
+  border: solid 3px #e8ab9d;
+  border-radius: 50%;
+}
+#userImage img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 #fullName,
@@ -614,27 +637,31 @@ p {
   width: 50%;
 }
 
-#breakPoint {
-  width: 250px;
-  height: 10px;
-  background-color: #cf82b5;
-  border: solid 1px #cf82b5;
-  border-radius: 100px;
-}
-
-.fa-star {
-  margin-top: 15px;
-}
-
-.checked {
-  color: #7B82DE;
-}
-
-#logOut,
-#editProfile {
+#logOut {
   margin-top: 100px;
   background-color: #BA9FB8;
   border: 1px solid #BA9FB8;
+}
+
+.img__divider--profile {
+  width: 25%;
+}
+
+#myName {
+  padding: 25px 0 15px 0;
+}
+
+#myTitle {
+  margin-left: 5px;
+  display: inline;
+}
+
+#myDesc {
+  padding: 25px 0 0 0;
+}
+
+.icon__edit {
+  color: #e8ab9d;
 }
 
 .nav__dashboards #icon {

@@ -1,20 +1,5 @@
 (function() {
 
-console.log('script is linked'); //testing if script.js is working
-console.log(sessionStorage);
-
-// employerDASH  =============================================================
-
-
-  $('#createListing').hide();
-  $('#jobPost').hide();
-  $('#hidden').hide();
-
-
-  $('#createAd').click(function(){
-    $('#createListing').show();
-  });
-
   // declaring url
   let url;
   // declaring where the user's uploaded image url will sit
@@ -34,7 +19,6 @@ console.log(sessionStorage);
     }
   });
 
-
   console.log('script is linked'); //testing if script.js is working
   console.log(sessionStorage);
 
@@ -43,6 +27,7 @@ console.log(sessionStorage);
 
   $('#createListing').hide();
   $('#jobPost').hide();
+  $('#hidden').hide();
 
 
   $('#createAd').click(function(){
@@ -443,7 +428,7 @@ $(document).on('click', '.delete-button', function(event) {
         success: function(user) {
           window.name = user.pfpUrl;
           sessionStorage.setItem('userID', user._id);
-          sessionStorage.setItem('userName', user.name);
+          sessionStorage.setItem('userFullName', user.name);
           sessionStorage.setItem('username', user.username);
           sessionStorage.setItem('userEmail', user.email);
           sessionStorage.setItem('userPass', user.password);
@@ -514,6 +499,7 @@ $(document).on('click', '.delete-button', function(event) {
           sessionStorage.setItem('username', user.username);
           sessionStorage.setItem('userEmail', user.email);
           sessionStorage.setItem('userPass', user.password);
+          sessionStorage.setItem('extra', user.extra);
           sessionStorage.setItem('accType', 'employer');
 
           console.log(sessionStorage);
@@ -566,10 +552,12 @@ $(document).on('click', '.delete-button', function(event) {
                 $('#password').val('');
                 // field where they type the password
               } else {
+                localStorage.clear();
                 // session storage
                 window.name = user.pfpUrl;
                 sessionStorage.setItem('userID', user._id);
-                sessionStorage.setItem('userName', user.username);
+                sessionStorage.setItem('userFullName', user.name);
+                sessionStorage.setItem('username', user.username);
                 sessionStorage.setItem('userEmail', user.email);
                 sessionStorage.setItem('userPass', user.password);
                 sessionStorage.setItem('accType', 'student');
@@ -611,8 +599,8 @@ $(document).on('click', '.delete-button', function(event) {
                 // session storage
                 window.name = user.pfpUrl;
                 sessionStorage.setItem('userID', user._id);
-                sessionStorage.setItem('userName', user.username);
-                sessionStorage.setItem('iconImg', user.pfpUrl);
+                sessionStorage.setItem('userFullName', user.name);
+                sessionStorage.setItem('username', user.username);
                 sessionStorage.setItem('userEmail', user.email);
                 sessionStorage.setItem('userPass', user.password);
                 sessionStorage.setItem('accType', 'employer');
@@ -703,8 +691,74 @@ $(document).on('click', '.delete-button', function(event) {
   });//updateJOBPOSTXXXX
 
 
+  // GET - CONDITIONAL USER PROFILE STARTS
+  // ==================================================
 
-  // CONDITIONAL DASHBOARD LINKS  STARTS
+  // checking if the profile exists
+  if (document.querySelector('#userProfile')) {
+    if (sessionStorage.accType == 'student') {
+
+      window.addEventListener('load', () => {
+        $.ajax({
+          url: `${url}/getStudent/${sessionStorage.userID}`,
+          type: 'GET',
+          dataType: 'json',
+          beforeSend: function() {
+            document.querySelector('.loading__icon').style.display = 'flex';
+            document.querySelector('#userProfile').style.display = 'none';
+          }, // beforeSend ENDS
+          complete: function() {
+            document.querySelector('.loading__icon').style.display = 'none';
+            document.querySelector('#userProfile').style.display = 'block';
+          }, // complete
+          success: function(itemsFromDB) {
+            document.querySelector('#myName').innerHTML = `${itemsFromDB.name} | @${itemsFromDB.username}`;
+
+            document.querySelector('#userImage').innerHTML = `<img src="${window.name}" alt="@${itemsFromDB.username}'s profile picture'">`;
+            document.querySelector('#myTitle').innerHTML = `${itemsFromDB.studyField} | ${itemsFromDB.educator}`;
+
+            document.querySelector('#myDesc').innerHTML = `${itemsFromDB.extra}`;
+          }, //success ends
+          error: function() {
+            alert('Error: Cannot GET');
+          } //error ends
+        }); //ajax ends
+      }); //window load
+
+    } else if (sessionStorage.accType == 'employer') {
+
+      window.addEventListener('load', () => {
+        console.log('employer call goinggg');
+        $.ajax({
+          url: `${url}/getEmployer/${sessionStorage.userID}`,
+          type: 'GET',
+          dataType: 'json',
+          beforeSend: function() {
+            document.querySelector('.loading__icon').style.display = 'flex';
+            document.querySelector('#userProfile').style.display = 'none';
+          }, // beforeSend ENDS
+          complete: function() {
+            document.querySelector('.loading__icon').style.display = 'none';
+            document.querySelector('#userProfile').style.display = 'block';
+          }, // complete
+          success: function(itemsFromDB) {
+            document.querySelector('#myName').innerHTML = `${itemsFromDB.name} | @${itemsFromDB.username}`;
+
+            document.querySelector('#userImage').innerHTML = `<img src="${window.name}" alt="@${itemsFromDB.username}'s profile picture'">`;
+            document.querySelector('#myTitle').innerHTML = `${itemsFromDB.workField} | ${itemsFromDB.companyName}`;
+
+            document.querySelector('#myDesc').innerHTML = `${itemsFromDB.extra}`;
+          }, //success ends
+          error: function() {
+            alert('Error: Cannot GET');
+          } //error ends
+        }); //ajax ends
+      }); //window load
+    } // student employer if else ends
+  } // if user profile ends
+  // conditional user profile ENDS
+
+  // CONDITIONAL DASHBOARD LINKS STARTS
   // ==================================================
 
   changeDashLink = (page) => {
@@ -790,6 +844,12 @@ $(document).on('click', '.delete-button', function(event) {
         url: `${url}/allStudents`,
         type: 'GET',
         dataType: 'json',
+        beforeSend: function() {
+          document.querySelector('.loading__icon').style.display = 'flex';
+        }, // beforeSend ENDS
+        complete: function() {
+          document.querySelector('.loading__icon').style.display = 'none';
+        }, // complete
         success: function(itemsFromDB) {
           for (var i = 0; i < itemsFromDB.length; i++) {
             $('.student-carousel').slick('slickAdd', `

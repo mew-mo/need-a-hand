@@ -6,21 +6,21 @@ body {
   overflow-x: hidden;
 }
 
-.nav__links a, .nav__links--right a, h2,
+h1, h2,
 h4,
 h5,
-h6, h1 {
+h6, .nav__links a, .nav__links--right a {
   font-weight: 300;
   color: white;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
 }
 
-.card-text, h3,
+h3,
 p,
-a {
+a, .card-text {
   font-weight: 300;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1 {
@@ -238,7 +238,7 @@ nav {
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -246,7 +246,7 @@ nav {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -254,7 +254,7 @@ nav {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 
@@ -505,7 +505,7 @@ footer {
   margin-left: 130px;
 }
 
-#studentRegSubmit, .update-modal__update-btn--user, #logOut,
+#studentRegSubmit, #logOut, .update-modal__update-btn--user,
 #employerRegSubmit {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
@@ -514,7 +514,7 @@ footer {
   width: 30%;
 }
 
-#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover,
+#studentRegSubmit:hover, #logOut:hover, .update-modal__update-btn--user:hover,
 #employerRegSubmit:hover {
   background-color: #21262A;
   border: 1px solid #21262A;
@@ -540,7 +540,7 @@ footer {
   margin-bottom: 25px;
 }
 
-#studentRegSubmit, .update-modal__update-btn--user, #logOut {
+#studentRegSubmit, #logOut, .update-modal__update-btn--user {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
   background: rgba(255, 255, 255, 0.2);
@@ -548,7 +548,7 @@ footer {
   width: 30%;
 }
 
-#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover {
+#studentRegSubmit:hover, #logOut:hover, .update-modal__update-btn--user:hover {
   background-color: #21262A;
   border: none;
 }
@@ -643,7 +643,7 @@ p {
 
 #logOut {
   position: relative;
-  top: 90px;
+  top: 70px;
   width: auto;
   padding: 10px;
 }
@@ -666,6 +666,10 @@ p {
 }
 
 .icon__edit {
+  position: relative;
+  font-size: 40px;
+  top: 105px;
+  left: 650px;
   color: #e8ab9d;
 }
 

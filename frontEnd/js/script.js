@@ -647,9 +647,6 @@ $(document).on('click', '.delete-button', function(event) {
           url: `${url}/getStudent/${sessionStorage.userID}`,
           type: 'GET',
           dataType: 'json',
-          data: {
-            studentID: 'hello'
-          },
           beforeSend: function() {
             document.querySelector('.loading__icon').style.display = 'flex';
             document.querySelector('#userProfile').style.display = 'none';

@@ -703,7 +703,7 @@ p {
 
 #logOut {
   position: relative;
-  top: 90px;
+  top: 70px;
   width: auto;
   padding: 10px;
   @extend #studentRegSubmit;
@@ -727,6 +727,10 @@ p {
 }
 
 .icon__edit {
+  position: relative;
+  font-size: 40px;
+  top: 105px;
+  left: 650px;
   color: $peach;
 }
 

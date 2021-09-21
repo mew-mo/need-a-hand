@@ -148,6 +148,32 @@ app.get('/allPosts', (req, res) => {
     res.send(result);
   })
 })
+
+// get a specific employer
+app.get('/getEmployer/:id', (req, res) => {
+  const idParam = req.params.id;
+  Employer.findById(idParam, (err, user) => {
+    if (Employer.user_id == req.body._id) {
+      Employer.findOne()
+        .then(result => {res.send(result);})
+    } else {
+      res.send('Error: Employer user not found')
+    }
+  })
+})
+
+// get a specific student
+app.get('/getStudent/:id', (req, res) => {
+  const idParam = req.params.id;
+  Student.findById(idParam, (err, user) => {
+    if (Student.user_id == req.body._id) {
+      Student.findOne()
+        .then(result => {res.send(result);})
+    } else {
+      res.send('Error: Student user not found')
+    }
+  })
+})
 //BRANCH:reading-get ENDS ------------------------------------------------------
 
 //BRANCH:updating-patch - patch is to update the details of the objects

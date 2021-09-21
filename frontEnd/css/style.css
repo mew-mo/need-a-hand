@@ -15,7 +15,8 @@ h6, h1 {
   font-family: "KoHo", sans-serif;
 }
 
-.card-text, p,
+.card-text, h3,
+p,
 a {
   font-weight: 300;
   color: white;
@@ -28,6 +29,10 @@ h1 {
 
 h2 {
   font-size: 2.1rem;
+}
+
+h3 {
+  font-size: 1.8rem;
 }
 
 a:hover,
@@ -49,6 +54,17 @@ a {
   font-size: 30px;
   position: relative;
   top: 8px;
+}
+
+.loading__icon {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 75%;
 }
 
 .nav {
@@ -205,14 +221,6 @@ nav {
   transform-style: preserve-3d;
 }
 
-h3 {
-  font-size: 20px;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .product-card {
   max-width: 300px;
   background: rgba(255, 255, 255, 0.2);
@@ -222,6 +230,13 @@ h3 {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.11);
   height: 400px;
+}
+.product-card h3 {
+  font-size: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .product-card:nth-child(1) {
   transform: translate3d(0, 0, -15px);
@@ -377,6 +392,10 @@ footer {
 #reg {
   margin-left: 140px;
 }
+#reg a {
+  color: #e8ab9d;
+  text-decoration: underline;
+}
 
 /* login form ENDS */
 /* register forms */
@@ -400,7 +419,7 @@ footer {
   margin-left: 120px;
 }
 
-#studentRegSubmit,
+#studentRegSubmit, .update-modal__update-btn--user, #logOut,
 #employerRegSubmit {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
@@ -409,7 +428,7 @@ footer {
   width: 30%;
 }
 
-#studentRegSubmit:hover,
+#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover,
 #employerRegSubmit:hover {
   background-color: #21262A;
   border: 1px solid #21262A;
@@ -435,7 +454,7 @@ footer {
   margin-bottom: 25px;
 }
 
-#studentRegSubmit {
+#studentRegSubmit, .update-modal__update-btn--user, #logOut {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
   background: rgba(255, 255, 255, 0.2);
@@ -443,7 +462,7 @@ footer {
   width: 30%;
 }
 
-#studentRegSubmit:hover {
+#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover {
   background-color: #21262A;
   border: none;
 }
@@ -497,7 +516,8 @@ footer {
 }
 
 #userProfile {
-  position: relative;
+  display: none;
+  position: absolute;
   margin-left: 310px;
   margin-top: 140px;
   width: 55rem;
@@ -511,14 +531,21 @@ footer {
 }
 
 #userImage {
+  width: 300px;
+  height: 300px;
   position: absolute;
   right: 30px;
   top: -50px;
   overflow: hidden;
-  width: 20em;
-  height: 20em;
-  border-radius: 250px;
-  border: solid 3px white;
+  border: solid 3px #e8ab9d;
+  border-radius: 50%;
+}
+#userImage img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 #fullName,
@@ -528,27 +555,37 @@ p {
   width: 50%;
 }
 
-#breakPoint {
-  width: 250px;
-  height: 10px;
-  background-color: #cf82b5;
-  border: solid 1px #cf82b5;
-  border-radius: 100px;
+#logOut {
+  position: relative;
+  top: 90px;
+  width: auto;
+  padding: 10px;
 }
 
-.fa-star {
-  margin-top: 15px;
+.img__divider--profile {
+  width: 25%;
 }
 
-.checked {
-  color: #7B82DE;
+#myName {
+  padding: 25px 0 15px 0;
 }
 
-#logOut,
-#editProfile {
-  margin-top: 100px;
-  background-color: #BA9FB8;
-  border: 1px solid #BA9FB8;
+#myTitle {
+  margin-left: 5px;
+  display: inline;
+}
+
+#myDesc {
+  padding: 25px 0 0 0;
+}
+
+.icon__edit {
+  color: #e8ab9d;
+}
+
+.update-modal__update-btn--user {
+  width: auto;
+  padding: 10px;
 }
 
 .nav__dashboards #icon {
@@ -627,7 +664,8 @@ p {
 }
 
 .sidebar__txt,
-.sidebar__filter {
+.sidebar__filter,
+.modal__update-field {
   display: block;
   margin-left: 10%;
 }
@@ -636,7 +674,7 @@ p {
   margin-bottom: 30px;
 }
 
-.sidebar__filter {
+.sidebar__filter, .modal__update-field {
   height: 50px;
   width: 80%;
   padding: 10px;

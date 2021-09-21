@@ -38,14 +38,6 @@ h2 {
 }
 
 h3 {
-  font-size: 20px;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-h3 {
   font-size: 1.8rem;
 }
 
@@ -72,6 +64,10 @@ a[tabindex]:focus {
 a {
   text-decoration: none;
 }
+
+input {
+  color: $white;
+}
 // Header set ENDS
 
 // Setting universal icon properties
@@ -84,6 +80,12 @@ a {
   font-size: 30px;
   position: relative;
   top: 8px;
+}
+
+.icon__nav-icon {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .loading__icon {
@@ -303,6 +305,14 @@ nav {
    height: 100%;
    transform: perspective(60px);
 	 transform-style: preserve-3d;
+
+   h3 {
+     font-size: 20px;
+     width: 80%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
 }
 
 .product-card {

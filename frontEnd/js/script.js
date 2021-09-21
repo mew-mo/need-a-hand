@@ -15,13 +15,9 @@
       url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
     },
     error:function(error){
-      console.log(error);
+      alert(error);
     }
   });
-
-  console.log('script is linked'); //testing if script.js is working
-  console.log(sessionStorage);
-
 
 // employerDASH  =============================================================
 
@@ -400,12 +396,10 @@ $(document).on('click', '.delete-button', function(event) {
     let sEducator = $('#educatorName').val();
     let sExtra = $('#sExtra').val();
 
-    console.log(sName, sUsername, sEmail, sPassword, sStudy, sEducator, sExtra);
-
     if (sPassword != sCheckPass) {
       $('#sCheckPassword').val('');
       alert('Passwords do not match. Please try again');
-    } else if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sCheckPass == '' || sStudy == '' || sEducator == '') {
+    } else if (sName == '' || sUsername == '' || sEmail == '' || sPassword == '' || sCheckPass == '' || sStudy == '' || sEducator == '' || sExtra == '') {
       alert('Please enter all student details');
     } else if (!sPfpUrl) {
       alert('Please upload an icon for the best experience on this website.');
@@ -433,8 +427,6 @@ $(document).on('click', '.delete-button', function(event) {
           sessionStorage.setItem('userEmail', user.email);
           sessionStorage.setItem('userPass', user.password);
           sessionStorage.setItem('accType', 'student');
-          console.log(sessionStorage);
-          console.log(user); //remove when development is finished
           if (user !== 'username taken already. Please try another name') {
             alert('You have been registered!');
             window.location.href = "studentDash.html";
@@ -464,15 +456,13 @@ $(document).on('click', '.delete-button', function(event) {
     let eCheckPass = $('#eCheckPassword').val();
     let ePfpUrl = uploadedImg.url;
     let eWorkField = $('#jobTitle').val();
-    let eCompanyName = $('#company-name').val();
-    let eExtra = $('#companyName').val();
-
-    console.log(eName, eUsername, eEmail, ePassword, eWorkField, eCompanyName, eExtra);
+    let eCompanyName = $('#companyName').val();
+    let eExtra = $('#eExtra').val();
 
     if (ePassword != eCheckPass) {
       $('#eCheckPassword').val('');
       alert('Passwords do not match. Please try again');
-    } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '') {
+    } else if (eName == '' || eUsername == '' || eEmail == '' || ePassword == '' || eCheckPass == '' || eWorkField == '' || eCompanyName == '' || eExtra == '') {
       alert('Please enter all employer details');
     } else if (!ePfpUrl) {
       alert('Please upload an icon for the best experience on this website.');
@@ -502,13 +492,11 @@ $(document).on('click', '.delete-button', function(event) {
           sessionStorage.setItem('extra', user.extra);
           sessionStorage.setItem('accType', 'employer');
 
-          console.log(sessionStorage);
-          console.log(user); //remove when development is finished
           if (user !== 'username taken already. Please try another name'){
             alert('You have been registered!');
             window.location.href = "employerDash.html";
           } else {
-            console.log('Username taken already. Please try another name');
+            alert('Username taken already. Please try another name');
             $('#eUsername').val('');
             $('#ePassword').val('');
           } //else
@@ -571,10 +559,9 @@ $(document).on('click', '.delete-button', function(event) {
 
       // check if the person trying to login is an employer
       checkEmployer = () => {
-        console.log('running employer checker!');
         event.preventDefault();
-        let username = $('#username').val();
-        let password = $('#password').val();
+        let username = $('#loginForm').val();
+        let password = $('#passwordForm').val();
         if (username === '' || password === '') {
           alert('Please enter all of your details.');
         } else {
@@ -591,9 +578,9 @@ $(document).on('click', '.delete-button', function(event) {
                 alert('User not found: Please register as a new user or enter the correct details.');
               } else if (user == 'Not authorized') {
                 alert('Please try again with correct details.');
-                $('#username').val('');
+                $('#loginForm').val('');
                 // field where they type the username
-                $('#password').val('');
+                $('#passwordForm').val('');
                 // field where they type the password
               } else {
                 // session storage
@@ -729,7 +716,6 @@ $(document).on('click', '.delete-button', function(event) {
 
   if (document.querySelector('.icon__edit')) {
     document.querySelector('.icon__edit').addEventListener('click', () => {
-      console.log('EDIT CLICKED');
       $('#updateUserModal').modal('show');
     }, false);
     // show edit modal
@@ -758,7 +744,6 @@ $(document).on('click', '.delete-button', function(event) {
         // password setting conditionals
         if (password == '') {
           pass.newPass = sessionStorage.userPass;
-          console.log(pass.newPass);
         } else if (password && passwordCheck == '') {
           alert('Please re-enter your new password');
         } else if (password != passwordCheck) {
@@ -834,7 +819,6 @@ $(document).on('click', '.delete-button', function(event) {
         // password setting conditionals
         if (password == '') {
           ePass.newPass = sessionStorage.userPass;
-          console.log(ePass.newPass);
         } else if (password && passwordCheck == '') {
           alert('Please re-enter your new password');
         } else if (password != passwordCheck) {
@@ -1014,9 +998,4 @@ $(document).on('click', '.delete-button', function(event) {
     }); //window eventlistener ENDS
   } //if bodydata ends
 // student profiles JS ENDS------------------------------
-
-// 614721eb23885a03ee8efa34
-// 6147b56445704d0e4ed139cb
-// 61491b52dd576c104d1eb65d
-
 }()); //iife ENDS

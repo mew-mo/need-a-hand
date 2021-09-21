@@ -32,14 +32,6 @@ h2 {
 }
 
 h3 {
-  font-size: 20px;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-h3 {
   font-size: 1.8rem;
 }
 
@@ -53,6 +45,10 @@ a {
   text-decoration: none;
 }
 
+input {
+  color: #FFFFFF;
+}
+
 .md-icon {
   font-size: 30px;
   cursor: pointer;
@@ -62,6 +58,12 @@ a {
   font-size: 30px;
   position: relative;
   top: 8px;
+}
+
+.icon__nav-icon {
+  background: linear-gradient(90deg, #e8ab9d 0%, #5a6cb0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .loading__icon {
@@ -245,6 +247,13 @@ nav {
   height: 100%;
   transform: perspective(60px);
   transform-style: preserve-3d;
+}
+.container h3 {
+  font-size: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-card {
@@ -492,8 +501,17 @@ footer {
 #sdjobPost h4 {
   margin-left: 20px;
 }
+
 #sdjobPost .icon__bookmark--blank,
 #sdjobPost .icon__comment {
+  color: #e8ab9d;
+  float: right;
+  font-size: 30px;
+}
+
+.update-modal__update-btn--user {
+  width: auto;
+  padding: 10px;
   color: #e8ab9d;
   float: right;
   font-size: 30px;

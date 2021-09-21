@@ -1,26 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap");
 body {
   width: 100vw;
   overflow-x: hidden;
 }
 
-h1, h2,
+.nav__links a, .nav__links--right a, h2,
+h3,
 h4,
 h5,
-h6, .nav__links a, .nav__links--right a {
+h6, h1 {
   font-weight: 300;
   color: white;
-  font-family: 'KoHo', sans-serif;
+  font-family: "KoHo", sans-serif;
 }
 
-h3,
+.card-text, h3,
 p,
-a, .card-text {
+a {
   font-weight: 300;
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 h1 {
@@ -28,7 +28,15 @@ h1 {
 }
 
 h2 {
-  font-size: 2.1rem;
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h3 {
@@ -67,10 +75,37 @@ a {
   height: 75%;
 }
 
+.fa-times {
+  position: fixed;
+  float: right;
+  margin-left: 110px;
+  font-size: 30px;
+}
+
+.fa-times:hover {
+  color: #e8ab9d;
+  font-size: 30px;
+}
+
+nav {
+  width: 70%;
+  margin-left: 150px;
+}
+
 .nav {
   border: none;
   width: 100vw;
   margin-left: 0;
+}
+
+#homeLogo {
+  margin-left: 40px;
+  width: 150px;
+}
+
+#logo {
+  width: 150px;
+  margin-left: 20px;
 }
 
 .nav__links, .nav__links--right {
@@ -89,18 +124,13 @@ a {
   cursor: pointer;
 }
 
-.nav__links--right a {
-  margin-left: 40vw;
-}
-
 #icon {
   position: absolute;
   top: 30px;
 }
 
-#logo {
-  width: 150px;
-  margin-left: 20px;
+.nav__links--right a {
+  margin-left: 40vw;
 }
 
 .nav__popover {
@@ -123,18 +153,8 @@ a {
   text-decoration: underline;
 }
 
-/* nav section */
-nav {
-  width: 70%;
-  margin-left: 150px;
-}
-
-#loggedInNav {
-  display: none;
-  padding-bottom: 50px;
-}
-#loggedInNav a {
-  margin-left: 50vw;
+.nav__popover--dash {
+  margin-top: 20px;
 }
 
 #homeBG {
@@ -159,13 +179,22 @@ nav {
   width: 120px;
 }
 
-/* nav section ENDS */
-/* Home page section */
+#loggedInNav {
+  display: none;
+  padding-bottom: 50px;
+}
+#loggedInNav a {
+  margin-left: 50vw;
+}
+
 #homePage {
   max-width: 800px;
   justify-content: center;
   align-items: center;
   margin: auto;
+  margin-top: 80px;
+  margin-bottom: 100px;
+  height: 100%;
   text-align: center;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
@@ -174,14 +203,11 @@ nav {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.11);
   box-sizing: border-box;
-  margin-top: 80px;
-  margin-bottom: 100px;
-  height: 100%;
 }
 
-/* login/register forms */
 #loginSection,
-#registerSection {
+#registerSection,
+#updateUserModal {
   border: 2px solid #FFFFFF;
   width: 50%;
   margin-left: 250px;
@@ -223,6 +249,7 @@ nav {
 
 .product-card {
   max-width: 300px;
+  height: 400px;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
@@ -231,19 +258,12 @@ nav {
   border: 1px solid rgba(255, 255, 255, 0.11);
   height: 400px;
 }
-.product-card h3 {
-  font-size: 20px;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .product-card:nth-child(1) {
   transform: translate3d(0, 0, -15px);
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -251,7 +271,7 @@ nav {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -259,7 +279,7 @@ nav {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 
@@ -311,39 +331,16 @@ footer {
   background-color: black;
 }
 
-#left {
-  position: relative;
-  display: inline-block;
-  padding-left: 400px;
-}
-
-.fa-github {
-  margin-left: 100px;
-  font-size: 50px;
-}
-
-#right {
-  position: absolute;
-  display: inline-block;
-  padding-left: 200px;
-}
-
-/* login form */
-#homeLogo {
-  margin-left: 40px;
-  width: 150px;
-}
-
 #loginSection {
+  width: 30%;
   background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  margin-left: 600px;
+  text-align: center;
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(1px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  margin-left: 600px;
-  width: 30%;
-  text-align: center;
 }
 
 #loginHeading {
@@ -352,28 +349,9 @@ footer {
   height: 60px;
 }
 
-#heading {
-  display: flex;
-  margin: auto;
-  height: 60px;
-  margin-left: 150px;
-}
-
 #WelcomeTitle {
   display: inline-block;
   margin-left: 115px;
-}
-
-.fa-times {
-  position: fixed;
-  float: right;
-  margin-left: 110px;
-  font-size: 30px;
-}
-
-.fa-times:hover {
-  color: #e8ab9d;
-  font-size: 30px;
 }
 
 #loginSubmit {
@@ -397,29 +375,33 @@ footer {
   text-decoration: underline;
 }
 
-/* login form ENDS */
-/* register forms */
-#registerSection {
+#registerSection, #updateUserModal {
+  width: 35%;
   background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  margin-left: 600px;
+  text-align: center;
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(1px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  margin-left: 600px;
-  width: 35%;
-  text-align: center;
+}
+
+#heading {
+  display: flex;
+  margin: auto;
+  height: 60px;
+  margin-left: 150px;
 }
 
 #regHeading {
   display: flex;
   margin: auto;
-
   height: 60px;
   margin-left: 120px;
 }
 
-#studentRegSubmit, #logOut, .update-modal__update-btn--user,
+#studentRegSubmit, .update-modal__update-btn--user, #logOut,
 #employerRegSubmit {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
@@ -428,42 +410,21 @@ footer {
   width: 30%;
 }
 
-#studentRegSubmit:hover, #logOut:hover, .update-modal__update-btn--user:hover,
+#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover,
 #employerRegSubmit:hover {
   background-color: #21262A;
   border: 1px solid #21262A;
 }
 
-#cancel1 {
+#cancel1, .update-modal__cancel-btn {
   position: relative;
   display: inline-block;
   margin-left: 50px;
   border-radius: 10px;
 }
 
-#cancel1:hover {
+#cancel1:hover, .update-modal__cancel-btn:hover {
   background-color: #e8ab9d;
-  border: none;
-}
-
-#exit {
-  margin-left: 240px;
-}
-
-#sExtra {
-  margin-bottom: 25px;
-}
-
-#studentRegSubmit, #logOut, .update-modal__update-btn--user {
-  border-radius: 10px;
-  border: 1px solid #e8ab9d;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 15px 25px 0 rgba(230, 235, 252, 0.57);
-  width: 30%;
-}
-
-#studentRegSubmit:hover, #logOut:hover, .update-modal__update-btn--user:hover {
-  background-color: #21262A;
   border: none;
 }
 
@@ -472,38 +433,21 @@ footer {
   padding-bottom: 25px;
 }
 
-/* login/register forms ENDS */
-/* Employer dashboard starts */
-#createAd,
-#viewStudentProfile,
-#viewEmployerProfile,
-#logout {
-  margin-left: 11px;
-}
-
-#jobPost {
-  border: 2px solid white;
-  width: 70%;
-  margin-left: 150px;
-}
-
-#postDetails {
-  position: relative;
-  display: inline-block;
-  width: 600px;
-}
-
-#editPost {
+.nav__dashboards #icon {
   position: absolute;
-  width: 100px;
+  top: 50px;
+}
+.nav__dashboards #upperTitle {
+  position: absolute;
+  top: 50px;
+  left: 600px;
+}
+.nav__dashboards #lowerTitle {
+  position: absolute;
+  font-size: 5rem;
+  left: 700px;
 }
 
-#deletePost {
-  width: 100px;
-  margin-left: 600px;
-}
-
-/* create post begins */
 #createListing {
   border: 2px solid white;
   width: 40%;
@@ -513,6 +457,94 @@ footer {
 #cancel2 {
   position: relative;
   display: inline-block;
+}
+
+#posts {
+  margin-left: 25%;
+  margin-top: 200px;
+  padding: 10px;
+  width: 70%;
+}
+
+#sdjobPost {
+  width: 70%;
+  margin-left: 180px;
+  margin-bottom: 90px;
+  border: 1px solid rgba(196, 196, 196, 0.72);
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
+  background-color: #383838;
+  padding: 40px;
+}
+#sdjobPost .post__content {
+  padding: 40px;
+}
+#sdjobPost img {
+  width: 200px;
+  padding: 20px 0 40px 0;
+}
+#sdjobPost h2,
+#sdjobPost h4 {
+  display: inline;
+}
+#sdjobPost h4 {
+  margin-left: 20px;
+}
+#sdjobPost .icon__bookmark--blank,
+#sdjobPost .icon__comment {
+  color: #e8ab9d;
+  float: right;
+  font-size: 30px;
+}
+
+.sidebar__fix {
+  position: fixed;
+  float: left;
+  padding: 20px;
+  width: 25%;
+  height: 100vh;
+  background: linear-gradient(322deg, rgba(90, 108, 176, 0.9) 0%, rgba(232, 171, 157, 0.6) 43%, rgba(33, 38, 42, 0) 100%);
+  border-right: 1px solid rgba(196, 196, 196, 0.72);
+}
+.sidebar__fix #logo {
+  position: absolute;
+  top: 100px;
+  left: 25%;
+}
+
+#sidebarContent {
+  margin-top: 200px;
+  color: #FFFFFF;
+}
+
+#searchForm a {
+  font-size: 1.4rem;
+}
+
+.sidebar__txt,
+.sidebar__filter,
+.modal__update-field {
+  display: block;
+  margin-left: 10%;
+}
+
+.sidebar__txt {
+  margin-bottom: 30px;
+}
+
+.sidebar__filter, .modal__update-field {
+  height: 50px;
+  width: 80%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(196, 196, 196, 0.72);
+}
+
+::placeholder {
+  padding-left: 10px;
+  color: rgba(196, 196, 196, 0.72);
 }
 
 #userProfile {
@@ -592,159 +624,26 @@ p {
   padding: 10px;
 }
 
-.nav__dashboards #icon {
-  position: absolute;
-  top: 50px;
-}
-.nav__dashboards #upperTitle {
-  position: absolute;
-  top: 50px;
-  left: 600px;
-}
-.nav__dashboards #lowerTitle {
-  position: absolute;
-  font-size: 5rem;
-  left: 700px;
-}
-
-.sidebar__fix {
-  position: fixed;
-  float: left;
-  padding: 20px;
-  width: 25%;
-  height: 100vh;
-  background: linear-gradient(322deg, rgba(90, 108, 176, 0.9) 0%, rgba(232, 171, 157, 0.6) 43%, rgba(33, 38, 42, 0) 100%);
-  border-right: 1px solid rgba(196, 196, 196, 0.72);
-}
-.sidebar__fix #logo {
-  position: absolute;
-  top: 100px;
-  left: 25%;
-}
-
-#posts {
-  margin-left: 25%;
-  margin-top: 200px;
-  padding: 10px;
-  width: 70%;
-}
-
-#sdjobPost {
-  width: 70%;
-  margin-left: 180px;
-  margin-bottom: 90px;
-  border: 1px solid rgba(196, 196, 196, 0.72);
-  border-radius: 70px;
-  box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
-  -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
-  -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
-  background-color: #383838;
-  padding: 40px;
-}
-#sdjobPost img {
-  width: 200px;
-  padding: 20px 0 40px 0;
-}
-#sdjobPost .post__content {
-  padding: 40px;
-}
-#sdjobPost h2,
-#sdjobPost h4 {
-  display: inline;
-}
-#sdjobPost h4 {
-  margin-left: 20px;
-}
-#sdjobPost .icon__bookmark--blank,
-#sdjobPost .icon__comment {
+#modalLabel {
   color: #e8ab9d;
-  float: right;
-  font-size: 30px;
+  font-size: 40px;
 }
 
-#sidebarContent {
-  margin-top: 200px;
-  color: #FFFFFF;
+.modal-header {
+  border-bottom: none;
 }
 
-.sidebar__txt,
-.sidebar__filter,
-.modal__update-field {
-  display: block;
-  margin-left: 10%;
+.modal-content {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 }
 
-.sidebar__txt {
-  margin-bottom: 30px;
+.modal label {
+  color: #e8ab9d;
 }
 
-.sidebar__filter, .modal__update-field {
-  height: 50px;
-  width: 80%;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(196, 196, 196, 0.72);
-}
-
-::placeholder {
-  padding-left: 10px;
-  color: rgba(196, 196, 196, 0.72);
-}
-
-#searchForm a {
-  font-size: 1.4rem;
-}
-
-.nav__popover--dash {
-  margin-top: 20px;
-}
-
-/* Employer dashboard starts */
-.icon__nav-icon {
-  background: linear-gradient(90deg, #e8ab9d 0%, #5a6cb0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#createAd,
-#viewStudentProfile,
-#viewEmployerProfile,
-#logout {
-  margin-left: 11px;
-}
-
-#jobPost {
-  border: 2px solid white;
-  width: 70%;
-  margin-left: 150px;
-}
-
-#postDetails {
-  position: relative;
-  display: inline-block;
-  width: 600px;
-}
-
-#editPost {
-  position: absolute;
-  width: 100px;
-}
-
-#deletePost {
-  width: 100px;
-  margin-left: 600px;
-}
-
-/* create post begins */
-#createListing {
-  border: 2px solid white;
-  width: 40%;
-  margin-left: 300px;
-}
-
-#cancel2 {
-  position: relative;
-  display: inline-block;
+.modal input {
+  color: white;
 }
 
 #active {

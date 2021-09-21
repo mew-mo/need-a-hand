@@ -757,6 +757,38 @@ p {
 // USER PROFILE CSS ENDS
 
 // ADD MODAL STYLES HERE
+
+#updateUserModal {
+  @extend #registerSection;
+}
+
+#modalLabel {
+  color: $peach;
+  font-size: 40px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-content {
+  background-color: rgba(0,0,0,0);
+  border: none;
+}
+
+.modal label {
+  color: $peach;
+}
+
+.modal input {
+  color: white;
+}
+
+.update-modal__cancel-btn {
+  @extend #cancel1;
+}
+
+
 // Profile details ENDS
 
 //=============== userProfile.html ENDS ================

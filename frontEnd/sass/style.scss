@@ -2,7 +2,6 @@
 @import 'vars';
 // ========== Importing google fonts ===========
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
 
 // ============= Universal elements ============
@@ -531,6 +530,9 @@ footer {
 
 // ======= employerDash.html & studentDash.html starts =======
 
+
+// STUDENT DASHBOARD CSS starts
+
 // Dashboard nav
 .nav__dashboards {
   #icon {
@@ -670,28 +672,37 @@ footer {
 
 // Profile details starts
 #userProfile {
-  position: relative;
+  display: none;
+  position: absolute;
   margin-left: 310px;
   margin-top: 140px;
   width: 55rem;
   height: 25rem;
   border-radius: 70px;
   box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
--webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
--moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+    -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+    -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
   background-color: #383838;
   padding: 40px;
 }
 
 #userImage {
+  width: 300px;
+  height: 300px;
   position: absolute;
   right: 30px;
   top: -50px;
   overflow: hidden;
-  width: 20em;
-  height: 20em;
-  border-radius: 250px;
-  border: solid 3px white;
+  border: solid 3px $peach;
+  border-radius: 50%;
+
+  img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 #fullName,
@@ -701,33 +712,57 @@ p {
   width: 50%;
 }
 
-#breakPoint {
-  width: 250px;
-  height: 10px;
-  background-color: #cf82b5;
-  border: solid 1px #cf82b5;
-  border-radius: 100px;
+#logOut {
+  position: relative;
+  top: 70px;
+  width: auto;
+  padding: 10px;
+  @extend #studentRegSubmit;
 }
 
-.fa-star {
-  margin-top: 15px;
+.img__divider--profile {
+  width: 25%;
 }
 
-.checked {
-  color: #7B82DE;
+#myName {
+  padding: 25px 0 15px 0;
 }
 
-#logOut,
-#editProfile {
-  margin-top: 100px;
-  background-color: #BA9FB8;
-  border: 1px solid #BA9FB8;
+#myTitle {
+  margin-left: 5px;
+  display: inline;
 }
-// ADD MODEL STYLES HERE
+
+#myDesc {
+  padding: 25px 0 0 0;
+}
+
+.icon__edit {
+  position: relative;
+  font-size: 40px;
+  top: 105px;
+  left: 650px;
+  color: $peach;
+}
+
+.modal__update-field {
+  @extend .sidebar__filter;
+}
+
+.update-modal__update-btn--user {
+  width: auto;
+  padding: 10px;
+  @extend #studentRegSubmit;
+}
+// USER PROFILE CSS ENDS
+
+// ADD MODAL STYLES HERE
 // Profile details ENDS
 
-// UNSURE ABOUT THIS SECTION OF CODE!!!
-// STUDENT DASHBOARD CSS starts
+//=============== userProfile.html ENDS ================
+
+
+// =========== studentProfiles.html starts ===========
 #active {
   color: $peach;
 }
@@ -868,4 +903,4 @@ p {
   @extend .img-container__crop;
 }
 
-// student profiles ENDS ------------------------------
+//=============== studentProfiles.html ENDS ================

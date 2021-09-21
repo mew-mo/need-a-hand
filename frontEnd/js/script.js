@@ -518,7 +518,7 @@ $(document).on('click', '.delete-button', function(event) {
         }//error
       });//ajax post
     }//if
-  });//#XXXCREATE-ACC-BTN-EMPLOIYER
+  });// employer reg btn click
   // employer registration ENDS
 
   // POST - login (and logout) =====================================================
@@ -706,7 +706,7 @@ $(document).on('click', '.delete-button', function(event) {
             document.querySelector('#myDesc').innerHTML =  `${itemsFromDB.extra}`;
             // profile ENDS
             // modal content
-            document.querySelector('#label__update-place').innerHTML = 'Company Name';
+            document.querySelector('.label__update-place').innerHTML = 'Company Name';
             $('#updateName').val(`${itemsFromDB.name}`);
             $('#updateUsername').val(`${itemsFromDB.username}`);
             $('#updateEmail').val(`${itemsFromDB.email}`);
@@ -770,6 +770,10 @@ $(document).on('click', '.delete-button', function(event) {
 
         if (name == '' || username == '' || email == '' || studyField == '' || educator == '' || extra == '') {
           alert('Please enter all update details');
+        } else if (!pfpUrl) {
+          alert('Please upload an icon for the best experience on this website.');
+        } else if (document.querySelector('#userIcon').files[0].size > 10000000) {
+          alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
         } else {
           $.ajax({
             url: `${url}/updateStudent/${userId}`,
@@ -842,6 +846,10 @@ $(document).on('click', '.delete-button', function(event) {
 
         if (name == '' || username == '' || email == '' || workField == '' || companyName == '' || extra == '') {
           alert('Please enter all update details');
+        } else if (!pfpUrl) {
+          alert('Please upload an icon for the best experience on this website.');
+        } else if (document.querySelector('#userIcon').files[0].size > 10000000) {
+          alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
         } else {
           $.ajax({
             url: `${url}/updateEmployer/${userId}`,
@@ -1006,5 +1014,9 @@ $(document).on('click', '.delete-button', function(event) {
     }); //window eventlistener ENDS
   } //if bodydata ends
 // student profiles JS ENDS------------------------------
+
+// 614721eb23885a03ee8efa34
+// 6147b56445704d0e4ed139cb
+// 61491b52dd576c104d1eb65d
 
 }()); //iife ENDS

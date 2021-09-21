@@ -152,12 +152,11 @@ app.get('/allPosts', (req, res) => {
 // get a specific employer
 app.get('/getEmployer/:id', (req, res) => {
   const idParam = req.params.id;
-  Employer.findById(idParam, (err, user) => {
-    if (Employer.user_id == req.body._id) {
-      Employer.findOne()
-        .then(result => {res.send(result);})
+  Employer.findOne({_id: idParam}, (err, userResult) => {
+    if (userResult){
+        res.send(userResult);
     } else {
-      res.send('Error: Employer user not found')
+       res.send('Error: Employer user not found');
     }
   })
 })
@@ -165,12 +164,11 @@ app.get('/getEmployer/:id', (req, res) => {
 // get a specific student
 app.get('/getStudent/:id', (req, res) => {
   const idParam = req.params.id;
-  Student.findById(idParam, (err, user) => {
-    if (Student.user_id == req.body._id) {
-      Student.findOne()
-        .then(result => {res.send(result);})
+  Student.findOne({_id: idParam}, (err, userResult) => {
+    if (userResult){
+        res.send(userResult);
     } else {
-      res.send('Error: Student user not found')
+       res.send('Error: Student user not found');
     }
   })
 })

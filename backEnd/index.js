@@ -164,14 +164,31 @@ app.get('/getEmployer/:id', (req, res) => {
 
 // get a specific student
 app.get('/getStudent/:id', (req, res) => {
-  const idParam = req.params.id;
+
+
+  const idParam = ":61491b52dd576c104d1eb65d";
+  console.log(req.query.studentID);
   Student.findById(idParam, (err, user) => {
-    if (Student.user_id == req.body._id) {
-      Student.findOne()
-        .then(result => {res.send(result);})
-    } else {
-      res.send('Error: Student user not found')
-    }
+    console.log("id param "+ idParam);
+    console.log("user:" + user);
+
+    // Student.findOne({_id: idParam}, (err, userResult) => {
+    //   if (userResult){
+    //     console.log("Student was FOUND");
+    //     console.log(userResult);
+    //   } else {
+    //      res.send('User not found.');
+    //   }//outer if
+    // });//findOne
+
+
+    // if (Student.user_id == req.body._id) {
+      // Student.findOne({_id: idParam})
+      //   .then(console.log("Student was FOUND"))
+      //   .then(result => {res.send(result);})
+    // } else {
+      // res.send('Error: Student user not found')
+    // }
   })
 })
 //BRANCH:reading-get ENDS ------------------------------------------------------

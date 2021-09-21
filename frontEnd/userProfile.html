@@ -63,7 +63,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Your Details</h5>
+          <h5 class="modal-title" id="modalLabel">Edit Your Details</h5>
         </div>
         <div class="modal-body">
 
@@ -79,9 +79,11 @@
           <input type="text" id="updateEmail" name="updateEmail" class="rounded-pill modal__update-field">
           <br><br>
 
+          <label for="updatePass">New Password</label>
           <input type="password" id="updatePass" name="updatePass" class="rounded-pill modal__update-field" placeholder="Enter New Password...">
           <br><br>
 
+          <label for="checkUpdatePass">Confirm Password</label>
           <input type="password" id="checkUpdatePass" name="checkUpdatePass" class="rounded-pill modal__update-field" placeholder="Enter New Password Again...">
           <br><br>
 
@@ -93,7 +95,9 @@
           <input type="text" id="updatePlace" name="updatePlace" class="rounded-pill modal__update-field">
           <br><br>
 
+          <label for="updateExtra">Description</label>
           <input type="text" id="updateExtra" name="updatePlace" class="rounded-pill modal__update-field">
+          <br><br>
 
           <!-- note for person styling: it's really important to not change the classes or ids of this div here!! thank you -->
           <div class="input__select-img">
@@ -104,7 +108,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="update-modal__cancel-btn" data-dismiss="modal">Cancel</button>
+          <button type="button" class="update-modal__cancel-btn btn-dark" data-dismiss="modal">Cancel</button>
           <button type="button" class="update-modal__update-btn--user">Save changes</button>
         </div>
       </div>

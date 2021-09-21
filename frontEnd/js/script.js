@@ -528,8 +528,8 @@ $(document).on('click', '.delete-button', function(event) {
 
       document.querySelector('#loginSubmit').addEventListener('click', () => {
         event.preventDefault();
-        let username = $('#username').val();
-        let password = $('#password').val();
+        let username = $('#loginForm').val();
+        let password = $('#passwordForm').val();
 
         if (username === '' || password === '') {
           alert('Please enter all of your details.');
@@ -547,9 +547,9 @@ $(document).on('click', '.delete-button', function(event) {
                 checkEmployer();
               } else if (user == 'Not authorized') {
                 alert('Please try again with correct details.');
-                $('#username').val('');
+                $('#loginForm').val('');
                 // field where they type the username
-                $('#password').val('');
+                $('#passwordForm').val('');
                 // field where they type the password
               } else {
                 localStorage.clear();

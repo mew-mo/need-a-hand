@@ -1,38 +1,48 @@
+// ===== Importing colour scheme variables =====
 @import 'vars';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+// ========== Importing google fonts ===========
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=KoHo:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
-//importing our colour scheme variables
+
+// ============= Universal elements ============
 
 body {
   width: 100vw;
   overflow-x: hidden;
 }
 
-// font extends begins
-//for titles
+// Font extends begins
+// For titles
 %koho-font-default {
   font-weight: 300;
   color: white;
   font-family: 'KoHo', sans-serif;
 }
 
-//for body text
+// For body text
 %inter-font-default {
   font-weight: 300;
   color: white;
   font-family: 'Inter', sans-serif;
 }
-// font extends ENDS
+// Font extends ENDS
 
-// header set
+// Header set
 h1 {
   text-transform: uppercase;
   @extend %koho-font-default;
 }
 
 h2 {
-  font-size: 2.1rem;
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h3 {
@@ -40,6 +50,7 @@ h3 {
 }
 
 h2,
+h3,
 h4,
 h5,
 h6 {
@@ -61,9 +72,9 @@ a[tabindex]:focus {
 a {
   text-decoration: none;
 }
-// header set ENDS
+// Header set ENDS
 
-// setting universal icon properties
+// Setting universal icon properties
 .md-icon {
   font-size: 30px;
   cursor: pointer;
@@ -87,7 +98,20 @@ a {
 }
 // icons end
 
-// mixins
+.fa-times {
+  position: fixed;
+  float: right;
+  margin-left: 110px;
+  font-size: 30px;
+}
+
+.fa-times:hover {
+  color: $peach;
+  font-size: 30px;
+}
+// Icons ENDS
+
+// Mixins
 @mixin card-style($color: $purple) {
   border: 2px solid $color;
   border-radius: 52px;
@@ -95,13 +119,30 @@ a {
    -moz-box-shadow: 0px 0px 14px $color;
         box-shadow: 0px 0px 14px $color;
 }
-// mixins END
+// Mixins END
 
-// universal nav
+// Universal nav
+nav {
+  width: 70%;
+  margin-left: 150px;
+}
+
 .nav {
   border: none;
   width: 100vw;
   margin-left: 0;
+}
+
+// Displays on index, login, Employer & Student register page
+#homeLogo {
+  margin-left: 40px;
+  width: 150px;
+}
+
+// Displays on Employer & Student dash
+#logo {
+  width: 150px;
+  margin-left: 20px;
 }
 
 .nav__links {
@@ -122,22 +163,17 @@ a {
   cursor: pointer;
 }
 
+#icon {
+  position: absolute;
+  top: 30px;
+}
+
 .nav__links--right {
   @extend .nav__links;
 
   a {
     margin-left: 40vw;
   }
-}
-
-#icon {
-  position: absolute;
-  top: 30px;
-}
-
-#logo {
-  width: 150px;
-  margin-left: 20px;
 }
 
 .nav__popover {
@@ -161,31 +197,23 @@ a {
     text-decoration: underline;
   }
 }
-// universal nav ENDS
 
-/* nav section */
-nav{
-  width: 70%;
-  margin-left: 150px;
+.nav__popover--dash {
+  margin-top: 20px;
 }
+// Universal nav ENDS
 
-// index.html starts
+// ============= Universal elements ENDS ============
 
-#loggedInNav {
-  display: none;
-  padding-bottom: 50px;
+// =============== index.html starts ================
 
-  a {
-    margin-left: 50vw;
-  }
-}
-
-#homeBG{
+#homeBG {
   background-image: url("../image/homeBG.png");
   max-width: 100%;
 }
 
-#homeNav{
+// Nav section starts
+#homeNav {
   display: flex;
   justify-content: flex-end;
   margin-right: 400px;
@@ -196,15 +224,32 @@ nav{
   background-color: $dark;
   width: 120px;
 }
-/* nav section ENDS */
 
-/* Home page section */
+#login:hover {
+  background-color: $peach;
+  width: 120px;
+}
 
+// Displays when user is logged in
+#loggedInNav {
+  display: none;
+  padding-bottom: 50px;
+
+  a {
+    margin-left: 50vw;
+  }
+}
+// Nav section ENDS
+
+// Home page section starts
 #homePage {
   max-width: 800px;
   justify-content: center;
   align-items: center;
   margin: auto;
+  margin-top: 80px;
+  margin-bottom: 100px;
+  height: 100%;
   text-align: center;
   background: $bglight;
   box-shadow: 0 8px 32px 0 $shadow;
@@ -213,31 +258,30 @@ nav{
   border-radius: 10px;
   border: 1px solid $border;
   box-sizing: border-box;
-  margin-top: 80px;
-  margin-bottom: 100px;
-  height: 100%;
 }
 
-/* login/register forms */
+// Login & register forms
 #loginSection,
-#registerSection{
+#registerSection {
   border: 2px solid $white;
   width: 50%;
   margin-left: 250px;
 }
 
+// Home page buttons
 #studentReg,
 #employerReg {
-background-color: $blue;
-font-size: 20px;
+  background-color: $blue;
+  font-size: 20px;
 }
 
 #studentReg:hover,
-#employerReg:hover{
+#employerReg:hover {
   background-color: $dark;
   border: 1px solid $peach;
   font-size: 20px;
 }
+// Home page buttons ends
 
 #tagline {
   display: flex;
@@ -246,6 +290,7 @@ font-size: 20px;
   margin-top: 140px;
 }
 
+// Testimonial cards starts
 .container {
    max-width: 980px;
    box-sizing: border-box;
@@ -257,11 +302,12 @@ font-size: 20px;
    margin-bottom: 100px;
    height: 100%;
    transform: perspective(60px);
-	transform-style: preserve-3d;
+	 transform-style: preserve-3d;
 }
 
 .product-card {
    max-width: 300px;
+   height: 400px;
    background: $bglight;
    box-shadow: 0 8px 32px 0 $shadow;
    backdrop-filter: blur( 2px );
@@ -270,13 +316,6 @@ font-size: 20px;
    border: 1px solid $border;
    height: 400px;
 
-   h3 {
-     font-size: 20px;
-     width: 80%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-   }
 
    &:nth-child(1) {
       transform: translate3d(0,0,-15px);
@@ -285,7 +324,6 @@ font-size: 20px;
       animation-iteration-count: infinite;
       animation-delay: .5s;
       animation-timing-function: ease-in-out;
-      // filter: drop-shadow($drop-back);
    }
 
    &:nth-child(2) {
@@ -295,7 +333,6 @@ font-size: 20px;
       animation-iteration-count: infinite;
       animation-delay: .5s;
       animation-timing-function: ease-in-out;
-      // filter: drop-shadow($drop-front);
    }
 
    &:nth-child(3) {
@@ -305,7 +342,6 @@ font-size: 20px;
       animation-iteration-count: infinite;
       animation-delay: .5s;
       animation-timing-function: ease-in-out;
-      // filter: drop-shadow($drop-back);
    }
 }
 
@@ -359,47 +395,34 @@ font-size: 20px;
     filter: blur($blur-front) drop-shadow($drop-front);
   }
 }
+// Testimonial cards ENDS
 
-footer{
+// Footer begins
+footer {
   height: 100px;
   width: 100%;
   background-color: black;
 }
-#left{
-  position: relative;
-  display: inline-block;
-  padding-left: 400px;
-}
-.fa-github{
-  margin-left: 100px;
-  font-size: 50px;
-}
-#right {
-  position: absolute;
-  display: inline-block;
-  padding-left: 200px;
-}
-// index.html ENDS
+// Footer ends
 
-/* login form */
-#homeLogo {
-  margin-left: 40px;
-  width: 150px;
-}
+//=============== index.html ENDS ================
 
+// ============= login.html starts ===============
+
+// Login form begins
 #loginSection {
+  width: 30%;
   background: $bglight;
+  border: 1px solid $border;
+  margin-left: 600px;
+  text-align: center;
   box-shadow: 0 8px 32px 0 $shadow;
   backdrop-filter: blur( 2px );
   -webkit-backdrop-filter: blur( 1px );
   border-radius: 10px;
-  border: 1px solid $border;
-  margin-left: 600px;
-  width: 30%;
-  text-align: center;
 }
 
-#heading{
+#loginHeading {
   display: flex;
   margin: auto;
   height:60px;
@@ -410,36 +433,8 @@ footer{
   margin-left: 115px;
 }
 
-.fa-times {
-  position: fixed;
-  float: right;
-  margin-left: 100px;
-  font-size: 30px;
-}
-
-.fa-times:hover {
-  border-radius: 10px;
-  background: $peach;
-  font-size: 30px;
-}
-
-#loginForm {
-  display: flex;
-  align-items: center;
-  text-align: justify;
-  margin: auto;
-  width: 80%;
-}
-
-#passwordForm {
-  display: flex;
-  align-items: center;
-  text-align: justify;
-  margin: auto;
-  width: 80%;
-}
-
-#loginSubmit{
+// Login buttons
+#loginSubmit {
   border-radius: 10px;
   border: 1px solid $peach;
   background: $bglight;
@@ -460,109 +455,42 @@ footer{
     text-decoration: underline;
   }
 }
-/* login form ENDS */
+// Login buttons ENDS
 
-/* register forms */
-#registerSection{
+// ============= login.html ENDS ===============
+
+// == studentRegister.html & employerRegister.html starts ==
+
+// Register form starts
+#registerSection {
+  width: 35%;
   background: $bglight;
+  border: 1px solid $border;
+  margin-left: 600px;
+  text-align: center;
   box-shadow: 0 8px 32px 0 $shadow;
   backdrop-filter: blur( 2px );
   -webkit-backdrop-filter: blur( 1px );
   border-radius: 10px;
-  border: 1px solid $border;
-  margin-left: 600px;
-  width: 35%;
-  text-align: center;
 }
 
-#regHeading {
-  height:60px;
-}
-
-#regTitle {
-  display: inline-block;
-}
-
-#nameForm,
-#userNameForm,
-#emailForm,
-#passwordForm,
-#repeatPWForm,
-#jobTitleForm,
-#jobNameForm,
-#studyFieldForm,
-#educatorNameForm,
-#studentExtraForm
- {
+// Student heading
+#heading {
   display: flex;
-  align-items: center;
-  text-align: justify;
   margin: auto;
-  width: 80%;
-}
-
-#eName,
-#sName {
-  width: 300px;
-  margin-left: 100px;
-}
-
-#eUsername,
-#sUsername {
-  width: 300px;
-  margin-left: 98px;
-}
-
-#eEmail,
-#sEmail {
-  width: 300px;
-  margin-left: 135px;
-}
-
-#ePassword,
-#sPassword {
-  width: 300px;
-  margin-left: 103px;
-}
-
-#eCheckPassword,
-#sCheckPassword {
-  width: 300px;
-  margin-left: 46px;
-}
-
-#jobTitle {
-  width: 300px;
-  margin-left: 52px;
-}
-#companyName{
-  width: 300px;
-  margin-left: 57px;
-}
-
-// student register forms
-#studyField{
-  width: 300px;
-  margin-left: 100px;
-}
-#educatorName{
-  width: 300px;
-  margin-left: 70px;
-}
-#sExtra{
-  width: 300px;
-  margin-left: 55px;
-}
-
-#studentRegTitle {
-  display: inline-block;
+  height:60px;
   margin-left: 150px;
 }
 
-#exit {
-  margin-left: 130px;
+// Employer heading
+#regHeading {
+  display: flex;
+  margin: auto;
+  height:60px;
+  margin-left: 120px;
 }
 
+// Student & Employer register buttons
 #studentRegSubmit,
 #employerRegSubmit {
   border-radius: 10px;
@@ -590,76 +518,159 @@ footer{
   border: none;
 }
 
-#exit {
-  margin-left: 240px;
-}
-
-#sExtra {
-  margin-bottom: 25px;
-}
-
-#studentRegSubmit {
-  border-radius: 10px;
-  border: 1px solid $peach;
-  background: $bglight;
-  box-shadow: 0 15px 25px 0 $shadow;
-  width: 30%;
-}
-#studentRegSubmit:hover {
-  background-color: $dark;
-  border: none;
-}
-
 .input__select-img {
   color: $white;
   padding-bottom: 25px;
 }
+// Student & Employer register buttons ENDS
 
-/* login/register forms ENDS */
-/* Employer dashboard starts */
+// Register form ENDS
 
-#createAd,
-#viewStudentProfile,
-#viewEmployerProfile,
-#logout {
-  margin-left: 11px;
+// ==== studentRegister.html & employerRegister.html ENDS ====
+
+// ======= employerDash.html & studentDash.html starts =======
+
+
+// STUDENT DASHBOARD CSS starts
+
+// Dashboard nav
+.nav__dashboards {
+  #icon {
+    position: absolute;
+    top: 50px;
+  }
+
+  #upperTitle {
+    position: absolute;
+    top: 50px;
+    left: 600px;
+  }
+
+  #lowerTitle {
+    position: absolute;
+    font-size: 5rem;
+    left: 700px;
+  }
 }
 
-#jobPost {
-  border: 2px solid white;
-  width: 70%;
-  margin-left: 150px;
-}
-
-#postDetails {
-  position: relative;
-  display: inline-block;
-  width: 600px;
-}
-
-#editPost {
-  position: absolute;
-  width: 100px;
-}
-
-#deletePost {
-  width: 100px;
-  margin-left: 600px;
-}
-
-/* create post begins */
+// Employer create job post starts
 #createListing {
   border: 2px solid white;
   width: 40%;
   margin-left: 300px;
 }
+
+// Job post buttons
 #cancel2{
   position: relative;
   display: inline-block;
 }
+// Employer create job post ENDS
 
-// USER PROFILE CSS
+// Employer & Student post content starts
+#posts {
+  margin-left: 25%;
+  margin-top: 200px;
+  padding: 10px;
+  width: 70%;
+}
 
+#sdjobPost {
+  width: 70%;
+  margin-left: 180px;
+  margin-bottom: 90px;
+  border: 1px solid $placeholder;
+  border-radius: 70px;
+  box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
+  background-color: #383838;
+  padding: 40px;
+
+  .post__content {
+    padding: 40px;
+  }
+
+  img {
+    width: 200px;
+    padding: 20px 0 40px 0;
+  }
+
+  h2,
+  h4 {
+    display: inline;
+  }
+
+  h4 {
+    margin-left: 20px;
+  }
+
+  .icon__bookmark--blank,
+  .icon__comment {
+    color: $peach;
+    float: right;
+    font-size: 30px;
+  }
+}
+// Employer & Student post content ENDS
+
+// Student side bar starts
+.sidebar__fix {
+  position: fixed;
+  float: left;
+  padding: 20px;
+  width: 25%;
+  height: 100vh;
+  background: $dark-gradient;
+  border-right: 1px solid $placeholder;
+
+  #logo {
+    position: absolute;
+    top: 100px;
+    left: 25%;
+  }
+}
+
+#sidebarContent {
+  margin-top: 200px;
+  color: $white;
+}
+
+#searchForm {
+  a {
+    font-size: 1.4rem;
+  }
+}
+
+.sidebar__txt,
+.sidebar__filter {
+  display: block;
+  margin-left: 10%;
+}
+
+.sidebar__txt {
+  margin-bottom: 30px;
+}
+
+.sidebar__filter {
+  height: 50px;
+  width: 80%;
+  padding: 10px;
+  background-color: $low-white;
+  border: 1px solid $placeholder;
+}
+
+::placeholder {
+  padding-left: 10px;
+  color: $placeholder;
+}
+// Student sidebar ENDS
+
+// ======= employerDash.html & studentDash.html ENDS =======
+
+// =========== userProfile.html starts ===========
+
+// Profile details starts
 #userProfile {
   display: none;
   position: absolute;
@@ -745,174 +756,13 @@ p {
 }
 // USER PROFILE CSS ENDS
 
-// STUDENT DASHBOARD CSS starts
+// ADD MODAL STYLES HERE
+// Profile details ENDS
 
-// nav
-.nav__dashboards {
-  #icon {
-    position: absolute;
-    top: 50px;
-  }
-
-  #upperTitle {
-    position: absolute;
-    top: 50px;
-    left: 600px;
-  }
-
-  #lowerTitle {
-    position: absolute;
-    font-size: 5rem;
-    left: 700px;
-  }
-}
-
-.sidebar__fix {
-  position: fixed;
-  float: left;
-  padding: 20px;
-  width: 25%;
-  height: 100vh;
-  background: $dark-gradient;
-  border-right: 1px solid $placeholder;
-
-  #logo {
-    position: absolute;
-    top: 100px;
-    left: 25%;
-  }
-}
-
-#posts {
-  margin-left: 25%;
-  margin-top: 200px;
-  padding: 10px;
-  width: 70%;
-}
-
-#sdjobPost {
-  width: 70%;
-  margin-left: 180px;
-  margin-bottom: 90px;
-  border: 1px solid $placeholder;
-  border-radius: 70px;
-  box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
-  -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
-  -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
-  background-color: #383838;
-  padding: 40px;
-
-  img {
-    width: 200px;
-    padding: 20px 0 40px 0;
-  }
-
-  .post__content {
-    padding: 40px;
-  }
-
-  h2,
-  h4 {
-    display: inline;
-  }
-
-  h4 {
-    margin-left: 20px;
-  }
-
-  .icon__bookmark--blank,
-  .icon__comment {
-    color: $peach;
-    float: right;
-    font-size: 30px;
-  }
-}
-
-#sidebarContent {
-  margin-top: 200px;
-  color: $white;
-}
-
-.sidebar__txt,
-.sidebar__filter {
-  display: block;
-  margin-left: 10%;
-}
-
-.sidebar__txt {
-  margin-bottom: 30px;
-}
-
-.sidebar__filter {
-  height: 50px;
-  width: 80%;
-  padding: 10px;
-  background-color: $low-white;
-  border: 1px solid $placeholder;
-}
-
-::placeholder {
-  padding-left: 10px;
-  color: $placeholder;
-}
-
-#searchForm {
-  a {
-    font-size: 1.4rem;
-  }
-}
-
-.nav__popover--dash {
-  margin-top: 20px;
-}
-// student dash ENDS
+//=============== userProfile.html ENDS ================
 
 
-/* Employer dashboard starts */
-
-.icon__nav-icon {
-  background: $gradient;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#createAd,
-#viewStudentProfile,
-#viewEmployerProfile,
-#logout{
-  margin-left: 11px;
-}
-#jobPost{
-  border: 2px solid white;
-  width: 70%;
-  margin-left: 150px;
-}
-#postDetails{
-  position: relative;
-  display: inline-block;
-  width: 600px;
-}
-#editPost{
-  position: absolute;
-  width: 100px;
-}
-#deletePost{
-  width: 100px;
-  margin-left: 600px;
-}
-/* create post begins */
-#createListing{
-  border: 2px solid white;
-  width: 40%;
-  margin-left: 300px;
-}
-#cancel2{
-  position: relative;
-  display: inline-block;
-}
-
-// student profiles STARTS
-
+// =========== studentProfiles.html starts ===========
 #active {
   color: $peach;
 }
@@ -1053,4 +903,4 @@ p {
   @extend .img-container__crop;
 }
 
-// student profiles ENDS ------------------------------
+//=============== studentProfiles.html ENDS ================

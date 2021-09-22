@@ -6,6 +6,12 @@
   var uploadedImg = {
     url: ''
   };
+
+  // declaring the storage for if the comments are open or not
+  var conditional = {
+    openComments: false
+  };
+
   // starting the server
   $.ajax({
     url: 'config.json',
@@ -74,12 +80,13 @@
                   <span id="commentPostBtn" class="md-icon material-icons-outlined icon__comment comment-button">comment</span>
 
                   <span id="titleUpdate">${postFromMDB[i].jobTitle}</span>
-                  <span id="detailsUpdate">${postFromMDB[i].jobDescription}</span>
+                  <span id="detailsUpdate">${postFromMDB[i].jobDescription}
+                  </span>
 
                 </div>
 
-
                 <div id="commentSection">
+                <span class="span__open-comments" style="display:none;">false</span>
                 <p class="commentBox" data-id="${postFromMDB[i]._id}">${commentElements}</p>
                   <br><b>Post comment</b>
                   <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
@@ -157,14 +164,18 @@
 
 // EMPLOYER POST - comment section ======================================================
 
-
-$(document).on('click', '#commentPostBtn', function(event) {
-
-  event.preventDefault();
-  console.log('comment button clicked');
-  $('#commentSection').show();
-
-});
+  // function for hiding and showing each comment section
+  if (document.querySelector('#emjobPostSec')) {
+    window.addEventListener('click', (e) => {
+      if (e.target.innerText == 'comment' && e.target.parentNode.parentNode.childNodes[3].children[0].innerHTML == 'false') {
+        e.target.parentNode.parentNode.childNodes[3].style.display = 'block';
+        e.target.parentNode.parentNode.childNodes[3].children[0].innerHTML = 'true';
+      } else if (e.target.innerText == 'comment' && e.target.parentNode.parentNode.childNodes[3].children[0].innerHTML == 'true') {
+        e.target.parentNode.parentNode.childNodes[3].style.display = 'none';
+        e.target.parentNode.parentNode.childNodes[3].children[0].innerHTML = 'false';
+      }
+    }, false); //event listener ends
+  } // if em job post section exists ends
 
   $(document).on('click', '.commented', function(event) {
     event.preventDefault();
@@ -235,8 +246,6 @@ $('.update-modal__update-btn--post').click(function(){
 
   console.log('save changes clicked');
 
-
-
     let userid = sessionStorage.getItem('userID');
     let jobTitle = $('#updateTitle').val();
     let jobDescription = $('#updateDesc').val();
@@ -262,13 +271,13 @@ $('.update-modal__update-btn--post').click(function(){
         alert('401 error: user has no permission to update');
 
       } else {
-        alert('updated');
+        alert('Your post has been updated.');
       }//else
       // page reloads
       location.reload();
     }, //success
     error: function() {
-      console.log('error:cannot call api');
+      console.log('Error: Cannot call API');
     }//error
   });//ajax
 }); //end of modal save changes button
@@ -333,7 +342,8 @@ $('.update-modal__cancel-btn--post').click(function(){
                         comment
                       </span>
 
-                      <div id="sdCommentSection">
+                      <div id="sdCommentSection" style="display:none;">
+                      <span class="span__open-comments" style="display:none;">false</span>
                         <ul class="commentBox" data-id="${postFromMDB[i]._id}"> ${commentElements} </ul>
                         <br><b>Post comment</b>
                         <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
@@ -357,29 +367,23 @@ $('.update-modal__cancel-btn--post').click(function(){
 
   // STUDENT POST - comment section ======================================================
 
-
-
-  window.addEventListener('click', (e) => {
-    console.dir(e.target);
-    console.log(e.target);
-
-  }, false);
-
-    $(document).on('click', '.sd-comments', function(event) {
-      event.preventDefault();
-
-      console.log('comment icon clicked');
-
-      $('#sdCommentSection').show();
-
-      }); //end of commented click event function
+    // function for hiding and showing each comment section
+    if (document.querySelector('#studentJobPosts')) {
+      window.addEventListener('click', (e) => {
+        if (e.target.innerText == 'comment' && e.target.parentNode.children[6].children[0].innerHTML == 'false') {
+          e.target.parentNode.children[6].style.display = 'block';
+          e.target.parentNode.children[6].children[0].innerHTML = 'true';
+        } else if (e.target.innerText == 'comment' && e.target.parentNode.children[6].children[0].innerHTML == 'true') {
+          e.target.parentNode.children[6].style.display = 'none';
+          e.target.parentNode.children[6].children[0].innerHTML = 'false';
+        }
+      }, false); //event listener ends
+    } // if student job post section exists ends
 
       $(document).on('click', '.sd-comment-btn', function(event) {
         event.preventDefault();
 
         console.log('comment changes saved clicked');
-
-
 
         let postID = this.dataset.id;
         console.log(postID);
@@ -400,35 +404,28 @@ $('.update-modal__cancel-btn--post').click(function(){
             success: function(data){
                 if(data == '401 error: user has no permission to update') {
                   alert('401 error: user has no permission to');
-                } else { alert('updated');
+                } else { alert('Commment posted!');
               }//else
           $("input[data-id='" + postID +"']").val('');
           // page reloads
           location.reload();
           }, //success
             error: function(){
-              console.log('error:cannot call api'); }//error
+              alert('Error: Cannot call api'); }//error
           });//ajax
         }//if
       }); //end of click changes
 
 
-
-
-
 // DELETE - employer dashboard - delete a post ===========================
 
-
 $(document).on('click', '.delete-button', function(event) {
-
 
     event.preventDefault();
     var deleteId = $(this).attr("data-delete-id");
     console.log(deleteId);
 
     console.log("delete clicked");
-
-
 
     $.ajax({
       url : `${url}/deletePost/${deleteId}`,
@@ -482,8 +479,6 @@ $(document).on('click', '.delete-button', function(event) {
   }
 
   $('#studentRegSubmit').click(function() {
-
-    // might have to make it so the max file size uploaded is something small like 200x200 just so the url string isnt so insanely long
 
     event.preventDefault();//this prevents code breaking when no data is found
     let sName = $('#sName').val();
@@ -843,7 +838,7 @@ $(document).on('click', '.delete-button', function(event) {
         let studyField = $('#updateField').val();
         let educator = $('#updatePlace').val();
         let extra = $('#updateExtra').val();
-        let pfpUrl = uploadedImg.url;
+        let pfpUrl = window.name;
 
         // password setting conditionals
         if (password == '') {
@@ -857,12 +852,16 @@ $(document).on('click', '.delete-button', function(event) {
           pass.newPass = password;
         }
 
+        document.querySelector('#userIcon').addEventListener('change', () => {
+          if (document.querySelector('#userIcon').files[0].size > 10000000) {
+            alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
+          }
+        });
+
         if (name == '' || username == '' || email == '' || studyField == '' || educator == '' || extra == '') {
           alert('Please enter all update details');
         } else if (!pfpUrl) {
           alert('Please upload an icon for the best experience on this website.');
-        } else if (document.querySelector('#userIcon').files[0].size > 10000000) {
-          alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
         } else {
           $.ajax({
             url: `${url}/updateStudent/${userId}`,
@@ -918,7 +917,13 @@ $(document).on('click', '.delete-button', function(event) {
         let workField = $('#updateField').val();
         let companyName = $('#updatePlace').val();
         let extra = $('#updateExtra').val();
-        let pfpUrl = uploadedImg.url;
+        let pfpUrl = window.name;
+
+        document.querySelector('#userIcon').addEventListener('change', () => {
+          if (document.querySelector('#userIcon').files[0].size > 10000000) {
+            alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
+          }
+        });
 
         // password setting conditionals
         if (password == '') {
@@ -936,8 +941,6 @@ $(document).on('click', '.delete-button', function(event) {
           alert('Please enter all update details');
         } else if (!pfpUrl) {
           alert('Please upload an icon for the best experience on this website.');
-        } else if (document.querySelector('#userIcon').files[0].size > 10000000) {
-          alert('Uploaded image file size is too large. Please select an image 10mbs or less.');
         } else {
           $.ajax({
             url: `${url}/updateEmployer/${userId}`,
@@ -1020,7 +1023,7 @@ $(document).on('click', '.delete-button', function(event) {
   // ==================================================
 
   if (sessionStorage.length != 0 && document.querySelector('#icon')) {
-    document.querySelector('#icon').innerHTML = `<img src="${window.name}" alt="@${sessionStorage.userName}'s icon'">`;
+    document.querySelector('#icon').innerHTML = `<img src="${window.name}" alt="@${sessionStorage.username}'s icon'">`;
   }
 
   // checking if the icon exists in a page
@@ -1088,7 +1091,11 @@ $(document).on('click', '.delete-button', function(event) {
                     <img src="${itemsFromDB[i].pfpUrl}" alt="${itemsFromDB[i].name}'s profile picture'">
                 </div>
                 <h5>${itemsFromDB[i].studyField}</h5>
-                <p class="card-text">${itemsFromDB[i].extra}</p>
+                <p class="card-text">
+                ${itemsFromDB[i].extra}
+                <br><br>
+                Contact: <span class="link__email">${itemsFromDB[i].email}</span>
+                </p>
              </div>
             </div>
             `); //slick

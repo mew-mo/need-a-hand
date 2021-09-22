@@ -21,7 +21,7 @@
 
       <div class="d-inline nav__links">
 
-        <a href="#" class="d-inline nav__link">
+        <a href="#" id="createAd" class="d-inline nav__link">
           <span class="material-icons-outlined icon__nav-icon a__icon--adjust-top">
             add_circle_outline
           </span>
@@ -59,18 +59,18 @@
         <br>
 
         <label class="text-light mr-5" for="productId"> Enter business name: </label>
-        <input type="text" class="ml-5 form-control rounded-pill" id="businessName" name="inputId" >
+        <input type="text" class="ml-5 form-control rounded-pill" id="emPosterName" name="inputId" >
         <br>
 
         <label class="text-light mr-4" for="productName"> Enter job title: </label>
-        <input class="ml-5 form-control rounded-pill" id="jobTitle" type="text" name="productName" >
+        <input class="ml-5 form-control rounded-pill" id="emJobTitle" type="text" name="productName" >
         <br>
 
         <label class="text-light mr-4" for="productName"> Enter job description: </label>
-        <input class="ml-5 form-control rounded-pill" id="jobDescription" type="text" name="productName" >
+        <textarea class="ml-5 form-control" id="emJobDescription" rows="3"></textarea>
         <br>
         <!-- cc added starts-->
-        <div class="dropdown">
+        <!-- <div class="dropdown">
           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Category
           </a>
@@ -79,7 +79,7 @@
             <li><a class="dropdown-item" href="#">Web</a></li>
             <li><a class="dropdown-item" href="#">Dev</a></li>
           </ul>
-        </div>
+        </div> -->
         <!-- cc added ends-->
       </form>
 
@@ -91,9 +91,9 @@
 
 
     <!-- job post for employer to view/edit/delete-->
-    <!-- <div id="jobPost" class="text-light mt-4 py-4 px-4"> -->
-      <div id="sdjobPost" class="text-light mt-4 py-4 px-4">
-        <div class="post__content">
+    <div id="emjobPostSec">
+      <!-- <div id="emjobPost" class="text-light mt-4 py-4 px-4"> -->
+        <!-- <div class="post__content">
           <h2>Job title here</h2>
           <h4>Poster Name | Business</h4>
           <span class="md-icon material-icons-outlined icon__bookmark--blank">
@@ -107,9 +107,48 @@
           <span class="md-icon material-icons-outlined">delete</span>
         </div>
         <!-- post content -->
-      </div>
+      </div> -->
 
-    </div>
+
+      <!-- UPDATE EMPLOYER POST MODAL  -->
+      <div class="modal fade" id="updatePostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Edit Your Post</h5>
+            </div>
+            <div class="modal-body">
+
+              <label for="updateTitle">Title</label>
+              <input type="text" id="updateTitle" name="updateTitle" class="rounded-pill modal__update-field">
+              <br><br>
+
+              <label for="updateDesc">Description</label>
+              <input type="text" id="updateDesc" name="updateDesc" class="rounded-pill modal__update-field">
+              <br><br>
+
+              <div id="hideModalInput">
+                <input type="text" id="updatePoster" name="updatePoster" class="rounded-pill modal__update-field">
+                <input type="text" id="updateUser" name="updateUser" class="rounded-pill modal__update-field">
+              </div>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="update-modal__cancel-btn--post btn-dark" data-dismiss="modal">Cancel</button>
+              <button type="button" class="update-modal__update-btn--post">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- modal ENDS -->
+
+
+
+
+
+
+
 
     // SCRIPT LINKS ---------------------------------------------
 

@@ -585,7 +585,8 @@ footer {
   width: 70%;
 }
 
-#sdjobPost {
+#sdjobPost,
+#emjobPost {
   width: 70%;
   margin-left: 180px;
   margin-bottom: 90px;
@@ -599,6 +600,15 @@ footer {
 
   .post__content {
     padding: 40px;
+  }
+
+  #titleUpdate,
+  #detailsUpdate {
+    display: none;
+  }
+
+  #createListing {
+
   }
 
   img {
@@ -616,7 +626,9 @@ footer {
   }
 
   .icon__bookmark--blank,
-  .icon__comment {
+  .icon__comment,
+  #editPostBtn,
+  #deletePostBtn {
     color: $peach;
     float: right;
     font-size: 30px;
@@ -768,7 +780,8 @@ p {
 
 // ADD MODAL STYLES HERE
 
-#updateUserModal {
+#updateUserModal,
+#updatePostModal {
   @extend #registerSection;
 }
 

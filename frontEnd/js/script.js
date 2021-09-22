@@ -13,6 +13,7 @@
     dataType: 'json',
     success:function(configData){
       url = `${configData.SERVER_URL}:${configData.SERVER_PORT}`;
+      console.log(url);
     },
     error:function(error){
       alert(error);
@@ -23,7 +24,7 @@
 
   $('#createListing').hide();
   $('#jobPost').hide();
-  $('#hidden').hide();
+  $('#emjobPost').hide();
 
 
   $('#createAd').click(function(){
@@ -31,19 +32,93 @@
   });
 
   // POST and GET - employer dash - add a job post and display it =====================
-  // ** cc to add category **
+
+
+  // GET METHOD - display all posts to the employer dash
+
+  // checking if the employer post section is present on the page
+  if (document.querySelector('#emjobPostSec')) {
+    window.addEventListener('load', () => {
+      $.ajax({
+      url:`${url}/allPosts`,
+      type: 'GET',
+      dataType : 'json',
+      success : function(postFromMDB){
+        console.log(postFromMDB);
+        var i;
+        var getEditBtn = document.getElementById('editPost');
+        document.getElementById('emjobPostSec').innerHTML ="";
+        for (i = 0; i < postFromMDB.length; i++) {
+              console.log(postFromMDB[i]);
+
+              let commentElements = [];
+                if (postFromMDB[i].comments !== null) {
+
+              let commentList = postFromMDB[i].comments;
+
+                for(x = 1; x < commentList.length; x++) {
+
+                commentElements += `<li>${commentList[x]}</li>`; }
+              }
+
+              document.getElementById('emjobPostSec').innerHTML +=
+              `
+              <div id="emjobPost" class="text-light mt-4 py-4 px-4">
+                <div class="text-light mt-4 py-4 px-4">
+                <h2 id="postTitle">${postFromMDB[i].jobTitle}</h2>
+                <h4 id="posterName">${postFromMDB[i].posterName}</h4>
+                <hr>
+                <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+              <div>
+
+              <div>
+
+                <span id="editPostBtn" data-edit-id="${postFromMDB[i]._id}" class="material-icons-outlined edit-button">edit</span>
+
+                <span id="deletePostBtn" data-delete-id="${postFromMDB[i]._id}" class="material-icons-outlined delete-button">delete</span>
+
+                <span class="md-icon material-icons-outlined icon__bookmark--blank bookmark-button commented">bookmark_border</span>
+
+                <span id="titleUpdate">${postFromMDB[i].jobTitle}</span>
+                <span id="detailsUpdate">${postFromMDB[i].jobDescription}</span>
+
+              </div>
+
+
+              <p class="commentBox" data-id="${postFromMDB[i]._id}">
+              ${commentElements}
+
+              </p>
+                <div id="commentSection">
+                  <br><b>Post comment</b>
+                  <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
+                  <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented" data-id="${postFromMDB[i]._id}">Comment</button>
+                </div>
+
+              </div>
+              ` ;
+            } // for loop one ends
+          }, //end of success
+        error:function(){
+        }
+      });//ajax get
+    });
+  } // if
+
 $('#addPost').click(function(){
-  $('#jobPost').show();
+
   $('#createListing').hide();
+  $('#emjobPostSec').show();
+
   event.preventDefault();
-  let busiName = $('#businessName').val();
-  let jTitle = $('#jobTitle').val();
-  let jDescription = $('#jobDescription').val();
+  let posterName = $('#emPosterName').val();
+  let jTitle = $('#emJobTitle').val();
+  let jDescription = $('#emJobDescription').val();
   let userid =  sessionStorage.getItem('userID');
 
   console.log(userid);
-  console.log(busiName, jTitle, jDescription);
-  if (busiName == '' || jTitle == '' || jDescription == ''){
+  console.log(posterName, jTitle, jDescription);
+  if (posterName == '' || jTitle == '' || jDescription == ''){
     alert('Please enter all details');
 
   } else {
@@ -53,115 +128,62 @@ $('#addPost').click(function(){
       type : 'POST',
       data :{
         jobTitle: jTitle,
-        posterName: busiName,
+        posterName: posterName,
         jobDescription: jDescription,
         username: userid
       },
       success : function(postadded){
 
         console.log('post added');
-
+        // page reloads
+        location.reload();
         }, // success ends
       error : function(){
         console.log('error: cannot call api');
       }//error
     });//ajax post
-
-    // GET METHOD - display all posts to the employer dash
-    $.ajax({
-    url:`${url}/allPosts`,
-    type: 'GET',
-    dataType : 'json',
-    success : function(postFromMDB){
-      console.log(postFromMDB);
-      var i;
-      var getEditBtn = document.getElementById('editPost');
-      document.getElementById('jobPost').innerHTML ="";
-      for (i = 0; i < postFromMDB.length; i++) {
-            console.log(postFromMDB[i]);
-
-            let commentElements = [];
-              if (postFromMDB[i].comments !== null) {
-
-            let commentList = postFromMDB[i].comments;
-
-              for(x = 1; x < commentList.length; x++) {
-
-              commentElements += `<li>${commentList[x]}</li>`; }
-            }
-
-            document.getElementById('jobPost').innerHTML +=
-            `
-            <div>
-              <h2 id="postTitle">${postFromMDB[i].jobTitle}</h2>
-              <h4 id="posterName">${postFromMDB[i].posterName}</h4>
-              <hr>
-              <p id="postDetails">${postFromMDB[i].jobDescription}</p>
-            <div>
-
-            <div>
-              <button id="editPost" data-edit-id="${postFromMDB[i]._id}" name="productButton" type="submit" class="btn btn-primary mx-2 edit-button">Edit</button>
-              <br>
-              <br>
-              <button id="deletePost" data-delete-id="${postFromMDB[i]._id}" name="productButton" type="submit" class="btn btn-primary mx-2 delete-button">Delete</button>
-
-              <span id="titleUpdate">${postFromMDB[i].jobTitle}</span>
-              <span id="detailsUpdate">${postFromMDB[i].jobDescription}</span>
-              <span id="posterName">${postFromMDB[i].posterName}</span>
-              <span id="postUser">${postFromMDB[i].username}</span>
-
-            </div>
-
-            <p class="commentBox" data-id="${postFromMDB[i]._id}">
-            ${commentElements}
-            //comments go here
-            </p>
-            <br><b>Post comment</b>
-            <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
-            <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented" data-id="${postFromMDB[i]._id}">Comment</button>
-            `;
-          } // for loop one ends
-        }, //end of success
-      error:function(){
-      }
-    });//ajax get
   }//else
 });//add post
 
-// POST - comment section ======================================================
+
 
 // POST - comment section ======================================================
 
-  // $(document).on('click', '.commented', function(event) {
-  //   event.preventDefault();
-  //     let postID = this.dataset.id;
-  //     console.log(postID);
-  //     console.log("comment clicked");
-  //
-  //   let userComment = $("input[data-id='" + postID +"']").val();
-  //     console.log(userComment);
-  //
-  //     if ( userComment == ''){
-  //       alert('Please enter a comment');
-  //     } else {
-  //       console.log("Comment added: " + userComment);
-  //       $.ajax({
-  //         url: `${url}/postComment/${postID}`,
-  //         type: 'PATCH',
-  //         data:{
-  //         comment: userComment },
-  //         success: function(data){
-  //             if(data == '401 error: user has no permission to update') {
-  //               alert('401 error: user has no permission to');
-  //             } else { alert('updated');
-  //           }//else
-  //       $("input[data-id='" + postID +"']").val('');
-  //       }, //success
-  //         error: function(){
-  //           console.log('error:cannot call api'); }//error
-  //       });//ajax
-  //     }//if
-  // }); //end of commented click event function
+  $('#commentSection').hide();
+
+  $(document).on('click', '.commented', function(event) {
+    event.preventDefault();
+
+    $('#commentSection').show();
+
+      let postID = this.dataset.id;
+      console.log(postID);
+      console.log("comment clicked");
+
+    let userComment = $("input[data-id='" + postID +"']").val();
+      console.log(userComment);
+
+      if ( userComment == ''){
+        alert('Please enter a comment');
+      } else {
+        console.log("Comment added: " + userComment);
+        $.ajax({
+          url: `${url}/postComment/${postID}`,
+          type: 'PATCH',
+          data:{
+          comment: userComment },
+          success: function(data){
+              if(data == '401 error: user has no permission to update') {
+                alert('401 error: user has no permission to');
+              } else { alert('updated');
+            }//else
+        $("input[data-id='" + postID +"']").val('');
+        }, //success
+          error: function(){
+            console.log('error:cannot call api'); }//error
+        });//ajax
+      }//if
+  }); //end of commented click event function
 
 // PATCH - employer dash - update job post  ============================================
 
@@ -170,105 +192,106 @@ $('#addPost').click(function(){
 
 
 window.addEventListener('click', (e) => {
-  if (e.target.innerHTML === 'Edit') {
-    $('#jobTitle-test').val(e.target.parentNode.children[4].innerText);
-    $('#jobDescription-test').val(e.target.parentNode.children[5].innerText);
-    $('#postHide').val(e.target.parentNode.children[6].innerText);
-    $('#userHide').val(e.target.parentNode.children[7].innerText);
+
+  if (e.target.innerHTML === 'edit') {
+    $('#updateTitle').val(e.target.parentNode.children[3].innerText);
+    $('#updateDesc').val(e.target.parentNode.children[4].innerText);
   }
 }, false);
 
-$(document).on('click', '.edit-button', function(event) {
-    event.preventDefault();
+// click edit and modal shows
 
+$(document).on('click', '.edit-button', function(event) {
 
     console.log("edit clicked");
-    $('#hidden').show();
-
 
     var editId = $(this).attr("data-edit-id");
     console.log(editId);
 
+    $('#updatePostModal').modal('show');
+
+
+$('.update-modal__update-btn--post').click(function(){
+
+  event.preventDefault();
+
+  console.log('save changes clicked');
+
+
+
       let userid = sessionStorage.getItem('userID');
 
-    let jobTitle = $('#jobTitle-test').val();
-    let jobDescription = $('#jobDescription-test').val();
-    let posterName = $('#postHide').val();
-    let username = $('#userHide').val();
+    let jobTitle = $('#updateTitle').val();
+    let jobDescription = $('#updateDesc').val();
+    let posterName = sessionStorage.userFullName;
+    let username = sessionStorage.username;
 
+    console.log(jobTitle, jobDescription, username);
 
-  console.log(jobDescription, userid);
+  $.ajax({
+    url: `${url}/updatePost/${editId}`,
+    type: 'PATCH',
+    data: {
+      jobTitle: jobTitle,
+      jobDescription: jobDescription,
+      posterName: posterName,
+      username: username,
+      user_id: userid
+    },
+    success: function(data){
+      console.log(data);
+      if(data == '401 error: user has no permission to update'){
+        alert('401 error: user has no permission to update');
 
-  if ( jobDescription == '') {
-    alert('Please enter post update information');
-  } else {
-    $.ajax({
-      url: `${url}/updatePost/${editId}`,
-      type: 'PATCH',
-      data: {
-        jobTitle: jobTitle,
-        jobDescription: jobDescription,
-        posterName: posterName,
-        username: username,
-        user_id: userid
-      },
-      success: function(data){
-        console.log(data);
-        if(data == '401 error: user has no permission to update'){
-          alert('401 error: user has no permission to update');
+      } else {
+        alert('updated');
+      }//else
+      // page reloads
+      location.reload();
+    }, //success
+    error: function() {
+      console.log('error:cannot call api');
+    }//error
+  });//ajax
+}); //end of modal save changes button
 
-        } else {
-          alert('updated');
-        }//else
-        $('#postTitle').val('');
-        $('#postDetails').val('');
-
-      }, //success
-      error: function() {
-        console.log('error:cannot call api');
-      }//error
-    });//ajax
-  }//if
 });
 
   // GET - student to view job posts =================================================
 
-  // ** click function id needs to be linked to when student registers / logs in / clicks 'dashboard button' **
-//   studentDash = () => {
-//
-//     console.log(url);
-//     // $('#homePage').hide();
-//     // $('#adminPage').hide();
-//     // $('#result').show();
-//     $.ajax({
-//       url:`${url}/allPosts`,
-//       type: 'GET',
-//       dataType : 'json',
-//       // ** postFromMDB may need a different name as it may conflict with the above **
-//       success : function(postFromMDB){
-//         console.log(postFromMDB);
-//         var i;
-//         // ** add id for div where you want data to display **
-//         document.getElementById('sdJobPost').innerHTML ="";
-//         for (i = 0; i < postFromMDB.length; i++) {
-//               console.log(postFromMDB[i]);
-//               document.getElementById('sdJobPost').innerHTML +=
-//               `
-//               <h2>${postFromMDB[i].jobTitle}</h2>
-//               <h4>${postFromMDB[i].posterName}</h4>
-//               <hr>
-//               <p id="postDetails">${postFromMDB[i].jobDescription}</p>
-//               <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
-//               `;
-//             } // for loop one ends
-//       },
-//       error:function(){
-//
-//       }
-//     });//ajax
-//
-// }; //end of studentDash function
+  // checking if the student job post section is present on the page
+  if (document.querySelector('#studentJobPosts')) {
+    window.addEventListener('load', () => {
+        $.ajax({
+          url:`${url}/allPosts`,
+          type: 'GET',
+          dataType : 'json',
+          // ** postFromMDB may need a different name as it may conflict with the above **
+          success : function(postFromMDB){
+            console.log(postFromMDB);
+            // var i;
+            // // ** add id for div where you want data to display **
+            // document.getElementById('studentJobPosts').innerHTML ="";
+            // for (i = 0; i < postFromMDB.length; i++) {
+            //       console.log(postFromMDB[i]);
+            //       document.getElementById('studentJobPosts').innerHTML +=
+            //       `
+            //       <h2>${postFromMDB[i].jobTitle}</h2>
+            //       <h4>${postFromMDB[i].posterName}</h4>
+            //       <hr>
+            //       <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+            //       <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
+            //       `;
+            //     } // for loop one ends
+          },
+          error:function(){
+            alert('Error: Cannot call API');
+          }
+        });//ajax
 
+
+    });
+  }
 
 // DELETE - employer dashboard - delete a post ===========================
 
@@ -287,6 +310,7 @@ $(document).on('click', '.edit-button', function(event) {
 //   // };
 //
 //   let postID = $('#delProductId').val();
+//
 //   console.log(postID);
 //
 //   if (postID == ''){
@@ -315,7 +339,8 @@ $(document).on('click', '.edit-button', function(event) {
 //
 // });//deleteProduct
 
-// DELETE - employer dashboard - delete a post ===========================
+
+
 
 $(document).on('click', '.delete-button', function(event) {
 
@@ -325,11 +350,7 @@ $(document).on('click', '.delete-button', function(event) {
     console.log(deleteId);
 
     console.log("delete clicked");
-  //
-  // if (!sessionStorage['userID']){
-  //   alert('401 permission denied');
-  //   return;
-  // };
+
 
 
     $.ajax({
@@ -342,6 +363,8 @@ $(document).on('click', '.delete-button', function(event) {
         console.log(data);
         if (data == 'Post Deleted'){
           alert('Post Deleted');
+          // page reloads
+          location.reload();
           // $('#delProductId').val('');
         } else {
           alert('Enter a valid id');

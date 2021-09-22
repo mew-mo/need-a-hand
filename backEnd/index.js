@@ -261,7 +261,7 @@ app.patch('/postComment/:id', (req, res) => {
         $push: {
         comments: req.body.comment }
       }
-      Post.updateOne({_id:idParam}, updatedPost)
+      Post.updateOne({_id:idParam}, updatedPostComment)
       .then(result => {
         res.send(result);
       }).catch(err => res.send(err));

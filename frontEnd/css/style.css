@@ -209,7 +209,8 @@ nav {
 
 #loginSection,
 #registerSection,
-#updateUserModal {
+#updateUserModal,
+#updatePostModal {
   border: 2px solid #FFFFFF;
   width: 50%;
   margin-left: 250px;
@@ -384,7 +385,8 @@ footer {
   text-decoration: underline;
 }
 
-#registerSection, #updateUserModal {
+#registerSection, #updateUserModal,
+#updatePostModal {
   width: 35%;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -475,7 +477,8 @@ footer {
   width: 70%;
 }
 
-#sdjobPost {
+#sdjobPost,
+#emjobPost {
   width: 70%;
   margin-left: 180px;
   margin-bottom: 90px;
@@ -487,31 +490,39 @@ footer {
   background-color: #383838;
   padding: 40px;
 }
-#sdjobPost .post__content {
+#sdjobPost .post__content,
+#emjobPost .post__content {
   padding: 40px;
 }
-#sdjobPost img {
+#sdjobPost #titleUpdate,
+#sdjobPost #detailsUpdate,
+#emjobPost #titleUpdate,
+#emjobPost #detailsUpdate {
+  display: none;
+}
+#sdjobPost img,
+#emjobPost img {
   width: 200px;
   padding: 20px 0 40px 0;
 }
 #sdjobPost h2,
-#sdjobPost h4 {
+#sdjobPost h4,
+#emjobPost h2,
+#emjobPost h4 {
   display: inline;
 }
-#sdjobPost h4 {
+#sdjobPost h4,
+#emjobPost h4 {
   margin-left: 20px;
 }
-
 #sdjobPost .icon__bookmark--blank,
-#sdjobPost .icon__comment {
-  color: #e8ab9d;
-  float: right;
-  font-size: 30px;
-}
-
-.update-modal__update-btn--user {
-  width: auto;
-  padding: 10px;
+#sdjobPost .icon__comment,
+#sdjobPost #editPostBtn,
+#sdjobPost #deletePostBtn,
+#emjobPost .icon__bookmark--blank,
+#emjobPost .icon__comment,
+#emjobPost #editPostBtn,
+#emjobPost #deletePostBtn {
   color: #e8ab9d;
   float: right;
   font-size: 30px;

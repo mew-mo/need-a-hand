@@ -5,22 +5,22 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2,
+.nav__links a, .nav__links--right a, h2,
 h3,
 h4,
 h5,
-h6, .nav__links a, .nav__links--right a {
+h6, h1 {
   font-weight: 300;
   color: white;
-  font-family: 'KoHo', sans-serif;
+  font-family: "KoHo", sans-serif;
 }
 
-h3,
+.card-text, h3,
 p,
-a, .card-text {
+a {
   font-weight: 300;
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 h1 {
@@ -273,7 +273,7 @@ nav {
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -281,7 +281,7 @@ nav {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -289,7 +289,7 @@ nav {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 
@@ -412,7 +412,7 @@ footer {
   margin-left: 120px;
 }
 
-#studentRegSubmit, #logOut, .update-modal__update-btn--user,
+#studentRegSubmit, .update-modal__update-btn--user, #logOut,
 #employerRegSubmit {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
@@ -421,7 +421,7 @@ footer {
   width: 30%;
 }
 
-#studentRegSubmit:hover, #logOut:hover, .update-modal__update-btn--user:hover,
+#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover,
 #employerRegSubmit:hover {
   background-color: #21262A;
   border: 1px solid #21262A;

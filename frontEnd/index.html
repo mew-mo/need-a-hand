@@ -4,159 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
   <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 
-  <title>Document</title>
+  <title>Need A Hand | Home</title>
 </head>
-<body class="container">
- <h1 class="bg-primary text-dark mt-3 p-2 rounded-pill">Mongodb frontEnd</h1>
+<body id="homeBG">
 
-<nav class="mb-3">
+<div id="homeNav">
+    <a href="login.html"><button id="login" type="button" name="button" class="btn text-light btn-md button4 mt-4">Login</button></a>
+</div>
 
+<nav class="mt-3 nav" id="loggedInNav">
 
-        <button id="home" type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill">Home</button>
+    <div class="d-inline nav__links--right">
+      <a href="#" class="d-inline nav__link" id="dashLink">
+        <span class="material-icons-outlined icon__nav-icon a__icon--adjust-top">
+          dashboard
+        </span>
+        Dashboard
+      </a>
+    </div>
 
+    <div class="img-container__crop-main-icon" id="icon">
+      <img src="https://via.placeholder.com/80" alt="">
+    </div>
+</nav>
+<!-- nav ENDS -->
 
-        <button id="view" type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill">View</button>
-
-
-        <button id="admin" type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill">Admin</button>
-  </nav>
+<!-- popover icon nav STARTS -->
+<div class="nav__popover">
+  <div class="a__popover-links">
+    <a href="userProfile.html">My Profile</a>
+    <a href="#" id="logoutSubmit">Log Out</a>
+  </div>
+</div>
+<!-- popover icon nav ENDS -->
 
   <!-- home page -->
-  <div id="homePage" class="bg-light">
-  <h2 class="my-3">Home page</h2>
-  <p class="w-75">This app will enable the user to store, edit and delete their products, if they have admin privileges. Otherwise all visitors of this app can view the products. </p>
-
+  <div id="homePage" class="text-light">
+    <img id="homeLogo" class="mt-5" src="image/NAHLogo.png" alt="">
+    <h1 class="my-5">NEED A HAND</h1>
+    <a  href="studentRegister.html"><button id="studentReg" type="button" name="button" class="btn text-light btn-md  mx-4 mb-5 button4">Student</button></a>
+    <a href="employerRegister.html"><button id="employerReg" type="button" name="button" class="btn text-light btn-md  mx-4 mb-5 button4">Employer</button></a>
   </div>
 
-  <!-- view page -->
-  <div id="result" class="row">
+  <div id="tagline">
+    <h2 class="text-light">The future of easy, fast work connections is here.</h2>
   </div>
 
-  <!-- admin page -->
-  <div id="adminPage" class="">
+  <!-- version 1 -->
+<div class="container">
+   <div class="product-card">
+      <h2 class="text-light mt-4 mx-4">Amanda Cook</h2><br>
+      <h3 class="text-light mt-3 mx-4">"Need-a-hand have awesome communication and keep you updated on whats going on. And do things very fast" <br><br><br><br>Bachelor in Commerce, <br>AUT</h3>
+   </div>
+   <div class="product-card">
+      <h2 class="text-light mt-4 mx-4">Thomas Charles</h2><br>
+      <h3 class="text-light mt-3 mx-4">"I found that it was really easy to enroll and the following up and support was amazing"<br><br><br><br> Bachelor in Computer Enginering, <br>Vic University</h3>
+   </div>
+   <div class="product-card">
+      <h2 class="text-light mt-4 mx-4">Pedro Main</h2><br>
+      <h3 class="text-light mt-3 mx-4">"The Need-a-hand site was very helpful and easy to understand and navigate the jobs platform" <br><br><br><br>Diploma in Animation, <br>Yoobee School of Design</h3>
+   </div>
+</div>
 
-    <button id="login" class="btn btn-sm" type="button" name="button">Login</button>
-    <button id="logout" class="btn btn-sm" type="button" name="button">Logout</button>
+<footer class="text-light">
+  <p id="details" class="mx-5"><br>2021 @ Need-a-hand <br> Ambar, Bee, Charissa, Monique</p>
+</footer>
 
-    <button id="register"class="btn btn-sm" type="button" name="button">Register</button>
-
-  <!--add a product-->
-
-  <div id="manip" class="">
-
-    <form id="addProductForm" class=" py-5">
-      <h1 class="text-primary"> Add Product Form </h1>   <br><br>
-      <!-- <label class="mr-5" for="a-productId"> Enter product Id: </label>
-      <input type="text" class="ml-5 rounded-pill" id="a-productId" name="inputId" >
-      <br><br> -->
-
-      <label class="mr-4" for="a-name"> Enter name of the product </label>
-      <input type="text" id="a-name" name="productName" class="rounded-pill">
-      <br><br>
-
-      <label class="mr-4" for="a-price"> Enter price of the product </label>
-      <input type="number" id="a-price" name="productPrice" class="rounded-pill">
-      <br><br>
-
-       <label class="mr-5" for="a-imageurl"> Enter the image url </label>
-      <input type="text" class="ml-5 rounded-pill" id="a-imageurl" name="a-imageurl" >
-      <br><br>
-
-      <button id="addProduct" name="productButton" type="submit" class="btn btn-primary rounded-pill">Add product</button>
-    </form>
-
-
-    <!-- Update product details  -->
-      <div id="inputIdDiv" class="">
-        <form id="productForm" class="py-5">
-          <h1 class="text-primary"> Update Product Form </h1>   <br><br>
-          <label class="mr-5" for="productId"> Enter product Id: </label>
-          <input type="text" class="ml-5 rounded-pill" id="productId" name="inputId" >
-          <br><br>
-
-          <label class="mr-4" for="productName"> Enter name of the product </label>
-          <input type="text" id="productName" name="productName" class="rounded-pill">
-          <br><br>
-
-          <label class="mr-4" for="productPrice"> Enter price of the product </label>
-          <input type="number" id="productPrice" name="productPrice" class="rounded-pill">
-          <br><br>
-
-          <label class="mr-5" for="imageurl"> Enter the image url </label>
-         <input type="text" class="ml-5 rounded-pill" id="imageurl" name="imageurl" >
-         <br><br>
-
-          <button id="updateProduct" name="productButton" type="submit" class="btn btn-primary rounded-pill">Update product</button>
-        </form>
-      </div>
-
-      <!-- Delete a product -->
-
-      <form id="delForm" class="">
-        <h1 class="text-primary"> Delete Product Form </h1>   <br><br>
-        <label class="mr-5" for="delProductId"> Enter product Id to delete: </label>
-        <input type="text" class="ml-5 rounded-pill" id="delProductId" name="inputId" >
-        <br><br>
-          <button id="deleteProduct" name="productButton" type="submit" class="btn btn-primary rounded-pill">Delete product</button>
-      </form>
-
-
-  </div>
-
-
-
-
-  <!-- login form -->
-  <form id="loginForm" class="my-5 rounded-pill">
-    <h1 class="text-primary"> Login Form </h1>   <br><br>
-    <label for="username" class=""> Username: </label>
-    <input type="text" id="username" name="username" class="form-control" value="">
-    <br> <br>
-    <label for="password" class=""> Password: </label>
-    <input type="password" name="password" id="password" class="form-control" value="">
-
-    <button id="submit" name="button" type="submit" class="btn bg-light text-dark btn-lg btn-dark mt-4"> Login </button>
-  </form>
-
-  <!-- Register Form -->
-  <!-- <form action="/loginUser" method="post"> -->
-    <form id="registerForm" class="bg-light py-3 px-3 mt-5">
-        <h1 class="text-primary"> Register New User Form </h1>   <br><br>
-      <div class="form-group">
-        <label for="r-username">Username</label>
-        <input type="text" name="r-username" class="form-control" id="r-username" aria-describedby="emailHelp">
-
-      </div>
-      <div class="form-group">
-        <label for="r-email">Email</label>
-        <input type="email" autocomplete="new-password" name="r-email" class="form-control" id="r-email">
-      </div>
-      <div class="form-group">
-        <label for="r-password">Password</label>
-        <input type="password" autocomplete="new-password" name="r-password" class="form-control" id="r-password">
-      </div>
-      <!-- <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div> -->
-        <button id="r-submit" name="r-button" type="button" class="btn btn-primary">Register</button>
-    </form>
-  </div>
-
-  <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js">
-
-  </script>
-  <script src="../frontEnd/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js">
-
-  </script>
-  <!-- <script src="js/config.js">
-
-  </script> -->
-  <script src="js/script.js">
-
-  </script>
+  <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../frontEnd/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"> </script>
 </body>
 </html>

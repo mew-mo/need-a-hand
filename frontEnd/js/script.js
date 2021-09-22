@@ -22,19 +22,14 @@
 
 // employerDASH  =============================================================
 
+// **remove after testing**
   $('#createListing').hide();
   $('#jobPost').hide();
   $('#emjobPost').hide();
 
 
-  $('#createAd').click(function(){
-    $('#createListing').show();
-  });
 
-  // POST and GET - employer dash - add a job post and display it =====================
-
-
-  // GET METHOD - display all posts to the employer dash
+// EMPLOYER DASH - GET - DISPLAY ALL JOB AD POSTS  =============================================================
 
   // checking if the employer post section is present on the page
   if (document.querySelector('#emjobPostSec')) {
@@ -63,33 +58,29 @@
 
               document.getElementById('emjobPostSec').innerHTML +=
               `
-              <div id="emjobPost" class="text-light mt-4 py-4 px-4">
-                <div class="text-light mt-4 py-4 px-4">
-                <h2 id="postTitle">${postFromMDB[i].jobTitle}</h2>
-                <h4 id="posterName">${postFromMDB[i].posterName}</h4>
-                <hr>
-                <p id="postDetails">${postFromMDB[i].jobDescription}</p>
               <div>
+                <div id="emjobPost" class="text-light mt-4 py-4 px-4">
+                  <div class="text-light mt-4 py-4 px-4">
+                  <h2 id="postTitle">${postFromMDB[i].jobTitle}</h2>
+                  <h4 id="posterName">${postFromMDB[i].posterName}</h4>
+                  <hr>
+                  <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+                <div>
 
-              <div>
+                <div>
 
-                <span id="editPostBtn" data-edit-id="${postFromMDB[i]._id}" class="material-icons-outlined edit-button">edit</span>
+                  <span id="editPostBtn" data-edit-id="${postFromMDB[i]._id}" class="material-icons-outlined edit-button">edit</span>
+                  <span id="deletePostBtn" data-delete-id="${postFromMDB[i]._id}" class="material-icons-outlined delete-button">delete</span>
+                  <span id="commentPostBtn" class="md-icon material-icons-outlined icon__comment comment-button">comment</span>
 
-                <span id="deletePostBtn" data-delete-id="${postFromMDB[i]._id}" class="material-icons-outlined delete-button">delete</span>
+                  <span id="titleUpdate">${postFromMDB[i].jobTitle}</span>
+                  <span id="detailsUpdate">${postFromMDB[i].jobDescription}</span>
 
-                <span class="md-icon material-icons-outlined icon__bookmark--blank bookmark-button commented">bookmark_border</span>
-
-                <span id="titleUpdate">${postFromMDB[i].jobTitle}</span>
-                <span id="detailsUpdate">${postFromMDB[i].jobDescription}</span>
-
-              </div>
+                </div>
 
 
-              <p class="commentBox" data-id="${postFromMDB[i]._id}">
-              ${commentElements}
-
-              </p>
                 <div id="commentSection">
+                <p class="commentBox" data-id="${postFromMDB[i]._id}">${commentElements}</p>
                   <br><b>Post comment</b>
                   <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
                   <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented" data-id="${postFromMDB[i]._id}">Comment</button>
@@ -105,56 +96,78 @@
     });
   } // if
 
-$('#addPost').click(function(){
 
-  $('#createListing').hide();
-  $('#emjobPostSec').show();
+  // POST EMPLOYER POST ======================================================
+
+  $('#createAd').click(function(){
+    $('#createPostModal').modal('show');
+
+    $('.update-modal__update-btn--create').click(function(){
+
+      event.preventDefault();
+
+      console.log('save changes from create modal clicked');
+
+      let posterName = $('#createCompany').val();
+      let jTitle = $('#createTitle').val();
+      let jDescription = $('#createDesc').val();
+      let userid =  sessionStorage.getItem('userID');
+
+      console.log(userid);
+      console.log(posterName, jTitle, jDescription);
+      if (posterName == '' || jTitle == '' || jDescription == ''){
+        alert('Please enter all details to post a job ad, thank you!');
+
+      } else {
+        // POST METHOD - post a job post to the employer dash
+        $.ajax({
+          url : `${url}/addPost`,
+          type : 'POST',
+          data : {
+            jobTitle: jTitle,
+            posterName: posterName,
+            jobDescription: jDescription,
+            username: userid
+          },
+          success : function(postadded){
+
+            console.log('post added');
+            // page reloads
+            location.reload();
+            }, // success ends
+          error : function(){
+            console.log('connection error: cannot call api');
+          }//error
+        });//ajax post
+      }//else
+    });//add post using createModal
+  }); //createAd click function ends
+
+
+// Cancle create employer post click function
+
+  $('.update-modal__cancel-btn--create').click(function(){
+
+    console.log('click for cancel modal working');
+    $('#createPostModal').hide();
+    // page reloads
+    location.reload();
+
+  });
+
+// EMPLOYER POST - comment section ======================================================
+
+
+$(document).on('click', '#commentPostBtn', function(event) {
 
   event.preventDefault();
-  let posterName = $('#emPosterName').val();
-  let jTitle = $('#emJobTitle').val();
-  let jDescription = $('#emJobDescription').val();
-  let userid =  sessionStorage.getItem('userID');
+  console.log('comment button clicked');
+  $('#commentSection').show();
 
-  console.log(userid);
-  console.log(posterName, jTitle, jDescription);
-  if (posterName == '' || jTitle == '' || jDescription == ''){
-    alert('Please enter all details');
-
-  } else {
-    // POST METHOD - post a job post to the employer dash
-    $.ajax({
-      url : `${url}/addPost`,
-      type : 'POST',
-      data :{
-        jobTitle: jTitle,
-        posterName: posterName,
-        jobDescription: jDescription,
-        username: userid
-      },
-      success : function(postadded){
-
-        console.log('post added');
-        // page reloads
-        location.reload();
-        }, // success ends
-      error : function(){
-        console.log('error: cannot call api');
-      }//error
-    });//ajax post
-  }//else
-});//add post
-
-
-
-// POST - comment section ======================================================
-
-  $('#commentSection').hide();
+});
 
   $(document).on('click', '.commented', function(event) {
     event.preventDefault();
-
-    $('#commentSection').show();
 
       let postID = this.dataset.id;
       console.log(postID);
@@ -178,12 +191,17 @@ $('#addPost').click(function(){
               } else { alert('updated');
             }//else
         $("input[data-id='" + postID +"']").val('');
+        // page reloads
+        location.reload();
         }, //success
           error: function(){
             console.log('error:cannot call api'); }//error
         });//ajax
       }//if
   }); //end of commented click event function
+
+
+
 
 // PATCH - employer dash - update job post  ============================================
 
@@ -219,14 +237,14 @@ $('.update-modal__update-btn--post').click(function(){
 
 
 
-      let userid = sessionStorage.getItem('userID');
-
+    let userid = sessionStorage.getItem('userID');
     let jobTitle = $('#updateTitle').val();
     let jobDescription = $('#updateDesc').val();
+    // let posterName = sessionStorage.companyName;
     let posterName = sessionStorage.userFullName;
-    let username = sessionStorage.username;
+    // let username = sessionStorage.username;
 
-    console.log(jobTitle, jobDescription, username);
+    console.log(jobTitle, jobDescription, posterName);
 
   $.ajax({
     url: `${url}/updatePost/${editId}`,
@@ -235,7 +253,7 @@ $('.update-modal__update-btn--post').click(function(){
       jobTitle: jobTitle,
       jobDescription: jobDescription,
       posterName: posterName,
-      username: username,
+      // username: username,
       user_id: userid
     },
     success: function(data){
@@ -257,89 +275,148 @@ $('.update-modal__update-btn--post').click(function(){
 
 });
 
+
+$('.update-modal__cancel-btn--post').click(function(){
+
+  console.log('click for cancel modal working');
+  $('#updatePostModal').hide();
+  // page reloads
+  location.reload();
+
+});
+
+
+
   // GET - student to view job posts =================================================
 
   // checking if the student job post section is present on the page
   if (document.querySelector('#studentJobPosts')) {
+    // ** MAYBE NEEDS A 1-2 SECOND WAIT PERIOD - MO **
     window.addEventListener('load', () => {
         $.ajax({
           url:`${url}/allPosts`,
           type: 'GET',
           dataType : 'json',
-          // ** postFromMDB may need a different name as it may conflict with the above **
+
           success : function(postFromMDB){
             console.log(postFromMDB);
-            // var i;
-            // // ** add id for div where you want data to display **
-            // document.getElementById('studentJobPosts').innerHTML ="";
-            // for (i = 0; i < postFromMDB.length; i++) {
-            //       console.log(postFromMDB[i]);
-            //       document.getElementById('studentJobPosts').innerHTML +=
-            //       `
-            //       <h2>${postFromMDB[i].jobTitle}</h2>
-            //       <h4>${postFromMDB[i].posterName}</h4>
-            //       <hr>
-            //       <p id="postDetails">${postFromMDB[i].jobDescription}</p>
-            //       <button id="commentOn" name="commentButton" type="submit" class="btn btn-primary mx-2">Comment</button>
-            //       `;
-            //     } // for loop one ends
+            var i;
+
+            document.getElementById('studentJobPosts').innerHTML ="";
+
+            for (i = 0; i < postFromMDB.length; i++) {
+
+                  console.log(postFromMDB[i]);
+
+                  let commentElements = [];
+                    if (postFromMDB[i].comments !== null) {
+
+                  let commentList = postFromMDB[i].comments;
+
+                    for(x = 1; x < commentList.length; x++) {
+
+                    commentElements += `<li>${commentList[x]}</li>`; }
+                  }
+
+                  document.getElementById('studentJobPosts').innerHTML +=
+                  `
+                  <div id="sdjobPost" class="text-light mt-4 py-4 px-4">
+                    <div class="post__content">
+                      <h2>${postFromMDB[i].jobTitle}</h2>
+                      <h4>${postFromMDB[i].posterName}</h4>
+                      <span class="md-icon material-icons-outlined icon__bookmark--blank bookmark-button">
+                        bookmark_border
+                      </span>
+                      <hr>
+                      <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+                      <span data-id="${postFromMDB[i]._id}" class="md-icon material-icons-outlined icon__comment comment-button sd-comments">
+                        comment
+                      </span>
+
+                      <div id="sdCommentSection">
+                        <ul class="commentBox" data-id="${postFromMDB[i]._id}"> ${commentElements} </ul>
+                        <br><b>Post comment</b>
+                        <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
+                        <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented sd-comment-btn" data-id="${postFromMDB[i]._id}">Comment</button>
+                      </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  `;
+                } // for loop one ends
           },
           error:function(){
             alert('Error: Cannot call API');
           }
         });//ajax
-
-
     });
   }
 
+
+  // STUDENT POST - comment section ======================================================
+
+
+
+  window.addEventListener('click', (e) => {
+    console.dir(e.target);
+    console.log(e.target);
+
+  }, false);
+
+    $(document).on('click', '.sd-comments', function(event) {
+      event.preventDefault();
+
+      console.log('comment icon clicked');
+
+      $('#sdCommentSection').show();
+
+      }); //end of commented click event function
+
+      $(document).on('click', '.sd-comment-btn', function(event) {
+        event.preventDefault();
+
+        console.log('comment changes saved clicked');
+
+
+
+        let postID = this.dataset.id;
+        console.log(postID);
+        console.log("student comment clicked");
+
+      let userComment = $("input[data-id='" + postID +"']").val();
+        console.log(userComment);
+
+        if ( userComment == ''){
+          alert('Please enter a comment');
+        } else {
+          console.log("Comment added: " + userComment);
+          $.ajax({
+            url: `${url}/postComment/${postID}`,
+            type: 'PATCH',
+            data:{
+            comment: userComment },
+            success: function(data){
+                if(data == '401 error: user has no permission to update') {
+                  alert('401 error: user has no permission to');
+                } else { alert('updated');
+              }//else
+          $("input[data-id='" + postID +"']").val('');
+          // page reloads
+          location.reload();
+          }, //success
+            error: function(){
+              console.log('error:cannot call api'); }//error
+          });//ajax
+        }//if
+      }); //end of click changes
+
+
+
+
+
 // DELETE - employer dashboard - delete a post ===========================
-
-// $(document).on('click', '.delete-button', function(event) {
-//
-//
-//     event.preventDefault();
-//     var deleteId = $(this).attr("data-delete-id")
-//     console.log(deleteId);
-//
-//     console.log("delete clicked");
-//   //
-//   // if (!sessionStorage['userID']){
-//   //   alert('401 permission denied');
-//   //   return;
-//   // };
-//
-//   let postID = $('#delProductId').val();
-//
-//   console.log(postID);
-//
-//   if (postID == ''){
-//     alert('Please enter the post id to delete the product');
-//   } else {
-//     $.ajax({
-//       url : `${url}/deletePost/${postID}`,
-//       type:'DELETE',
-//       data :{
-//         user_id : sessionStorage['userID']
-//       },
-//       success : function(data){
-//         console.log(data);
-//         if (data == 'Post Deleted'){
-//           alert('Post Deleted');
-//           $('#delProductId').val('');
-//         } else {
-//           alert('Enter a valid id');
-//         } //else
-//       }, //success
-//       error:function(){
-//         console.log('error: cannot call api');
-//       }//error
-//     })//ajax
-//   }//if
-//
-// });//deleteProduct
-
-
 
 
 $(document).on('click', '.delete-button', function(event) {

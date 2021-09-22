@@ -672,7 +672,9 @@ $(document).on('click', '.delete-button', function(event) {
             document.querySelector('#userImage').innerHTML = `<img src="${window.name}" alt="@${itemsFromDB.username}'s profile picture'">`;
             document.querySelector('#myTitle').innerHTML = `${itemsFromDB.studyField} | ${itemsFromDB.educator}`;
 
-            document.querySelector('#myDesc').innerHTML = `${itemsFromDB.extra}`;
+            document.querySelector('#myDesc').innerHTML = `${itemsFromDB.extra}
+            <br><br>
+            Contact me here: <span class="link__email">${itemsFromDB.email}</span>`;
             // profile content ENDS
             // modal content
             document.querySelector('.label__update-place').innerHTML = 'Educator';
@@ -713,7 +715,9 @@ $(document).on('click', '.delete-button', function(event) {
             document.querySelector('#userImage').innerHTML = `<img src="${window.name}" alt="@${itemsFromDB.username}'s profile picture'">`;
             document.querySelector('#myTitle').innerHTML =   `${itemsFromDB.workField} | ${itemsFromDB.companyName}`;
 
-            document.querySelector('#myDesc').innerHTML =  `${itemsFromDB.extra}`;
+            document.querySelector('#myDesc').innerHTML =  `${itemsFromDB.extra}
+            <br><br>
+            Contact me here: <span class="link__email">${itemsFromDB.email}</span>`;
             // profile ENDS
             // modal content
             document.querySelector('.label__update-place').innerHTML = 'Company Name';

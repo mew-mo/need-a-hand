@@ -736,7 +736,7 @@ p {
 
 #logOut {
   position: relative;
-  top: 70px;
+  top: 20px;
   width: auto;
   padding: 10px;
   @extend #studentRegSubmit;
@@ -762,7 +762,7 @@ p {
 .icon__edit {
   position: relative;
   font-size: 40px;
-  top: 105px;
+  top: 45px;
   left: 650px;
   color: $peach;
 }
@@ -775,6 +775,12 @@ p {
   width: auto;
   padding: 10px;
   @extend #studentRegSubmit;
+}
+
+.link__email {
+  color: $peach;
+  text-decoration: underline;
+  cursor: pointer;
 }
 // USER PROFILE CSS ENDS
 

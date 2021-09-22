@@ -210,7 +210,8 @@ nav {
 #loginSection,
 #registerSection,
 #updateUserModal,
-#updatePostModal {
+#updatePostModal,
+#createPostModal {
   border: 2px solid #FFFFFF;
   width: 50%;
   margin-left: 250px;
@@ -386,7 +387,8 @@ footer {
 }
 
 #registerSection, #updateUserModal,
-#updatePostModal {
+#updatePostModal,
+#createPostModal {
   width: 35%;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -526,6 +528,10 @@ footer {
   color: #e8ab9d;
   float: right;
   font-size: 30px;
+}
+
+#commentSection {
+  display: none;
 }
 
 .sidebar__fix {

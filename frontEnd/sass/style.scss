@@ -634,6 +634,11 @@ footer {
     font-size: 30px;
   }
 }
+
+
+#commentSection {
+  display: none;
+}
 // Employer & Student post content ENDS
 
 // Student side bar starts
@@ -686,6 +691,11 @@ footer {
   padding-left: 10px;
   color: $placeholder;
 }
+
+// #sdCommentSection {
+//   display: none;
+// }
+
 // Student sidebar ENDS
 
 // ======= employerDash.html & studentDash.html ENDS =======
@@ -787,7 +797,8 @@ p {
 // ADD MODAL STYLES HERE
 
 #updateUserModal,
-#updatePostModal {
+#updatePostModal,
+#createPostModal {
   @extend #registerSection;
 }
 

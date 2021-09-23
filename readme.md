@@ -1,4 +1,4 @@
-<img src="./image/NAHLogo.png" width="200px" height="auto">
+<img src=".../image/NAHLogo.png" width="200px" height="auto">
 
 # Need a Hand - Full Stack CRUD Application
 > Need a Hand was born when four school friends came together and decided New Zealand students need a platform to gain paid work experience in their study field before leaving school. The Team have created an application which allows students and employers to connect.

@@ -113,10 +113,7 @@ li {
   font-size: 30px;
 }
 
-.fa-times:hover {
-  color: $peach;
-  font-size: 30px;
-}
+
 // Icons ENDS
 
 // Mixins
@@ -154,7 +151,7 @@ nav {
 }
 
 .nav__links {
-  margin-left: 20%;
+  margin-left: 5%;
 
   a {
     position: relative;
@@ -217,14 +214,16 @@ nav {
 
 #homeBG {
   background-image: url("../image/homeBG.png");
-  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 // Nav section starts
 #homeNav {
   display: flex;
   justify-content: flex-end;
-  margin-right: 400px;
+  margin-right: 200px;
 }
 
 #login {
@@ -244,7 +243,7 @@ nav {
   padding-bottom: 50px;
 
   a {
-    margin-left: 50vw;
+    margin-left: 100px;
   }
 }
 // Nav section ENDS
@@ -427,10 +426,14 @@ footer {
 
 // Login form begins
 #loginSection {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   width: 30%;
   background: $bglight;
   border: 1px solid $border;
-  margin-left: 600px;
+  // margin-left: 600px;
   text-align: center;
   box-shadow: 0 8px 32px 0 $shadow;
   backdrop-filter: blur( 2px );
@@ -446,7 +449,18 @@ footer {
 
 #WelcomeTitle {
   display: inline-block;
-  margin-left: 115px;
+  margin-left: 40px;
+}
+
+#loginExit {
+  position: fixed;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+#loginExit:hover {
+  color: $peach;
+  font-size: 30px;
 }
 
 // Login buttons
@@ -464,7 +478,9 @@ footer {
 }
 
 #reg {
-  margin-left: 140px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 
   a {
     color: $peach;
@@ -479,10 +495,13 @@ footer {
 
 // Register form starts
 #registerSection {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   width: 35%;
   background: $bglight;
   border: 1px solid $border;
-  margin-left: 600px;
   text-align: center;
   box-shadow: 0 8px 32px 0 $shadow;
   backdrop-filter: blur( 2px );
@@ -495,7 +514,18 @@ footer {
   display: flex;
   margin: auto;
   height:60px;
-  margin-left: 150px;
+  margin-left: 60px;
+}
+
+#sRegExit {
+  position: fixed;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+#sRegExit:hover {
+  color: $peach;
+  font-size: 30px;
 }
 
 // Employer heading
@@ -503,9 +533,19 @@ footer {
   display: flex;
   margin: auto;
   height:60px;
-  margin-left: 120px;
+  margin-left: 30px;
 }
 
+#eRegExit {
+  position: fixed;
+  margin-left: 15px;
+  font-size: 30px;
+}
+
+#eRegExit:hover {
+  color: $peach;
+  font-size: 30px;
+}
 // Student & Employer register buttons
 #studentRegSubmit,
 #employerRegSubmit {
@@ -513,7 +553,7 @@ footer {
   border: 1px solid $peach;
   background: $bglight;
   box-shadow: 0 5px 15px 5px $shadow;
-  width: 30%;
+  width: 35%;
 }
 
 #studentRegSubmit:hover,
@@ -535,8 +575,17 @@ footer {
 }
 
 .input__select-img {
+  display: flex;
   color: $white;
   padding-bottom: 25px;
+  margin-left: 60px;
+}
+
+#userIcon {
+  display: flex;
+  padding-bottom: 25px;
+  width: 220px;
+  margin-left: 10px;
 }
 // Student & Employer register buttons ENDS
 
@@ -597,7 +646,7 @@ footer {
   margin-left: 180px;
   margin-bottom: 90px;
   border: 1px solid $placeholder;
-  border-radius: 70px;
+  border-radius: 20px;
   box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
   -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
   -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
@@ -605,7 +654,7 @@ footer {
   padding: 40px;
 
   .post__content {
-    padding: 40px;
+    padding: 20px;
   }
 
   #titleUpdate,
@@ -685,13 +734,13 @@ footer {
 
   #logo {
     position: absolute;
-    top: 100px;
+    top: 60px;
     left: 25%;
   }
 }
 
 #sidebarContent {
-  margin-top: 200px;
+  margin-top: 120px;
   color: $white;
 }
 
@@ -733,17 +782,19 @@ footer {
 // Profile details starts
 #userProfile {
   display: none;
-  position: absolute;
-  margin-left: 310px;
-  margin-top: 140px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 40px;
   width: 55rem;
-  height: 25rem;
+  height: 23rem;
   border-radius: 70px;
   box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
     -webkit-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
     -moz-box-shadow: 8px 12px 56px -4px rgba(123,130,222,0.76);
   background-color: #383838;
-  padding: 40px;
+  // padding: 40px;
 }
 
 #userImage {
@@ -773,28 +824,31 @@ p {
 }
 
 #logOut {
-  position: relative;
-  top: 20px;
   width: auto;
   padding: 10px;
+  margin-left: 40px;
   @extend #studentRegSubmit;
 }
 
 .img__divider--profile {
   width: 25%;
+  margin-left: 40px;
 }
 
 #myName {
   padding: 25px 0 15px 0;
+  margin-left: 40px;
 }
 
 #myTitle {
-  margin-left: 5px;
+  padding: 25px 0 15px 0;
+  margin-left: 40px;
   display: inline;
 }
 
 #myDesc {
   padding: 25px 0 0 0;
+  margin-left: 40px;
 }
 
 .icon__edit {
@@ -833,6 +887,7 @@ p {
 #modalLabel {
   color: $peach;
   font-size: 40px;
+  margin-left: 20px;
 }
 
 .modal-header {
@@ -851,12 +906,6 @@ p {
 .modal input {
   color: white;
 }
-
-.update-modal__cancel-btn {
-  @extend #cancel1;
-}
-
-
 // Profile details ENDS
 
 //=============== userProfile.html ENDS ================

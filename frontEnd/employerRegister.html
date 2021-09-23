@@ -13,16 +13,17 @@
 </head>
 <body id="homeBG">
 
-
   <div id="loginNav">
     <a href="index.html"><img id="homeLogo" class="mt-3" src="image/NAHLogo.png" alt="Need A Hand logo of a hand"></a>
   </div>
 
-  <div id="registerSection" class="my-2 pt-3 pb-3" >
+  <div id="registerSection" class="my-2 pt-3 pb-3">
+
     <div id="regHeading">
-    <h1 id="regTitle" class="text-light">Employer Register</h1>
-    <a href="index.html"><span class="md-icon material-icons-outlined fa-times">clear</span></a>
+      <h1 id="regTitle" class="text-light">Employer Register</h1>
+      <a href="index.html"><span id="eRegExit" class=" material-icons-outlined">clear</span></a>
     </div>
+
     <!-- login form -->
     <form id="nameForm" class="my-4 rounded-pill">
       <input id="eName" type="text" name="name" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Full Name">
@@ -51,19 +52,17 @@
 
     <div class="input__select-img">
       <label for="user-icon">Upload Profile Image:</label>
-
       <input type="file" id="userIcon" name="user-icon" accept="image/png, image/jpeg">
     </div>
 
     <div id="regFormButtons">
       <a href="employerDash.html"><button id="employerRegSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
-
       <a href="index.html"><button id="cancel1" name="r-button" type="button" class="btn btn-dark">Cancel</button></a>
     </div>
+
   </div>
 
       <!-- // SCRIPT LINKS - -->
-
 
       <!-- jquery -->
       <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js"></script>
@@ -72,7 +71,7 @@
 
       <!-- custom javascript -->
       <!-- *** CHANGE TO SCRIPT.MIN.JS AFTER YOU HAVE FINISHED WITH THE CONSOLE ** -->
-      <script src="js/script.js"></script>
+      <script src="script.min.js"></script>
 
 </body>
 </html>

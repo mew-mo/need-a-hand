@@ -5,22 +5,22 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2,
+.nav__links a, .nav__links--right a, h2,
 h3,
 h4,
 h5,
-h6, .nav__links a, .nav__links--right a {
+h6, h1 {
   font-weight: 300;
   color: white;
-  font-family: 'KoHo', sans-serif;
+  font-family: "KoHo", sans-serif;
 }
 
-h3,
+.card-text, h3,
 p,
-a, .card-text {
+a {
   font-weight: 300;
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 h1 {
@@ -90,11 +90,6 @@ li {
   font-size: 30px;
 }
 
-.fa-times:hover {
-  color: #e8ab9d;
-  font-size: 30px;
-}
-
 nav {
   width: 70%;
   margin-left: 150px;
@@ -117,7 +112,7 @@ nav {
 }
 
 .nav__links, .nav__links--right {
-  margin-left: 20%;
+  margin-left: 5%;
 }
 .nav__links a, .nav__links--right a {
   position: relative;
@@ -167,13 +162,15 @@ nav {
 
 #homeBG {
   background-image: url("../image/homeBG.png");
-  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 #homeNav {
   display: flex;
   justify-content: flex-end;
-  margin-right: 400px;
+  margin-right: 200px;
 }
 
 #login {
@@ -192,7 +189,7 @@ nav {
   padding-bottom: 50px;
 }
 #loggedInNav a {
-  margin-left: 50vw;
+  margin-left: 100px;
 }
 
 #homePage {
@@ -280,7 +277,7 @@ nav {
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -288,7 +285,7 @@ nav {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -296,7 +293,7 @@ nav {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
   animation-timing-function: ease-in-out;
 }
 
@@ -349,10 +346,13 @@ footer {
 }
 
 #loginSection {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   width: 30%;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.11);
-  margin-left: 600px;
   text-align: center;
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
@@ -368,7 +368,18 @@ footer {
 
 #WelcomeTitle {
   display: inline-block;
-  margin-left: 115px;
+  margin-left: 40px;
+}
+
+#loginExit {
+  position: fixed;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+#loginExit:hover {
+  color: #e8ab9d;
+  font-size: 30px;
 }
 
 #loginSubmit, .commented {
@@ -385,7 +396,9 @@ footer {
 }
 
 #reg {
-  margin-left: 140px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 #reg a {
   color: #e8ab9d;
@@ -395,10 +408,13 @@ footer {
 #registerSection, #updateUserModal,
 #updatePostModal,
 #createPostModal {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   width: 35%;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.11);
-  margin-left: 600px;
   text-align: center;
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
@@ -410,46 +426,77 @@ footer {
   display: flex;
   margin: auto;
   height: 60px;
-  margin-left: 150px;
+  margin-left: 60px;
+}
+
+#sRegExit {
+  position: fixed;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+#sRegExit:hover {
+  color: #e8ab9d;
+  font-size: 30px;
 }
 
 #regHeading {
   display: flex;
   margin: auto;
   height: 60px;
-  margin-left: 120px;
+  margin-left: 30px;
 }
 
-#studentRegSubmit, #logOut, .update-modal__update-btn--user,
+#eRegExit {
+  position: fixed;
+  margin-left: 15px;
+  font-size: 30px;
+}
+
+#eRegExit:hover {
+  color: #e8ab9d;
+  font-size: 30px;
+}
+
+#studentRegSubmit, .update-modal__update-btn--user, #logOut,
 #employerRegSubmit {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 5px 15px 5px rgba(230, 235, 252, 0.57);
-  width: 30%;
+  width: 35%;
 }
 
-#studentRegSubmit:hover, #logOut:hover, .update-modal__update-btn--user:hover,
+#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover,
 #employerRegSubmit:hover {
   background-color: #21262A;
   border: 1px solid #21262A;
 }
 
-#cancel1, .update-modal__cancel-btn {
+#cancel1 {
   position: relative;
   display: inline-block;
   margin-left: 50px;
   border-radius: 10px;
 }
 
-#cancel1:hover, .update-modal__cancel-btn:hover {
+#cancel1:hover {
   background-color: #e8ab9d;
   border: none;
 }
 
 .input__select-img {
+  display: flex;
   color: #FFFFFF;
   padding-bottom: 25px;
+  margin-left: 60px;
+}
+
+#userIcon {
+  display: flex;
+  padding-bottom: 25px;
+  width: 220px;
+  margin-left: 10px;
 }
 
 .nav__dashboards #icon {
@@ -491,7 +538,7 @@ footer {
   margin-left: 180px;
   margin-bottom: 90px;
   border: 1px solid rgba(196, 196, 196, 0.72);
-  border-radius: 70px;
+  border-radius: 20px;
   box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
@@ -500,7 +547,7 @@ footer {
 }
 #sdjobPost .post__content,
 #emjobPost .post__content {
-  padding: 40px;
+  padding: 20px;
 }
 #sdjobPost #titleUpdate,
 #sdjobPost #detailsUpdate,
@@ -580,12 +627,12 @@ footer {
 }
 .sidebar__fix #logo {
   position: absolute;
-  top: 100px;
+  top: 60px;
   left: 25%;
 }
 
 #sidebarContent {
-  margin-top: 200px;
+  margin-top: 120px;
   color: #FFFFFF;
 }
 
@@ -619,17 +666,18 @@ footer {
 
 #userProfile {
   display: none;
-  position: absolute;
-  margin-left: 310px;
-  margin-top: 140px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 40px;
   width: 55rem;
-  height: 25rem;
+  height: 23rem;
   border-radius: 70px;
   box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   -webkit-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   -moz-box-shadow: 8px 12px 56px -4px rgba(123, 130, 222, 0.76);
   background-color: #383838;
-  padding: 40px;
 }
 
 #userImage {
@@ -658,27 +706,30 @@ p {
 }
 
 #logOut {
-  position: relative;
-  top: 20px;
   width: auto;
   padding: 10px;
+  margin-left: 40px;
 }
 
 .img__divider--profile {
   width: 25%;
+  margin-left: 40px;
 }
 
 #myName {
   padding: 25px 0 15px 0;
+  margin-left: 40px;
 }
 
 #myTitle {
-  margin-left: 5px;
+  padding: 25px 0 15px 0;
+  margin-left: 40px;
   display: inline;
 }
 
 #myDesc {
   padding: 25px 0 0 0;
+  margin-left: 40px;
 }
 
 .icon__edit {
@@ -703,6 +754,7 @@ p {
 #modalLabel {
   color: #e8ab9d;
   font-size: 40px;
+  margin-left: 20px;
 }
 
 .modal-header {

@@ -5,22 +5,22 @@ body {
   overflow-x: hidden;
 }
 
-.nav__links a, .nav__links--right a, h2,
+h1, h2,
 h3,
 h4,
 h5,
-h6, h1 {
+h6, .nav__links a, .nav__links--right a {
   font-weight: 300;
   color: white;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
 }
 
-.card-text, h3,
+h3,
 p,
-a {
+a, .card-text {
   font-weight: 300;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1 {
@@ -47,6 +47,12 @@ a {
 
 input {
   color: #FFFFFF;
+}
+
+ul,
+li {
+  list-style: none;
+  text-decoration: none;
 }
 
 .md-icon {
@@ -274,7 +280,7 @@ nav {
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -282,7 +288,7 @@ nav {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -290,7 +296,7 @@ nav {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 
@@ -365,7 +371,7 @@ footer {
   margin-left: 115px;
 }
 
-#loginSubmit {
+#loginSubmit, .commented {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
   background: rgba(255, 255, 255, 0.2);
@@ -373,7 +379,7 @@ footer {
   width: 30%;
 }
 
-#loginSubmit:hover {
+#loginSubmit:hover, .commented:hover {
   background-color: #21262A;
   border: 1px solid #21262A;
 }
@@ -414,7 +420,7 @@ footer {
   margin-left: 120px;
 }
 
-#studentRegSubmit, .update-modal__update-btn--user, #logOut,
+#studentRegSubmit, #logOut, .update-modal__update-btn--user,
 #employerRegSubmit {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
@@ -423,7 +429,7 @@ footer {
   width: 30%;
 }
 
-#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover,
+#studentRegSubmit:hover, #logOut:hover, .update-modal__update-btn--user:hover,
 #employerRegSubmit:hover {
   background-color: #21262A;
   border: 1px solid #21262A;
@@ -534,6 +540,35 @@ footer {
   display: none;
 }
 
+#emjobPostSec {
+  margin-top: 11%;
+}
+#emjobPostSec .material-icons-outlined {
+  margin-left: 20px;
+}
+
+#studentJobPosts {
+  margin-left: 25%;
+  margin-top: 11%;
+}
+
+.commented {
+  display: inline;
+  width: auto;
+  padding: 10px;
+}
+
+.input__comment {
+  display: inline;
+  margin: 0;
+  color: white;
+  height: 50px;
+  width: 60%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(196, 196, 196, 0.72);
+}
+
 .sidebar__fix {
   position: fixed;
   float: left;
@@ -580,11 +615,6 @@ footer {
 ::placeholder {
   padding-left: 10px;
   color: rgba(196, 196, 196, 0.72);
-}
-
-#studentJobPosts {
-  margin-left: 25%;
-  margin-top: 11%;
 }
 
 #userProfile {

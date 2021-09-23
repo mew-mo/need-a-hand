@@ -7,11 +7,6 @@
     url: ''
   };
 
-  // declaring the storage for if the comments are open or not
-  var conditional = {
-    openComments: false
-  };
-
   // starting the server
   $.ajax({
     url: 'config.json',
@@ -36,67 +31,69 @@
   // checking if the employer post section is present on the page
   if (document.querySelector('#emjobPostSec')) {
     window.addEventListener('load', () => {
-      $.ajax({
-      url:`${url}/allPosts`,
-      type: 'GET',
-      dataType : 'json',
-      success : function(postFromMDB){
-        console.log(postFromMDB);
-        var i;
-        var getEditBtn = document.getElementById('editPost');
-        document.getElementById('emjobPostSec').innerHTML ="";
-        for (i = 0; i < postFromMDB.length; i++) {
-              console.log(postFromMDB[i]);
+      setTimeout(function() {
+        $.ajax({
+        url:`${url}/allPosts`,
+        type: 'GET',
+        dataType : 'json',
+        success : function(postFromMDB){
+          console.log(postFromMDB);
+          var i;
+          var getEditBtn = document.getElementById('editPost');
+          document.getElementById('emjobPostSec').innerHTML ="";
+          for (i = 0; i < postFromMDB.length; i++) {
+                console.log(postFromMDB[i]);
 
-              let commentElements = [];
-                if (postFromMDB[i].comments !== null) {
+                let commentElements = [];
+                  if (postFromMDB[i].comments !== null) {
 
-              let commentList = postFromMDB[i].comments;
+                let commentList = postFromMDB[i].comments;
 
-                for(x = 1; x < commentList.length; x++) {
+                  for(x = 1; x < commentList.length; x++) {
 
-                commentElements += `<li>${commentList[x]}</li>`; }
-              }
+                  commentElements += `<li>${commentList[x]}</li>`; }
+                }
 
-              document.getElementById('emjobPostSec').innerHTML +=
-              `
-              <div>
-                <div id="emjobPost" class="text-light mt-4 py-4 px-4">
-                  <div class="text-light mt-4 py-4 px-4">
-                  <h2 id="postTitle">${postFromMDB[i].jobTitle}</h2>
-                  <h4 id="posterName">${postFromMDB[i].posterName}</h4>
-                  <hr>
-                  <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+                document.getElementById('emjobPostSec').innerHTML +=
+                `
                 <div>
+                  <div id="emjobPost" class="text-light mt-4 py-4 px-4">
+                    <div class="text-light mt-4 py-4 px-4">
+                    <h2 id="postTitle">${postFromMDB[i].jobTitle}</h2>
+                    <h4 id="posterName">${postFromMDB[i].posterName}</h4>
+                    <hr>
+                    <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+                  <div>
 
-                <div>
+                  <div>
 
-                  <span id="editPostBtn" data-edit-id="${postFromMDB[i]._id}" class="material-icons-outlined edit-button">edit</span>
-                  <span id="deletePostBtn" data-delete-id="${postFromMDB[i]._id}" class="material-icons-outlined delete-button">delete</span>
-                  <span id="commentPostBtn" class="md-icon material-icons-outlined icon__comment comment-button">comment</span>
+                    <span id="editPostBtn" data-edit-id="${postFromMDB[i]._id}" class="material-icons-outlined edit-button">edit</span>
+                    <span id="deletePostBtn" data-delete-id="${postFromMDB[i]._id}" class="material-icons-outlined delete-button">delete</span>
+                    <span id="commentPostBtn" class="md-icon material-icons-outlined icon__comment comment-button">comment</span>
 
-                  <span id="titleUpdate">${postFromMDB[i].jobTitle}</span>
-                  <span id="detailsUpdate">${postFromMDB[i].jobDescription}
-                  </span>
+                    <span id="titleUpdate">${postFromMDB[i].jobTitle}</span>
+                    <span id="detailsUpdate">${postFromMDB[i].jobDescription}
+                    </span>
+
+                  </div>
+
+                  <div id="commentSection">
+                  <span class="span__open-comments" style="display:none;">false</span>
+                  <p class="commentBox" data-id="${postFromMDB[i]._id}">${commentElements}</p>
+                    <br><b>Post comment</b><br><br>
+                    <input type="text" class="form-control rounded-pill input__comment" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
+                    <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented" data-id="${postFromMDB[i]._id}">Comment</button>
+                  </div>
 
                 </div>
-
-                <div id="commentSection">
-                <span class="span__open-comments" style="display:none;">false</span>
-                <p class="commentBox" data-id="${postFromMDB[i]._id}">${commentElements}</p>
-                  <br><b>Post comment</b>
-                  <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
-                  <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented" data-id="${postFromMDB[i]._id}">Comment</button>
-                </div>
-
-              </div>
-              ` ;
-            } // for loop one ends
-          }, //end of success
-        error:function(){
-          alert('Error: Cannot connect to API');
-        }
-      });//ajax get
+                ` ;
+              } // for loop one ends
+            }, //end of success
+          error:function(){
+            alert('Error: Cannot connect to API');
+          }
+        });//ajax get
+      }, 500);
     });
   } // if
 
@@ -147,7 +144,7 @@
   }); //createAd click function ends
 
 
-// Cancle create employer post click function
+// Cancel create employer post click function
 
   $('.update-modal__cancel-btn--create').click(function(){
 
@@ -176,7 +173,7 @@
     event.preventDefault();
     let postID = this.dataset.id;
 
-    let userComment = $("input[data-id='" + postID +"']").val();
+    let userComment = `<hr><p style="font-size:20px;">${sessionStorage.userFullName} | <span class="link__email">@${sessionStorage.username}</span></p>` + $("input[data-id='" + postID +"']").val();
 
       if (userComment == ''){
         alert('Please enter a comment');
@@ -186,12 +183,13 @@
           url: `${url}/postComment/${postID}`,
           type: 'PATCH',
           data:{
-          comment: userComment },
+            comment: userComment
+          },
           success: function(data){
             if(data == '401 error: user has no permission to update') {
               alert('401 error: user has no permission to');
             } else {
-              alert('updated');
+              alert('Added your comment!');
             }//else
             $("input[data-id='" + postID +"']").val('');
             // page reloads
@@ -275,65 +273,65 @@
   });
 
 
-
   // GET - student to view job posts =================================================
-
   // checking if the student job post section is present on the page
   if (document.querySelector('#studentJobPosts')) {
-    // ** MAYBE NEEDS A 1-2 SECOND WAIT PERIOD - MO **
     window.addEventListener('load', () => {
-      $.ajax({
-        url:`${url}/allPosts`,
-        type: 'GET',
-        dataType : 'json',
+      setTimeout(function() {
+        $.ajax({
+          url:`${url}/allPosts`,
+          type: 'GET',
+          dataType : 'json',
 
-        success : function(postFromMDB){
-          var i;
+          success : function(postFromMDB){
+            var i;
 
-          document.getElementById('studentJobPosts').innerHTML ="";
+            document.getElementById('studentJobPosts').innerHTML ="";
 
-          for (i = 0; i < postFromMDB.length; i++) {
-            let commentElements = [];
-            if (postFromMDB[i].comments !== null) {
-              let commentList = postFromMDB[i].comments;
-              for(x = 1; x < commentList.length; x++) {
-                commentElements += `<li>${commentList[x]}</li>`; }
-              }
+            for (i = 0; i < postFromMDB.length; i++) {
+              let commentElements = [];
+              if (postFromMDB[i].comments !== null) {
+                let commentList = postFromMDB[i].comments;
+                for(x = 1; x < commentList.length; x++) {
+                  commentElements += `<li>${commentList[x]}</li>`; }
+                }
 
-            document.getElementById('studentJobPosts').innerHTML +=
-              `
-              <div id="sdjobPost" class="text-light mt-4 py-4 px-4">
-                <div class="post__content">
-                  <h2>${postFromMDB[i].jobTitle}</h2>
-                  <h4>${postFromMDB[i].posterName}</h4>
-                  <span class="md-icon material-icons-outlined icon__bookmark--blank bookmark-button">
-                    bookmark_border
-                  </span>
-                  <hr>
-                  <p id="postDetails">${postFromMDB[i].jobDescription}</p>
-                  <span data-id="${postFromMDB[i]._id}" class="md-icon material-icons-outlined icon__comment comment-button sd-comments">
-                    comment
-                  </span>
+              document.getElementById('studentJobPosts').innerHTML +=
+                `
+                <div id="sdjobPost" class="text-light mt-4 py-4 px-4">
+                  <div class="post__content">
+                    <h2>${postFromMDB[i].jobTitle}</h2>
+                    <h4>${postFromMDB[i].posterName}</h4>
+                    <span class="md-icon material-icons-outlined icon__bookmark--blank bookmark-button">
+                      bookmark_border
+                    </span>
+                    <hr>
+                    <p id="postDetails">${postFromMDB[i].jobDescription}</p>
+                    <span data-id="${postFromMDB[i]._id}" class="md-icon material-icons-outlined icon__comment comment-button sd-comments">
+                      comment
+                    </span>
 
-                  <div id="sdCommentSection" style="display:none;">
-                  <span class="span__open-comments" style="display:none;">false</span>
-                    <ul class="commentBox" data-id="${postFromMDB[i]._id}"> ${commentElements} </ul>
-                    <br><b>Post comment</b>
-                    <input type="text" class="form-control" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
-                    <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented sd-comment-btn" data-id="${postFromMDB[i]._id}">Comment</button>
+                    <div id="sdCommentSection" style="display:none;">
+                    <span class="span__open-comments" style="display:none;">false</span>
+                      <ul class="commentBox" data-id="${postFromMDB[i]._id}"> ${commentElements} </ul>
+                      <br><b>Post comment</b><br><br>
+                      <input type="text" class="form-control rounded-pill input__comment" name="comment" placeholder="Leave a comment here" data-id="${postFromMDB[i]._id}">
+                      <button type="button" name="button" class="btn btn-primary btn-md mr-3 rounded-pill commented sd-comment-btn" data-id="${postFromMDB[i]._id}">Comment</button>
+                    </div>
+
+                    </div>
+
                   </div>
-
-                  </div>
-
                 </div>
-              </div>
-              `;
-            } // for loop one ends
-          },
-          error:function(){
-            alert('Error: Cannot call API');
-          }
-      });//ajax
+                `;
+              } // for loop one ends
+            },
+            error:function(){
+              alert('Error: Cannot call API');
+            }
+        });//ajax
+      }, 500);
+
     });
   }
 
@@ -362,8 +360,7 @@
       console.log(postID);
       console.log("student comment clicked");
 
-    let userComment = $("input[data-id='" + postID +"']").val();
-      console.log(userComment);
+      let userComment = `<hr><p style="font-size:20px;">${sessionStorage.userFullName} | <span class="link__email">@${sessionStorage.username}</span></p>` + $("input[data-id='" + postID +"']").val();
 
       if ( userComment == ''){
         alert('Please enter a comment');
@@ -384,7 +381,7 @@
         location.reload();
         }, //success
           error: function(){
-            alert('Error: Cannot call api'); }//error
+            alert('Error: Cannot call API'); }//error
         });//ajax
       }//if
     }); //end of click changes

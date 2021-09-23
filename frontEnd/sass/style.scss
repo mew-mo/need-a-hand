@@ -68,6 +68,12 @@ a {
 input {
   color: $white;
 }
+
+ul,
+li {
+  list-style: none;
+  text-decoration: none;
+}
 // Header set ENDS
 
 // Setting universal icon properties
@@ -607,10 +613,6 @@ footer {
     display: none;
   }
 
-  #createListing {
-
-  }
-
   img {
     width: 200px;
     padding: 20px 0 40px 0;
@@ -635,9 +637,39 @@ footer {
   }
 }
 
-
 #commentSection {
   display: none;
+}
+
+#emjobPostSec {
+  margin-top: 11%;
+
+  .material-icons-outlined {
+    margin-left: 20px;
+  }
+}
+
+#studentJobPosts {
+  margin-left: 25%;
+  margin-top: 11%;
+}
+
+.commented {
+  display: inline;
+  width: auto;
+  padding: 10px;
+  @extend #loginSubmit;
+}
+
+.input__comment {
+  display: inline;
+  margin: 0;
+  color: white;
+  height: 50px;
+  width: 60%;
+  padding: 10px;
+  background-color: $low-white;
+  border: 1px solid $placeholder;
 }
 // Employer & Student post content ENDS
 
@@ -690,11 +722,6 @@ footer {
 ::placeholder {
   padding-left: 10px;
   color: $placeholder;
-}
-
-#studentJobPosts {
-  margin-left: 25%;
-  margin-top: 11%;
 }
 
 // Student sidebar ENDS

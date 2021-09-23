@@ -5,22 +5,22 @@ body {
   overflow-x: hidden;
 }
 
-.nav__links a, .nav__links--right a, h2,
+h1, h2,
 h3,
 h4,
 h5,
-h6, h1 {
+h6, .nav__links a, .nav__links--right a {
   font-weight: 300;
   color: white;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
 }
 
-.card-text, h3,
+h3,
 p,
-a {
+a, .card-text {
   font-weight: 300;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1 {
@@ -60,6 +60,10 @@ li {
   cursor: pointer;
 }
 
+.material-icons-outlined {
+  cursor: pointer;
+}
+
 .a__icon--adjust-top {
   font-size: 30px;
   position: relative;
@@ -90,6 +94,11 @@ li {
   font-size: 30px;
 }
 
+.fa-times:hover {
+  color: #e8ab9d;
+  font-size: 30px;
+}
+
 nav {
   width: 70%;
   margin-left: 150px;
@@ -112,7 +121,7 @@ nav {
 }
 
 .nav__links, .nav__links--right {
-  margin-left: 5%;
+  margin-left: 10%;
 }
 .nav__links a, .nav__links--right a {
   position: relative;
@@ -189,7 +198,7 @@ nav {
   padding-bottom: 50px;
 }
 #loggedInNav a {
-  margin-left: 100px;
+  margin-left: 60vw;
 }
 
 #homePage {
@@ -277,7 +286,7 @@ nav {
   animation-name: rotate-left;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(2) {
@@ -285,7 +294,7 @@ nav {
   animation-name: rotate-center;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 .product-card:nth-child(3) {
@@ -293,7 +302,7 @@ nav {
   animation-name: rotate-right;
   animation-duration: 14s;
   animation-iteration-count: infinite;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-in-out;
 }
 
@@ -408,13 +417,10 @@ footer {
 #registerSection, #updateUserModal,
 #updatePostModal,
 #createPostModal {
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
   width: 35%;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.11);
+  margin-left: 600px;
   text-align: center;
   box-shadow: 0 8px 32px 0 rgba(230, 235, 252, 0.57);
   backdrop-filter: blur(2px);
@@ -458,7 +464,7 @@ footer {
   font-size: 30px;
 }
 
-#studentRegSubmit, .update-modal__update-btn--user, #logOut,
+#studentRegSubmit, .update-modal__update-btn--create, #logOut, .update-modal__update-btn--user,
 #employerRegSubmit {
   border-radius: 10px;
   border: 1px solid #e8ab9d;
@@ -467,7 +473,7 @@ footer {
   width: 35%;
 }
 
-#studentRegSubmit:hover, .update-modal__update-btn--user:hover, #logOut:hover,
+#studentRegSubmit:hover, .update-modal__update-btn--create:hover, #logOut:hover, .update-modal__update-btn--user:hover,
 #employerRegSubmit:hover {
   background-color: #21262A;
   border: 1px solid #21262A;
@@ -707,7 +713,7 @@ p {
 
 #logOut {
   width: auto;
-  padding: 10px;
+  margin-top: 50px;
   margin-left: 40px;
 }
 
@@ -743,12 +749,19 @@ p {
 .update-modal__update-btn--user {
   width: auto;
   padding: 10px;
+  color: #FFFFFF;
 }
 
 .link__email {
   color: #e8ab9d;
   text-decoration: underline;
   cursor: pointer;
+}
+
+#updatePostModal,
+#createPostModal {
+  margin-top: 10%;
+  height: auto;
 }
 
 #modalLabel {

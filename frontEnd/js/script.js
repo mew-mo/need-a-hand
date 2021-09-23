@@ -37,15 +37,12 @@
         type: 'GET',
         dataType : 'json',
         success : function(postFromMDB){
-          console.log(postFromMDB);
           var i;
           var getEditBtn = document.getElementById('editPost');
           document.getElementById('emjobPostSec').innerHTML ="";
           for (i = 0; i < postFromMDB.length; i++) {
-                console.log(postFromMDB[i]);
-
-                let commentElements = [];
-                  if (postFromMDB[i].comments !== null) {
+            let commentElements = [];
+              if (postFromMDB[i].comments !== null) {
 
                 let commentList = postFromMDB[i].comments;
 
@@ -98,7 +95,8 @@
   } // if
 
 
-  // POST EMPLOYER POST ======================================================
+  // POST EMPLOYER POST
+  // ======================================================
 
   $('#createAd').click(function(){
     $('#createPostModal').modal('show');
@@ -107,15 +105,11 @@
 
       event.preventDefault();
 
-      console.log('save changes from create modal clicked');
-
-      let posterName = $('#createCompany').val();
-      let jTitle = $('#createTitle').val();
+      let posterName = `${sessionStorage.userFullName} | <span class="link__email">@${sessionStorage.username}</span>`;
+      let jTitle = $('#createTitle').val() + ` | ${sessionStorage.userCompany}`;
       let jDescription = $('#createDesc').val();
       let userid =  sessionStorage.getItem('userID');
 
-      console.log(userid);
-      console.log(posterName, jTitle, jDescription);
       if (posterName == '' || jTitle == '' || jDescription == ''){
         alert('Please enter all details to post a job ad, thank you!');
 
@@ -146,15 +140,14 @@
 
 // Cancel create employer post click function
 
-  $('.update-modal__cancel-btn--create').click(function(){
-
-    console.log('click for cancel modal working');
+  $('.update-modal__cancel-btn--create').click(function() {
     $('#createPostModal').hide();
     // page reloads
     location.reload();
   });
 
-// EMPLOYER POST - comment section ======================================================
+  // EMPLOYER POST - comment section
+  // ======================================================
 
   // function for hiding and showing each comment section
   if (document.querySelector('#emjobPostSec')) {
@@ -167,6 +160,8 @@
         e.target.parentNode.parentNode.childNodes[3].children[0].innerHTML = 'false';
       }
     }, false); //event listener ends
+
+
   } // if em job post section exists ends
 
   $(document).on('click', '.commented', function(event) {
@@ -178,7 +173,6 @@
       if (userComment == ''){
         alert('Please enter a comment');
       } else {
-        console.log("Comment added: " + userComment);
         $.ajax({
           url: `${url}/postComment/${postID}`,
           type: 'PATCH',
@@ -188,9 +182,7 @@
           success: function(data){
             if(data == '401 error: user has no permission to update') {
               alert('401 error: user has no permission to');
-            } else {
-              alert('Added your comment!');
-            }//else
+            } //else
             $("input[data-id='" + postID +"']").val('');
             // page reloads
             location.reload();
@@ -208,72 +200,63 @@
 // input fields will call api data already
 
   window.addEventListener('click', (e) => {
-
     if (e.target.innerHTML === 'edit') {
-      $('#updateTitle').val(e.target.parentNode.children[3].innerText);
+      $('#updateTitle').val(e.target.parentNode.children[3].innerText.split('|')[0]);
+      // splits so it only returns the title and not the company name in the input field
       $('#updateDesc').val(e.target.parentNode.children[4].innerText);
     }
+
+  // click edit and modal shows
+    $(document).on('click', '.edit-button', function(event) {
+
+      var editId = $(this).attr("data-edit-id");
+
+      $('#updatePostModal').modal('show');
+
+      $('.update-modal__update-btn--post').click(function(){
+
+        event.preventDefault();
+
+        let userid = sessionStorage.getItem('userID');
+        let jobTitle = $('#updateTitle').val() + ` | ${sessionStorage.companyName}`;
+        let jobDescription = $('#updateDesc').val();
+        let posterName = `${sessionStorage.userFullName} | <span class="link__email">@${sessionStorage.username}</span>`;
+
+        $.ajax({
+          url: `${url}/updatePost/${editId}`,
+          type: 'PATCH',
+          data: {
+            jobTitle: jobTitle,
+            jobDescription: jobDescription,
+            posterName: posterName,
+            user_id: userid
+          },
+          success: function(data){
+            if(data == '401 error: user has no permission to update'){
+              alert('401 error: user has no permission to update');
+            } else {
+              alert('Your post has been updated.');
+            }//else
+            // page reloads
+            location.reload();
+          }, //success
+          error: function() {
+            alert('Error: Cannot connect to API');
+          }//error
+        });//ajax
+      }); //end of modal save changes button
+    }); // end of onclick
   }, false);
 
-// click edit and modal shows
-  $(document).on('click', '.edit-button', function(event) {
-
-    var editId = $(this).attr("data-edit-id");
-
-    $('#updatePostModal').modal('show');
-
-    $('.update-modal__update-btn--post').click(function(){
-
-      event.preventDefault();
-
-      let userid = sessionStorage.getItem('userID');
-      let jobTitle = $('#updateTitle').val();
-      let jobDescription = $('#updateDesc').val();
-      // let posterName = sessionStorage.companyName;
-      let posterName = sessionStorage.userFullName;
-      // let username = sessionStorage.username;
-
-      console.log(jobTitle, jobDescription, posterName);
-
-      $.ajax({
-        url: `${url}/updatePost/${editId}`,
-        type: 'PATCH',
-        data: {
-          jobTitle: jobTitle,
-          jobDescription: jobDescription,
-          posterName: posterName,
-          // username: username,
-          user_id: userid
-        },
-        success: function(data){
-          console.log(data);
-          if(data == '401 error: user has no permission to update'){
-            alert('401 error: user has no permission to update');
-          } else {
-            alert('Your post has been updated.');
-          }//else
-          // page reloads
-          location.reload();
-        }, //success
-        error: function() {
-          alert('Error: Cannot connect to API');
-        }//error
-      });//ajax
-    }); //end of modal save changes button
-  });
-
-
   $('.update-modal__cancel-btn--post').click(function(){
-
-    console.log('click for cancel modal working');
     $('#updatePostModal').hide();
     // page reloads
     location.reload();
-
   });
 
+  // GET - student to view job posts
+  // =========================================================
 
-  // GET - student to view job posts =================================================
   // checking if the student job post section is present on the page
   if (document.querySelector('#studentJobPosts')) {
     window.addEventListener('load', () => {
@@ -336,7 +319,8 @@
   }
 
 
-  // STUDENT POST - comment section ======================================================
+  // STUDENT POST - comment section
+  // ======================================================
 
     // function for hiding and showing each comment section
     if (document.querySelector('#studentJobPosts')) {
@@ -349,53 +333,45 @@
           e.target.parentNode.children[6].children[0].innerHTML = 'false';
         }
       }, false); //event listener ends
+
+      $(document).on('click', '.sd-comment-btn', function(event) {
+        event.preventDefault();
+
+        let postID = this.dataset.id;
+
+        let userComment = `<hr><p style="font-size:20px;">${sessionStorage.userFullName} | <span class="link__email">@${sessionStorage.username}</span></p>` + $("input[data-id='" + postID +"']").val();
+
+        if ( userComment == ''){
+          alert('Please enter a comment');
+        } else {
+          $.ajax({
+            url: `${url}/postComment/${postID}`,
+            type: 'PATCH',
+            data:{
+            comment: userComment },
+            success: function(data){
+                if(data == '401 error: user has no permission to update') {
+                  alert('401 error: user has no permission to');
+                }
+          $("input[data-id='" + postID +"']").val('');
+          // page reloads
+          location.reload();
+          }, //success
+            error: function(){
+              alert('Error: Cannot call API'); }//error
+          });//ajax
+        }//if
+      }); //end of click changes
     } // if student job post section exists ends
 
-    $(document).on('click', '.sd-comment-btn', function(event) {
-      event.preventDefault();
 
-      console.log('comment changes saved clicked');
-
-      let postID = this.dataset.id;
-      console.log(postID);
-      console.log("student comment clicked");
-
-      let userComment = `<hr><p style="font-size:20px;">${sessionStorage.userFullName} | <span class="link__email">@${sessionStorage.username}</span></p>` + $("input[data-id='" + postID +"']").val();
-
-      if ( userComment == ''){
-        alert('Please enter a comment');
-      } else {
-        console.log("Comment added: " + userComment);
-        $.ajax({
-          url: `${url}/postComment/${postID}`,
-          type: 'PATCH',
-          data:{
-          comment: userComment },
-          success: function(data){
-              if(data == '401 error: user has no permission to update') {
-                alert('401 error: user has no permission to');
-              } else { alert('Commment posted!');
-            }//else
-        $("input[data-id='" + postID +"']").val('');
-        // page reloads
-        location.reload();
-        }, //success
-          error: function(){
-            alert('Error: Cannot call API'); }//error
-        });//ajax
-      }//if
-    }); //end of click changes
-
-
-// DELETE - employer dashboard - delete a post ===========================
+// DELETE - employer dashboard - delete a post
+// ==================================================
 
 $(document).on('click', '.delete-button', function(event) {
 
     event.preventDefault();
     var deleteId = $(this).attr("data-delete-id");
-    console.log(deleteId);
-
-    console.log("delete clicked");
 
     $.ajax({
       url : `${url}/deletePost/${deleteId}`,
@@ -404,7 +380,6 @@ $(document).on('click', '.delete-button', function(event) {
         user_id : sessionStorage.userID
       },
       success : function(data){
-        console.log(data);
         if (data == 'Post Deleted'){
           alert('Post Deleted');
           // page reloads
@@ -414,14 +389,15 @@ $(document).on('click', '.delete-button', function(event) {
           alert('Invalid Post: Post may not exist');
         } //else
       }, //success
-      error:function(){
-        console.log('error: cannot call api');
+      error:function() {
+        alert('Error: Cannot call API');
       }//error
     });//ajax
   });//deletePost
 
 
-// POST - student registration  =====================================================
+// POST - student registration
+ // =====================================================
 
   convertImg = () => {
     // checks if the files exist before running
@@ -484,6 +460,7 @@ $(document).on('click', '.delete-button', function(event) {
         },
         success: function(user) {
           window.name = user.pfpUrl;
+          // session storage is not large enough to store the profile picture url, so we store it in the window name instead
           sessionStorage.setItem('userID', user._id);
           sessionStorage.setItem('userFullName', user.name);
           sessionStorage.setItem('username', user.username);
@@ -508,7 +485,8 @@ $(document).on('click', '.delete-button', function(event) {
 
   // student registration ENDS
 
-  // POST - employer registration  =====================================================
+  // POST - employer registration
+  // =====================================================
 
   $('#employerRegSubmit').click(function() {
     event.preventDefault();//this prevents code breaking when no data is found
@@ -552,7 +530,7 @@ $(document).on('click', '.delete-button', function(event) {
           sessionStorage.setItem('username', user.username);
           sessionStorage.setItem('userEmail', user.email);
           sessionStorage.setItem('userPass', user.password);
-          sessionStorage.setItem('extra', user.extra);
+          sessionStorage.setItem('userCompany', user.companyName);
           sessionStorage.setItem('accType', 'employer');
 
           if (user !== 'username taken already. Please try another name'){
@@ -572,7 +550,8 @@ $(document).on('click', '.delete-button', function(event) {
   });// employer reg btn click
   // employer registration ENDS
 
-  // POST - login (and logout) =====================================================
+  // POST - login (and logout)
+  // =====================================================
 
   // will only run if the login submit is on the page
   if (document.querySelector('#loginSubmit')) {
@@ -653,6 +632,7 @@ $(document).on('click', '.delete-button', function(event) {
               sessionStorage.setItem('username', user.username);
               sessionStorage.setItem('userEmail', user.email);
               sessionStorage.setItem('userPass', user.password);
+              sessionStorage.setItem('userCompany', user.companyName);
               sessionStorage.setItem('accType', 'employer');
               window.location.href = "employerDash.html";
             } //else
@@ -859,7 +839,6 @@ $(document).on('click', '.delete-button', function(event) {
                 sessionStorage.setItem('userEmail', email);
                 sessionStorage.setItem('userPass', pass.newPass);
                 $('#updateUserModal').modal('hide');
-                location.reload();
               } //else
             }, //success
             error: function() {
@@ -938,7 +917,6 @@ $(document).on('click', '.delete-button', function(event) {
                 sessionStorage.setItem('userPass', ePass.newPass);
                 window.name = pfpUrl;
                 $('#updateUserModal').modal('hide');
-                location.reload();
               } //else
             }, //success
             error: function() {

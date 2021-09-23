@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.min.css">
+
+  <title>Need A Hand | Employer Register</title>
+</head>
+<body id="homeBG">
+
+  <div id="loginNav">
+    <a href="index.html"><img id="homeLogo" class="mt-3" src="image/NAHLogo.png" alt="Need A Hand logo of a hand"></a>
+  </div>
+
+  <div id="registerSection" class="my-2 pt-3 pb-3">
+
+    <div id="regHeading">
+      <h1 id="regTitle" class="text-light">Employer Register</h1>
+      <a href="index.html"><span id="eRegExit" class=" material-icons-outlined">clear</span></a>
+    </div>
+
+    <!-- login form -->
+    <form id="nameForm" class="my-4 rounded-pill">
+      <input id="eName" type="text" name="name" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Full Name">
+    </form>
+    <form id="userNameForm" class="my-4 rounded-pill">
+      <input id="eUsername" type="text" name="username" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Username">
+    </form>
+    <form id="emailForm" class="my-4 rounded-pill">
+      <input id="eEmail" type="email" name="r-email" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Email">
+    </form>
+    <form id="passwordForm" class="my-4 rounded-pill">
+      <input id="ePassword" type="password" name="password" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Password">
+    </form>
+    <form id="repeatPWForm" class="my-4 rounded-pill">
+      <input id="eCheckPassword" type="password" name="r-password" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Confirm Password">
+    </form>
+    <form id="jobTitleForm" class="my-4 rounded-pill">
+      <input id="jobTitle" type="text" name="r-name" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Employment title">
+    </form>
+    <form id="jobNameForm" class="my-4 rounded-pill">
+      <input id="companyName" type="text" name="r-name" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Company Name">
+    </form>
+    <form id="extraForm" class="my-4 rounded-pill">
+      <input id="eExtra" type="text" name="r-name" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Extra Details">
+    </form>
+
+    <div class="input__select-img">
+      <label for="user-icon">Upload Profile Image:</label>
+      <input type="file" id="userIcon" name="user-icon" accept="image/png, image/jpeg">
+    </div>
+
+    <div id="regFormButtons">
+      <a href="employerDash.html"><button id="employerRegSubmit" name="r-button" type="button" class="btn btn-primary">Create Account</button></a>
+      <a href="index.html"><button id="cancel1" name="r-button" type="button" class="btn btn-dark">Cancel</button></a>
+    </div>
+
+  </div>
+  <!-- register section ENDS -->
+
+    <!-- // SCRIPT LINKS - -->
+
+    <!-- jquery -->
+    <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="../frontEnd/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom javascript -->
+    <script src="js/script.min.js"> </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="slick/slick-theme.css">
+  <link rel="stylesheet" href="slick/slick.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <title>Need A Hand | Student Profiles</title>
+</head>
+
+<body data-title="student-profiles-page" class="bg-dark">
+
+  <nav class="mt-3 nav">
+
+    <a href="index.html"><img src="image/NAHLogo.png" alt="Need A Hand logo of a hand" id="logo"></a>
+
+      <h1 class="d-inline" id="upperTitle">Potential Candidates</h1>
+      <h1 class="d-inline" id="lowerTitle">Student profiles</h1>
+      <img src="image/divider.png" alt="content divider" class="img__divider">
+
+    <div class="d-inline nav__links">
+
+      <a href="employerDash.html" class="d-inline nav__link">
+        <span class="material-icons-outlined icon__nav-icon a__icon--adjust-top">
+          dashboard
+        </span>
+        Dashboard
+      </a>
+
+      <a href="#" class="d-inline nav__link" id="active">
+        <span class="material-icons-outlined icon__nav-icon a__icon--adjust-top">
+          supervised_user_circle
+        </span>
+        View Potential Candidates
+      </a>
+
+    </div>
+
+    <div class="img-container__crop-main-icon" id="icon">
+      <img src="https://via.placeholder.com/80" alt="">
+    </div>
+
+  </nav>
+  <!-- nav ENDS -->
+
+  <!-- popover icon nav STARTS -->
+  <div class="nav__popover">
+    <div class="a__popover-links">
+      <a href="userProfile.html">My Profile</a>
+      <a href="#" id="logoutSubmit">Log Out</a>
+    </div>
+  </div>
+  <!-- popover icon nav ENDS -->
+
+  <div class="loading__icon mx-auto">
+    <img src="image/loading-icon.svg" alt="Loading...">
+  </div>
+
+  <!-- student profiles START -->
+  <div id="studentProfiles">
+
+   <!-- carousel -->
+   <div class="student-carousel mx-auto">
+   </div>
+    <!-- carousel -->
+
+  </div>
+  <!-- student profiles END -->
+
+  <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../frontEnd/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="slick/slick.min.js"></script>
+  <script src="js/script.min.js"> </script>
+</body>
+</html>

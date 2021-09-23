@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="../frontEnd/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <title>Need A Hand | Employer Dashboard</title>
+</head>
+<body class="bg-dark">
+
+  <nav class="mt-3 nav">
+
+      <a href="index.html"><img src="image/NAHLogo.png" alt="Need A Hand logo of a hand" id="logo"></a>
+      <h1 class="d-inline" id="upperTitle">Dashboard</h1>
+      <h1 class="d-inline" id="lowerTitle">Employer</h1>
+      <img src="image/divider.png" alt="content divider" class="img__divider">
+
+      <div class="d-inline nav__links">
+
+        <a href="#" id="createAd" class="d-inline nav__link">
+          <span class="material-icons-outlined icon__nav-icon a__icon--adjust-top">
+            add_circle_outline
+          </span>
+          Make New Ad
+        </a>
+
+        <a href="studentProfiles.html" class="d-inline nav__link">
+          <span class="material-icons-outlined icon__nav-icon a__icon--adjust-top">
+            supervised_user_circle
+          </span>
+          View Potential Candidates
+        </a>
+
+      </div>
+
+      <div class="img-container__crop-main-icon" id="icon">
+        <img src="https://via.placeholder.com/80" alt="">
+      </div>
+
+  </nav>
+  <!-- nav ENDS -->
+
+  <!-- popover icon nav STARTS -->
+  <div class="nav__popover">
+
+    <div class="a__popover-links">
+      <a href="userProfile.html">My Profile</a>
+      <a href="#" id="logoutSubmit">Log Out</a>
+    </div>
+
+  </div>
+  <!-- popover icon nav ENDS -->
+
+  <!-- job post api results - for employer to view/edit/delete-->
+  <div id="emjobPostSec"></div>
+
+  <!-- CREATE EMPLOYER POST MODAL  -->
+  <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalLabel">Create Job Post Listing</h4>
+        </div>
+
+        <div class="modal-body">
+
+          <label for="createTitle">Enter job title: </label>
+          <input type="text" id="createTitle" name="createTitle" class="rounded-pill modal__update-field">
+          <br><br>
+
+          <label for="createDesc">Enter job description: </label>
+          <input type="text" id="createDesc" name="createDesc" class="rounded-pill modal__update-field">
+          <br><br>
+
+        </div>
+
+        <div class="modal-footer">
+
+          <button id="cancel1" type="button" class="update-modal__cancel-btn--create btn-dark" data-dismiss="modal">Cancel</button>
+          <button type="button" class="update-modal__update-btn--create text-light">Create Post</button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- modal ENDS -->
+
+
+
+  <!-- UPDATE EMPLOYER POST MODAL  -->
+  <div class="modal fade" id="updatePostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Edit Your Post</h5>
+        </div>
+
+        <div class="modal-body">
+
+          <label for="updateTitle">Title</label>
+          <input type="text" id="updateTitle" name="updateTitle" class="rounded-pill modal__update-field">
+          <br><br>
+          <label for="updateDesc">Description</label>
+          <input type="text" id="updateDesc" name="updateDesc" class="rounded-pill modal__update-field">
+          <br><br>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="update-modal__cancel-btn--post btn-dark" data-dismiss="modal">Cancel</button>
+          <button type="button" class="update-modal__update-btn--post">Save changes</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- Modal ENDS -->
+
+  <!-- // SCRIPT LINKS -->
+
+  <!-- jquery -->
+  <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- bootstrap -->
+  <script src="../frontEnd/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- custom javascript -->
+  <script src="js/script.min.js"> </script>
+
+</body>
+</html>

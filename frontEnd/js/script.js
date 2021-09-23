@@ -603,7 +603,6 @@ $(document).on('click', '.delete-button', function(event) {
               $('#passwordForm').val('');
               // field where they type the password
             } else {
-              localStorage.clear();
               // session storage
               window.name = user.pfpUrl;
               sessionStorage.setItem('userID', user._id);
@@ -859,7 +858,6 @@ $(document).on('click', '.delete-button', function(event) {
                 sessionStorage.setItem('userEmail', email);
                 sessionStorage.setItem('userPass', pass.newPass);
                 $('#updateUserModal').modal('hide');
-                location.reload();
               } //else
             }, //success
             error: function() {
@@ -938,7 +936,6 @@ $(document).on('click', '.delete-button', function(event) {
                 sessionStorage.setItem('userPass', ePass.newPass);
                 window.name = pfpUrl;
                 $('#updateUserModal').modal('hide');
-                location.reload();
               } //else
             }, //success
             error: function() {

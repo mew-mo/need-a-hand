@@ -13,34 +13,31 @@
 </head>
 <body id="homeBG">
 
+<div id="loginNav">
+  <a href="index.html"><img id="homeLogo" class="mt-3" src="image/NAHLogo.png" alt="Need A Hand logo of a hand"></a>
+</div>
 
-  <div id="loginNav">
-    <a href="index.html"><img id="homeLogo" class="mt-3" src="image/NAHLogo.png" alt="Need A Hand logo of a hand"></a>
-  </div>
+<div id="loginSection" class="mt-5 pt-3 pb-3">
 
-  <div id="loginSection" class="mt-5 pt-3 pb-3">
-    <div id="loginHeading">
+  <div id="loginHeading">
     <h1 id="WelcomeTitle" class="text-light">Welcome back!</h1>
-    <a href="index.html"><span class="md-icon material-icons-outlined fa-times">clear</span></a>
-    </div>
-    <!-- login form -->
-
-      <input id="loginForm" type="text" name="username" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Username">
-
-      <input id="passwordForm" type="password" name="password" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Password">
-
-    <div id="loginFormButtons">
-
-      <a href="#"><button id="loginSubmit" name="button" type="submit" class="btn text-light btn-lg mt-4"> Login </button></a>
-
-      <p id="reg" class="text-light mt-4">No account yet? <br> Sign up as a <a href="studentRegister.html">Student</a> or <a href="employerRegister.html">Employer</a></p>
-
-    </div>
-
+    <a href="index.html"><span id="loginExit" class=" material-icons-outlined">clear</span></a>
   </div>
+
+  <!-- login form -->
+    <input id="loginForm" type="text" name="username" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Username">
+    <input id="passwordForm" type="password" name="password" class="my-4 ml-5 rounded-pill sidebar__filter" placeholder="Password">
+
+  <div id="loginFormButtons">
+    <a href="#"><button id="loginSubmit" name="button" type="submit" class="btn text-light btn-lg mt-4"> Login </button></a>
+    <p id="reg" class="text-light mt-4">No account yet? <br> Sign up as a <a href="studentRegister.html">Student</a> or <a href="employerRegister.html">Employer</a></p>
+  </div>
+
+</div>
 
   <script src="../frontEnd/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="../frontEnd/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/script.js"></script>
+  <script src="script.min.js"></script>
+
 </body>
 </html>

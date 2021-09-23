@@ -582,6 +582,11 @@ footer {
   color: rgba(196, 196, 196, 0.72);
 }
 
+#studentJobPosts {
+  margin-left: 25%;
+  margin-top: 11%;
+}
+
 #userProfile {
   display: none;
   position: absolute;
